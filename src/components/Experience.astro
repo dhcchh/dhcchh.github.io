@@ -62,6 +62,16 @@ const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
                         </li>
                       ))}
                     </ul>
+
+                    {exp.skills && exp.skills.length > 0 && (
+                      <div class="flex flex-wrap gap-2 mt-4 pt-4 border-t border-gray-100">
+                        {exp.skills.map((skill) => (
+                          <span class="px-2.5 py-1 bg-gray-100 text-gray-700 rounded-full text-xs sm:text-sm font-medium">
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
