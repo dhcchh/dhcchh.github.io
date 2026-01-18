@@ -17,7 +17,7 @@ export const siteConfig = {
   resumePath: "/resume.pdf", // Path to your resume file in the public folder
   aboutMe:
     "I studied Economics but found my way into data through building things and solving problems hands-on. Right now, I'm interning at ByteDance working on payment risk analytics. \n\n On the side, I'm diving deep into distributed systems—Spark, Iceberg, and the infrastructure that powers large-scale data platforms. I also write about my projects on Medium/GitHub when I find interesting problems worth sharing.",
-  skills: ["SQL", "Python", "AWS"],
+  skills: [],
   experience: [
     {
       company: "ByteDance",
