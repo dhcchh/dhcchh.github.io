@@ -9,9 +9,9 @@ const hasProjects = projects.length > 0;
   hasProjects && (
     <section id="projects" class="p-8 sm:p-12 md:p-16 lg:p-24">
       <div>
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-          <div class="lg:col-span-4">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
+        <div class="grid grid-cols-1 2xl:grid-cols-12 gap-12 2xl:gap-[clamp(2rem,5vw,4rem)] items-start">
+          <div class="2xl:col-span-4">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-text-primary">
               Projects
             </h2>
             <div
@@ -20,7 +20,7 @@ const hasProjects = projects.length > 0;
             />
           </div>
 
-          <div class="lg:col-span-8">
+          <div class="2xl:col-span-8 mt-4 2xl:mt-0">
             <div class="space-y-8">
               {projects.map((project, index) => {
                 const hasGithub = project.github && project.github.length > 0;
@@ -28,7 +28,7 @@ const hasProjects = projects.length > 0;
                 const hasLinks = hasGithub || hasArticles;
 
                 return (
-                  <div class="block relative p-4 sm:p-6 md:p-8 bg-gray-50 rounded-xl sm:rounded-2xl border border-gray-200 hover:bg-white hover:shadow-xl hover:border-gray-300 transition-all duration-300">
+                  <div class="block relative p-4 sm:p-6 md:p-8 bg-surface rounded-xl sm:rounded-2xl border border-border hover:bg-background hover:shadow-xl hover:border-text-muted transition-all duration-300">
                     <div class="space-y-4">
                       <div>
                         <div class="flex items-center justify-between">
@@ -39,17 +39,17 @@ const hasProjects = projects.length > 0;
                             0{index + 1}
                           </span>
                           {project.dateRange && (
-                            <span class="text-xs sm:text-sm text-gray-500">
+                            <span class="text-xs sm:text-sm text-text-muted">
                               {project.dateRange}
                             </span>
                           )}
                         </div>
-                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mt-1">
+                        <h3 class="text-xl sm:text-2xl font-bold text-text-primary mt-1">
                           {project.name}
                         </h3>
                       </div>
 
-                      <p class="text-base sm:text-lg text-gray-600 leading-relaxed whitespace-pre-line">
+                      <p class="text-base sm:text-lg text-text-secondary leading-relaxed whitespace-pre-line">
                         {project.description}
                       </p>
 
@@ -118,7 +118,7 @@ const hasProjects = projects.length > 0;
                       {project.skills && project.skills.length > 0 && (
                         <div class="flex flex-wrap gap-1.5 sm:gap-2 pt-2">
                           {project.skills.map((skill) => (
-                            <span class="px-2.5 sm:px-3 py-1 sm:py-1.5 bg-gray-900 text-white rounded-md sm:rounded-lg text-xs sm:text-sm font-medium">
+                            <span class="px-2.5 sm:px-3 py-1 sm:py-1.5 bg-text-primary text-text-inverse rounded-md sm:rounded-lg text-xs sm:text-sm font-medium">
                               {skill}
                             </span>
                           ))}

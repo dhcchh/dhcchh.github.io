@@ -4,12 +4,17 @@ export const siteConfig = {
   titles: ["Data Analyst", "Data Engineer", "Data Scientist"], // animated typewriter titles
   description: "Ding Hao's Portfolio Website",
   accentColor: "#1d4ed8",
+  theme: {
+    enableDarkMode: true,
+    defaultTheme: 'system' // 'light', 'dark', or 'system'
+  },
   social: {
     email: "chandinghao@yahoo.com",
     linkedin: "https://www.linkedin.com/in/dhchan/",
     github: "https://github.com/dhcchh",
     medium: "https://medium.com/@chdinghao",
   },
+  resumePath: "/resume.pdf", // Path to your resume file in the public folder
   aboutMe:
     "I studied Economics but found my way into data through building things and solving problems hands-on. Right now, I'm interning at ByteDance working on payment risk analytics. \n\n On the side, I'm diving deep into distributed systems—Spark, Iceberg, and the infrastructure that powers large-scale data platforms. I also write about my projects on Medium/GitHub when I find interesting problems worth sharing.",
   skills: ["SQL", "Python", "AWS"],
@@ -71,7 +76,7 @@ export const siteConfig = {
       name: "Card Payments Analytics",
       dateRange: "Dec 2026",
       description:
-        "Done as part of Wise's hiring process, this project involves building a data analytics platform to analyze card payment transactions using SQL and Python. \n\n Was a good opportunity for me to practice my data analytics skills. For a detailed walkthrough of the project, check out the GitHub repository by clicking the box.",
+        "Completed as part of Wise's hiring process, this project involves building a data analytics platform to analyze card payment transactions using SQL and Python. \n\n Was a good opportunity for me to practice my data analytics skills. For a detailed walkthrough of the project, check out the GitHub repository by clicking the box.",
       github: "https://github.com/dhcchh/card-payments-analytics",
       articles: [], // Array of { title: "", link: "" }
       skills: ["SQL", "Python", "DuckDB", "Data Analytics", "Data Visualisation"],

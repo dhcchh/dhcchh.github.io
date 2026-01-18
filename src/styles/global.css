@@ -1,5 +1,67 @@
 @import "tailwindcss";
 
+/* CSS Custom Properties for theme system */
+:root {
+  /* Light theme colors */
+  --color-background: 255 255 255;
+  --color-surface: 249 250 251;
+  --color-decoration: 243 244 246;
+  --color-border: 229 231 235;
+  --color-text-primary: 17 24 39;
+  --color-text-secondary: 55 65 81;
+  --color-text-muted: 107 114 128;
+  --color-text-inverse: 255 255 255;
+
+  /* Accent color (from config) */
+  --accent-color: #1d4ed8;
+
+  /* Smooth transitions for theme changes */
+  --theme-transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, fill 0.3s ease;
+}
+
+/* Dark theme colors */
+[data-theme="dark"] {
+  --color-background: 3 7 18;
+  --color-surface: 15 23 42;
+  --color-decoration: 30 41 59;
+  --color-border: 51 65 85;
+  --color-text-primary: 248 250 252;
+  --color-text-secondary: 203 213 225;
+  --color-text-muted: 148 163 184;
+  --color-text-inverse: 17 24 39;
+}
+
+/* Apply theme transitions to all elements */
+* {
+  transition: var(--theme-transition);
+}
+
+/* Base styles */
 body {
   font-family: 'IBM Plex Mono', monospace;
+  background-color: rgb(var(--color-background));
+  color: rgb(var(--color-text-primary));
+}
+
+/* Ensure smooth transitions don't affect animations */
+body *:not(.no-transition) {
+  transition: var(--theme-transition);
+}
+
+/* Custom scrollbar for dark theme consistency */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(var(--color-surface));
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--color-border));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--color-text-muted));
 }

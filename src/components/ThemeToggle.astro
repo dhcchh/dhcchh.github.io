@@ -1,0 +1,207 @@
+---
+import { siteConfig } from '../config';
+
+// Only render if dark mode is enabled in config
+const { enableDarkMode } = siteConfig.theme;
+if (!enableDarkMode) return;
+---
+
+<div id="theme-toggle-container" class="fixed top-4 right-4 z-[100]">
+  <button
+    id="theme-toggle"
+    class="
+      p-3 rounded-full transition-all duration-300 ease-in-out
+      bg-surface border border-border
+      hover:bg-decoration hover:scale-110 hover:border-text-muted
+      focus:outline-none focus:ring-2 focus:ring-accent/50 focus:ring-offset-2 focus:ring-offset-background
+      shadow-lg hover:shadow-xl
+      group
+    "
+    aria-label="Toggle theme"
+    title="Toggle dark/light mode"
+  >
+    <!-- Sun icon (light mode) -->
+    <svg
+      id="sun-icon"
+      class="w-5 h-5 text-text-primary transition-all duration-300 ease-in-out group-hover:rotate-45"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+
+    <!-- Moon icon (dark mode) -->
+    <svg
+      id="moon-icon"
+      class="w-5 h-5 text-text-primary transition-all duration-300 ease-in-out group-hover:-rotate-12 hidden"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+    </svg>
+  </button>
+</div>
+
+<script>
+  // Theme management functionality
+  class ThemeManager {
+    constructor() {
+      this.storageKey = 'theme';
+      this.defaultTheme = 'system'; // from config
+      this.init();
+    }
+
+    init() {
+      // Get stored theme or use default
+      const storedTheme = localStorage.getItem(this.storageKey);
+      const theme = storedTheme || this.defaultTheme;
+
+      // Apply theme
+      this.applyTheme(theme);
+
+      // Set up event listeners
+      this.setupEventListeners();
+
+      // Update icon based on current theme
+      this.updateIcon();
+    }
+
+    setupEventListeners() {
+      const toggleButton = document.getElementById('theme-toggle');
+
+      if (toggleButton) {
+        toggleButton.addEventListener('click', () => this.toggleTheme());
+      }
+
+      // Listen for system theme changes
+      window.matchMedia('(prefers-color-scheme: dark)')
+        .addEventListener('change', (e) => {
+          if (this.getCurrentTheme() === 'system') {
+            this.applySystemTheme();
+            this.updateIcon();
+          }
+        });
+    }
+
+    getCurrentTheme() {
+      return localStorage.getItem(this.storageKey) || this.defaultTheme;
+    }
+
+    getResolvedTheme() {
+      const theme = this.getCurrentTheme();
+      if (theme === 'system') {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      return theme;
+    }
+
+    applyTheme(theme) {
+      const root = document.documentElement;
+
+      if (theme === 'system') {
+        this.applySystemTheme();
+      } else {
+        root.setAttribute('data-theme', theme);
+      }
+
+      // Store theme preference
+      localStorage.setItem(this.storageKey, theme);
+    }
+
+    applySystemTheme() {
+      const root = document.documentElement;
+      const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      root.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    }
+
+    toggleTheme() {
+      const currentResolvedTheme = this.getResolvedTheme();
+      const newTheme = currentResolvedTheme === 'dark' ? 'light' : 'dark';
+
+      this.applyTheme(newTheme);
+      this.updateIcon();
+
+      // Add a small bounce animation to the button
+      const button = document.getElementById('theme-toggle');
+      if (button) {
+        button.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          button.style.transform = '';
+        }, 150);
+      }
+    }
+
+    updateIcon() {
+      const sunIcon = document.getElementById('sun-icon');
+      const moonIcon = document.getElementById('moon-icon');
+      const resolvedTheme = this.getResolvedTheme();
+
+      if (sunIcon && moonIcon) {
+        if (resolvedTheme === 'dark') {
+          sunIcon.classList.add('hidden');
+          moonIcon.classList.remove('hidden');
+        } else {
+          sunIcon.classList.remove('hidden');
+          moonIcon.classList.add('hidden');
+        }
+      }
+    }
+  }
+
+  // Initialize theme manager when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      new ThemeManager();
+    });
+  } else {
+    new ThemeManager();
+  }
+
+  // Handle page navigation (for SPAs or client-side routing)
+  document.addEventListener('astro:page-load', () => {
+    new ThemeManager();
+  });
+</script>
+
+<style>
+  /* Ensure the toggle button stays on top and is accessible on mobile */
+  #theme-toggle-container {
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  @media (max-width: 640px) {
+    #theme-toggle-container {
+      top: 1rem;
+      right: 1rem;
+    }
+  }
+
+  /* Add subtle animation for theme transitions */
+  #theme-toggle {
+    will-change: transform, background-color, border-color;
+  }
+
+  /* Ensure icons have proper contrast */
+  #sun-icon,
+  #moon-icon {
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+  }
+
+  [data-theme="dark"] #sun-icon,
+  [data-theme="dark"] #moon-icon {
+    filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.1));
+  }
+</style>
