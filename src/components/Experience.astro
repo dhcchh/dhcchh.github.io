@@ -45,8 +45,8 @@ const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
                         </span>
                       </div>
                       <p
-                        class="text-base sm:text-lg"
-                        style={`color: ${siteConfig.accentColor}`}
+                        class="text-base sm:text-lg font-medium"
+                        style={`color: ${exp.companyColor || siteConfig.accentColor}`}
                       >
                         {exp.company}
                       </p>

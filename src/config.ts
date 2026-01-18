@@ -21,6 +21,7 @@ export const siteConfig = {
   experience: [
     {
       company: "ByteDance",
+      companyColor: "#5AA7FF", // ByteDance light blue
       title: "Data Analyst Intern",
       dateRange: "Jan 2026 - Present",
       bullets: [
@@ -30,6 +31,7 @@ export const siteConfig = {
     },
     {
       company: "Razer",
+      companyColor: "#44D62C", // Razer green
       title: "Data Analyst Intern",
       dateRange: "Jul 2025 - Dec 2025",
       bullets: [
@@ -41,6 +43,7 @@ export const siteConfig = {
     },
     {
       company: "Ocean Network Express (ONE)",
+      companyColor: "#E91E8C", // ONE magenta/pink
       title: "Data Analyst Intern",
       dateRange: "Jun 2024 - Dec 2024",
       bullets: [
