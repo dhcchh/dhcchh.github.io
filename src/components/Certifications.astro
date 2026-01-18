@@ -1,0 +1,64 @@
+---
+import { siteConfig } from "../config";
+const certifications = siteConfig.certifications || [];
+const hasCertifications = certifications.length > 0;
+---
+
+{
+  hasCertifications && (
+    <section id="certifications" class="p-8 sm:p-12 md:p-16 lg:p-24">
+      <div>
+        <div class="grid grid-cols-1 2xl:grid-cols-12 gap-12 2xl:gap-[clamp(2rem,5vw,4rem)] items-start">
+          <div class="2xl:col-span-4">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-text-primary">
+              Certifications
+            </h2>
+            <div
+              class="w-[75px] h-[5px] mt-2 rounded-full"
+              style={`background-color: ${siteConfig.accentColor}`}
+            />
+          </div>
+
+          <div class="2xl:col-span-8 mt-4 2xl:mt-0">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              {certifications.map((cert) => (
+                <a
+                  href={cert.credentialUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="group block bg-surface rounded-xl border border-border p-4 sm:p-5 hover:bg-background hover:shadow-lg hover:border-text-muted transition-all duration-300"
+                >
+                  {cert.image && (
+                    <div class="aspect-square w-full mb-4 rounded-lg overflow-hidden bg-background flex items-center justify-center">
+                      <img
+                        src={cert.image}
+                        alt={cert.name}
+                        class="max-w-full max-h-full object-contain"
+                      />
+                    </div>
+                  )}
+                  <div class="space-y-1">
+                    <h3 class="text-base sm:text-lg font-semibold text-text-primary group-hover:underline">
+                      {cert.name}
+                    </h3>
+                    <p
+                      class="text-sm sm:text-base"
+                      style={`color: ${siteConfig.accentColor}`}
+                    >
+                      {cert.issuer}
+                    </p>
+                    {cert.dateObtained && (
+                      <p class="text-xs sm:text-sm text-text-muted">
+                        {cert.dateObtained}
+                      </p>
+                    )}
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

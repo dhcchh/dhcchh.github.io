@@ -71,6 +71,16 @@ export const siteConfig = {
       ]
     }
   ],
+  certifications: [
+    // Example format:
+    // {
+    //   name: "AWS Solutions Architect",
+    //   issuer: "Amazon Web Services",
+    //   dateObtained: "Jan 2025",
+    //   credentialUrl: "https://...",
+    //   image: "/certs/aws-sa.png", // optional: path to cert image/badge in public folder
+    // },
+  ],
   projects: [
     {
       name: "Card Payments Analytics",
