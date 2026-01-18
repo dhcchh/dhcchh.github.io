@@ -11,7 +11,7 @@ export const siteConfig = {
     medium: "https://medium.com/@chdinghao",
   },
   aboutMe:
-    "I studied Economics but found my way into data through building things and solving problems hands-on. Right now, I'm interning at ByteDance working on payment risk analytics. On the side, I'm diving deep into distributed systems—Spark, Iceberg, and the infrastructure that powers large-scale data platforms. I also write about my projects on Medium/GitHub when I find interesting problems worth sharing.",
+    "I studied Economics but found my way into data through building things and solving problems hands-on. Right now, I'm interning at ByteDance working on payment risk analytics. \n\n On the side, I'm diving deep into distributed systems—Spark, Iceberg, and the infrastructure that powers large-scale data platforms. I also write about my projects on Medium/GitHub when I find interesting problems worth sharing.",
   skills: ["SQL", "Python", "AWS"],
   experience: [
     {
@@ -99,7 +99,7 @@ export const siteConfig = {
       dateRange: "May 2025 - Jun 2025",
       description: "Inspired by issues with my Nespresso machine, the tutorial video sucked and I took a long time to get the issue fixed. The surface level metrics (1.3mil views, 13:1 LDR ratio) shocked me but the comments told a different story. \n\n As a result, I built an end-to-end NLP pipeline analyzing 250 YouTube comments using RoBERTa transformer model, uncovering 55% negative sentiment hidden behind positive engagement metrics. \n\n Also used regex pattern matching to extract actionable insights - 23 complexity complaints and 18 feature requests - then created a Streamlit dashboard to show the gap between surface KPIs and actual customer satisfaction and present areas for future improvements.",
       github: "https://github.com/dhcchh/youtube-customer-insights",
-      articles: [{ title: "NLP to Decode Customer Frustration with Coffee Machin", link: "https://medium.com/@chdinghao/nlp-to-decode-customer-frustration-with-coffee-machines-b0317c907fb8" }],
+      articles: [{ title: "NLP to Decode Customer Frustration with Coffee Machines", link: "https://medium.com/@chdinghao/nlp-to-decode-customer-frustration-with-coffee-machines-b0317c907fb8" }],
       skills: ["Natural Language Processing", "Python", "Transformers", "Streamlit"],
     },
     {
