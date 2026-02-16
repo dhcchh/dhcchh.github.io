@@ -20,12 +20,23 @@ export const siteConfig = {
   skills: [],
   experience: [
     {
+      company: "Wise",
+      companyColor: "#9FE870", // Wise light green
+      title: "Product Analytics Intern",
+      dateRange: "Mar 2026 - Jul 2026",
+      bullets: [
+        "Will be joining the Send High Volume team, focusing on analyzing high-value customer behavior and transaction patterns to identify growth opportunities"
+      ],
+      skills: [],
+    },
+    {
       company: "ByteDance",
       companyColor: "#5AA7FF", // ByteDance light blue
       title: "Data Analyst Intern",
-      dateRange: "Jan 2026 - Present",
+      dateRange: "Jan 2026 - Mar 2026",
       bullets: [
-        "Will be working on payment risk analytics for TikTok's Live's platform, will update with more details soon",
+        "Conducted exploratory analysis on new user registration data to identify behavioral signals (IP geolocation, device fingerprinting, velocity patterns) indicative of spam account creation, establishing baseline fraud rates and feature candidates for a risk scoring framework",
+        "Developed HiveSQL queries to extract and analyze 1M+ daily user records, performing quantile analysis across device and IP distributions to surface anomalous registration patterns"
       ],
       skills: ["SQL", "Python", "Hive", "Spark"],
     },
