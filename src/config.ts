@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "Chan Ding Hao",
+  name: "Ding Hao",
   title: "Data Engineer", // fallback if titles array is empty
   titles: ["Data Analyst", "Data Engineer", "Data Scientist"], // animated typewriter titles
   description: "Ding Hao's Portfolio Website",
