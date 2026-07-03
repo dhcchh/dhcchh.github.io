@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "Ding Hao",
   title: "Data Engineer", // fallback if titles array is empty
-  titles: ["Data Analyst", "Data Engineer", "Data Scientist"], // animated typewriter titles
+  titles: ["Data Engineer", "Analytics Engineer", "Data Platform Engineer"], // animated typewriter titles
   description: "Ding Hao's Portfolio Website",
   accentColor: "#1d4ed8",
   theme: {
@@ -37,7 +37,7 @@ export const siteConfig = {
       bullets: [
         "On the Send High Volume team, I worked the full analytics stack end-to-end. I built data pipelines with dbt, transforming raw transaction data into analytics-ready models, and refactored existing models to run more efficiently and reduce compute cost. On top of that foundation, I ran analytics into high-value customer segments and their transaction patterns, turning those findings into insights that helped drive product and business direction, and built dashboards that gave stakeholders self-serve visibility into how those segments were performing.",
       ],
-      skills: ["dbt", "Git", "SQL", "Python", "Data Modeling", "Lightdash", "Apache Superset"],
+      skills: ["dbt", "Airflow", "Git", "SQL", "Python", "Data Modeling", "Lightdash", "Apache Superset"],
     },
     {
       company: "ByteDance",
