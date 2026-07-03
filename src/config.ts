@@ -20,14 +20,24 @@ export const siteConfig = {
   skills: [],
   experience: [
     {
+      company: "Xiaomi",
+      companyColor: "#FF6700", // Xiaomi orange
+      title: "Data Engineer",
+      dateRange: "Starting Aug 2026",
+      bullets: [
+        "My first full-time role, starting this August. It marks the step from internships into building data systems full-time as an engineer, and I'm really looking forward to getting started and the work ahead.",
+      ],
+      skills: [],
+    },
+    {
       company: "Wise",
       companyColor: "#9FE870", // Wise light green
       title: "Product Analytics Intern",
       dateRange: "Mar 2026 - Jul 2026",
       bullets: [
-        "Will be joining the Send High Volume team, focusing on analyzing high-value customer behavior and transaction patterns to identify growth opportunities"
+        "On the Send High Volume team, I worked the full analytics stack end-to-end. I built data pipelines with dbt, transforming raw transaction data into analytics-ready models, and refactored existing models to run more efficiently and reduce compute cost. On top of that foundation, I ran analytics into high-value customer segments and their transaction patterns, turning those findings into insights that helped drive product and business direction, and built dashboards that gave stakeholders self-serve visibility into how those segments were performing.",
       ],
-      skills: [],
+      skills: ["dbt", "Git", "SQL", "Python", "Data Modeling", "Lightdash", "Apache Superset"],
     },
     {
       company: "ByteDance",
@@ -35,8 +45,7 @@ export const siteConfig = {
       title: "Data Analyst Intern",
       dateRange: "Jan 2026 - Mar 2026",
       bullets: [
-        "Conducted exploratory analysis on new user registration data to identify behavioral signals (IP geolocation, device fingerprinting, velocity patterns) indicative of spam account creation, establishing baseline fraud rates and feature candidates for a risk scoring framework",
-        "Developed HiveSQL queries to extract and analyze 1M+ daily user records, performing quantile analysis across device and IP distributions to surface anomalous registration patterns"
+        "I worked on fraud detection for new user registrations, running exploratory analysis to surface behavioral signals (IP geolocation, device fingerprinting, velocity patterns) indicative of spam account creation, which established baseline fraud rates and feature candidates for a risk scoring framework. To do this at scale, I developed HiveSQL queries to extract and analyze 1M+ daily user records, performing quantile analysis across device and IP distributions to pinpoint anomalous registration patterns.",
       ],
       skills: ["SQL", "Python", "Hive", "Spark"],
     },
@@ -46,9 +55,7 @@ export const siteConfig = {
       title: "Data Analyst Intern",
       dateRange: "Jul 2025 - Dec 2025",
       bullets: [
-        "Built data transformation pipelines with dbt and AWS Redshift, working on analytics engineering workflows and learning how production data systems actually operate at scale",
-        "Focused on the transformation layer (T in ETL) - built and maintained dbt models that turned raw data into analytics-ready datasets for different business teams",
-        "Built Apache Superset dashboards to track recommendation engine performance and surface key business metrics to stakeholders (CTR, Moving Averages of Revenues, etc.)",
+        "This was where I got my first real exposure to analytics engineering at scale. I built data transformation pipelines with dbt and AWS Redshift, focusing on the transformation layer (the T in ETL) by building and maintaining dbt models that turned raw data into analytics-ready datasets for different business teams. On the presentation side, I built Apache Superset dashboards to track recommendation engine performance and surface key business metrics to stakeholders (CTR, moving averages of revenue, etc.), which taught me how production data systems actually operate day to day.",
       ],
       skills: ["dbt", "AWS Redshift", "AWS Sagemaker", "Apache Superset", "SQL", "bash (Ubuntu)"],
     },
@@ -58,9 +65,7 @@ export const siteConfig = {
       title: "Data Analyst Intern",
       dateRange: "Jun 2024 - Dec 2024",
       bullets: [
-        "Optimized truck routes using a CI/CD pipeline on GCP with Python and SQL, cutting distance by 5% and saving $500K+ annually",
-        "Traced undocumented data sources through SQL query analysis on legacy Oracle Database to enable accurate route optimization",
-        "Built an internal AI showcase portal on Google Sites that increased AI adoption by 30% across the company. Overall, it shaped my thinking for building tech related solutions to always think of the business value first",
+        "My first data internship, where I optimized truck routes using a CI/CD pipeline on GCP with Python and SQL, cutting distance by 5% and saving $500K+ annually. Getting there meant tracing undocumented data sources through SQL query analysis on a legacy Oracle Database to enable accurate route optimization. I also built an internal AI showcase portal on Google Sites that increased AI adoption by 30% across the company. More than the technical work, this shaped how I approach problems, always leading with the business value first.",
       ],
       skills: ["GCP BigQuery", "GCP VertexAI", "Python", "SQL"],
     },
