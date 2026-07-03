@@ -14,7 +14,7 @@ export const siteConfig = {
     github: "https://github.com/dhcchh",
     medium: "https://medium.com/@chdinghao",
   },
-  resumePath: "/resume.pdf", // Path to your resume file in the public folder
+  resumePath: "", // Path to your resume file in the public folder (empty = hidden; add path to show again)
   aboutMe:
     "I studied Economics but found my way into data through building things and solving problems hands-on. \n\n On the side, I'm diving deep into distributed systems—Spark, Iceberg, and the infrastructure that powers large-scale data platforms. I also write about my projects on Medium/GitHub when I find interesting problems worth sharing.",
   skills: [],
