@@ -65,3 +65,265 @@ body *:not(.no-transition) {
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(var(--color-text-muted));
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ------------------------------------------------------------------ */
+/* Blog article prose                                                  */
+/* ------------------------------------------------------------------ */
+
+.prose {
+  color: rgb(var(--color-text-secondary));
+  font-size: 1.05rem;
+  line-height: 1.75;
+  overflow-wrap: break-word;
+}
+
+.prose > * + * {
+  margin-top: 1.25em;
+}
+
+.prose h2,
+.prose h3,
+.prose h4 {
+  color: rgb(var(--color-text-primary));
+  font-weight: 700;
+  line-height: 1.3;
+  margin-top: 2em;
+  margin-bottom: 0.6em;
+}
+
+.prose h2 {
+  font-size: 1.6rem;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid rgb(var(--color-border));
+}
+.prose h3 {
+  font-size: 1.3rem;
+}
+.prose h4 {
+  font-size: 1.1rem;
+}
+
+.prose a {
+  color: var(--accent-color);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.prose a:hover {
+  text-decoration-thickness: 2px;
+}
+
+.prose strong {
+  color: rgb(var(--color-text-primary));
+  font-weight: 700;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.5em;
+}
+.prose ul {
+  list-style: disc;
+}
+.prose ol {
+  list-style: decimal;
+}
+.prose li {
+  margin-top: 0.4em;
+}
+.prose li > ul,
+.prose li > ol {
+  margin-top: 0.4em;
+}
+
+/* GitHub-style task lists */
+.prose li:has(> input[type="checkbox"]) {
+  list-style: none;
+  margin-left: -1.5em;
+}
+.prose input[type="checkbox"] {
+  margin-right: 0.5em;
+  accent-color: var(--accent-color);
+}
+
+.prose blockquote {
+  border-left: 3px solid var(--accent-color);
+  padding-left: 1em;
+  color: rgb(var(--color-text-muted));
+  font-style: italic;
+}
+
+.prose hr {
+  border: 0;
+  border-top: 1px solid rgb(var(--color-border));
+  margin: 2.5em 0;
+}
+
+/* Inline code */
+.prose :not(pre) > code {
+  background: rgb(var(--color-decoration));
+  color: rgb(var(--color-text-primary));
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+/* Shiki code blocks (dual light/dark themes) */
+.prose pre {
+  position: relative;
+  border: 1px solid rgb(var(--color-border));
+  border-radius: 8px;
+  padding: 1em 1.2em;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+.prose pre .copy-btn {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  padding: 0.25em 0.6em;
+  font: inherit;
+  font-size: 0.7rem;
+  color: rgb(var(--color-text-muted));
+  background: rgb(var(--color-background));
+  border: 1px solid rgb(var(--color-border));
+  border-radius: 5px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s ease, color 0.15s ease;
+}
+.prose pre:hover .copy-btn,
+.prose pre .copy-btn:focus-visible {
+  opacity: 1;
+}
+.prose pre .copy-btn:hover {
+  color: rgb(var(--color-text-primary));
+}
+.prose pre > code {
+  background: none;
+  padding: 0;
+  font-size: inherit;
+}
+:root[data-theme="dark"] .prose .astro-code,
+:root[data-theme="dark"] .prose .astro-code span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
+}
+
+/* Tables */
+.prose table {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.prose th,
+.prose td {
+  border: 1px solid rgb(var(--color-border));
+  padding: 0.5em 0.85em;
+  text-align: left;
+}
+.prose th {
+  background: rgb(var(--color-surface));
+  color: rgb(var(--color-text-primary));
+  font-weight: 600;
+}
+
+/* Images */
+.prose img {
+  border-radius: 8px;
+  border: 1px solid rgb(var(--color-border));
+}
+
+/* Block math: keep long expressions scrollable, not clipped */
+.prose .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.5em 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* Callouts + toggles (see src/lib/remark-callouts.mjs)                */
+/* ------------------------------------------------------------------ */
+
+.prose .callout {
+  --callout-color: #3b82f6;
+  margin-top: 1.5em;
+  padding: 1em 1.2em;
+  border-left: 3px solid var(--callout-color);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--callout-color) 10%, rgb(var(--color-surface)));
+}
+.prose .callout > * + * {
+  margin-top: 0.75em;
+}
+.prose .callout-tip {
+  --callout-color: #10b981;
+}
+.prose .callout-warning {
+  --callout-color: #f59e0b;
+}
+.prose .callout-danger {
+  --callout-color: #ef4444;
+}
+.prose .callout-title {
+  color: rgb(var(--color-text-primary));
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.prose .callout-title::before {
+  content: "";
+  display: inline-block;
+  width: 0.55em;
+  height: 0.55em;
+  margin-right: 0.55em;
+  border-radius: 2px;
+  background: var(--callout-color);
+  vertical-align: middle;
+}
+
+.prose .md-toggle {
+  margin-top: 1.5em;
+  border: 1px solid rgb(var(--color-border));
+  border-radius: 8px;
+  padding: 0 1.2em;
+  background: rgb(var(--color-surface));
+}
+.prose .md-toggle > summary {
+  cursor: pointer;
+  padding: 0.9em 0;
+  font-weight: 600;
+  color: rgb(var(--color-text-primary));
+  list-style: none;
+}
+.prose .md-toggle > summary::-webkit-details-marker {
+  display: none;
+}
+.prose .md-toggle > summary::before {
+  content: "▸";
+  display: inline-block;
+  margin-right: 0.6em;
+  color: rgb(var(--color-text-muted));
+  transition: transform 0.15s ease;
+}
+.prose .md-toggle[open] > summary::before {
+  transform: rotate(90deg);
+}
+.prose .md-toggle > :not(summary) {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+.prose .md-toggle > summary + * {
+  margin-top: 0;
+}

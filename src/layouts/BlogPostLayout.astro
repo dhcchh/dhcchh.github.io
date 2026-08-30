@@ -1,0 +1,129 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { siteConfig } from "../config";
+import { formatDate, type Post } from "../lib/posts";
+import "katex/dist/katex.min.css";
+
+interface Props {
+  post: Post;
+  minutes: number;
+  newer?: Post;
+  older?: Post;
+}
+
+const { post, minutes, newer, older } = Astro.props;
+const { title, description, pubDate, updatedDate, tags, cover } = post.data;
+const accent = `--accent-color:${siteConfig.accentColor}`;
+---
+
+<BaseLayout
+  title={`${title} — ${siteConfig.name}`}
+  description={description}
+  image={cover}
+>
+  <Header />
+  <main class="mx-auto max-w-3xl px-6 pt-28 pb-20 sm:px-8">
+    <a
+      href="/blog"
+      class="text-sm text-text-muted hover:text-text-primary transition-colors"
+    >
+      ← All posts
+    </a>
+
+    <article>
+      <header class="mt-6 mb-10">
+        <h1
+          class="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-text-primary"
+        >
+          {title}
+        </h1>
+        <div
+          class="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-text-muted"
+        >
+          <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
+          <span aria-hidden="true">·</span>
+          <span>{minutes} min read</span>
+          {
+            updatedDate && (
+              <>
+                <span aria-hidden="true">·</span>
+                <span>updated {formatDate(updatedDate)}</span>
+              </>
+            )
+          }
+        </div>
+        {
+          tags.length > 0 && (
+            <ul class="mt-4 flex flex-wrap gap-2">
+              {tags.map((t) => (
+                <li class="px-2.5 py-1 rounded-full text-xs bg-surface text-text-secondary border border-border">
+                  {t}
+                </li>
+              ))}
+            </ul>
+          )
+        }
+      </header>
+
+      <div class="prose">
+        <slot />
+      </div>
+    </article>
+
+    {
+      (newer || older) && (
+        <nav class="mt-16 grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-border pt-8 text-sm">
+          <div>
+            {older && (
+              <a
+                href={`/blog/${older.id}`}
+                class="block text-text-secondary hover:text-text-primary transition-colors"
+                style={accent}
+              >
+                <span class="text-text-muted">Older</span>
+                <span class="block font-medium">{older.data.title}</span>
+              </a>
+            )}
+          </div>
+          <div class="sm:text-right">
+            {newer && (
+              <a
+                href={`/blog/${newer.id}`}
+                class="block text-text-secondary hover:text-text-primary transition-colors"
+                style={accent}
+              >
+                <span class="text-text-muted">Newer</span>
+                <span class="block font-medium">{newer.data.title}</span>
+              </a>
+            )}
+          </div>
+        </nav>
+      )
+    }
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+  // Copy button for every code block.
+  document.querySelectorAll<HTMLPreElement>(".prose pre").forEach((pre) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "copy-btn";
+    btn.textContent = "Copy";
+    btn.addEventListener("click", async () => {
+      const code = pre.querySelector("code")?.innerText ?? pre.innerText;
+      try {
+        await navigator.clipboard.writeText(code.replace(/\n$/, ""));
+        btn.textContent = "Copied";
+      } catch {
+        btn.textContent = "Failed";
+      }
+      setTimeout(() => (btn.textContent = "Copy"), 1500);
+    });
+    pre.appendChild(btn);
+  });
+</script>
+

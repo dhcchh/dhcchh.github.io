@@ -1,9 +1,17 @@
 ---
 import { siteConfig } from "../config";
+import { getPublishedPosts } from "../lib/posts";
 
 const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
 const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
 const hasEducation = siteConfig.education && siteConfig.education.length > 0;
+const hasPosts = (await getPublishedPosts()).length > 0;
+
+const isHome = Astro.url.pathname === "/";
+const section = (id: string) => (isHome ? `#${id}` : `/#${id}`);
+
+const linkClass =
+  "text-text-secondary hover:text-text-primary transition-colors font-medium";
 ---
 
 <header
@@ -12,21 +20,11 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 >
   <nav class="max-w-7xl mx-auto px-8 py-4">
     <ul class="flex items-center gap-8 justify-center">
-      <li>
-        <a
-          href="#about"
-          class="text-text-secondary hover:text-text-primary transition-colors font-medium"
-        >
-          About
-        </a>
-      </li>
+      <li><a href={section("about")} class={linkClass}>About</a></li>
       {
         hasExperience && (
           <li>
-            <a
-              href="#experience"
-              class="text-text-secondary hover:text-text-primary transition-colors font-medium"
-            >
+            <a href={section("experience")} class={linkClass}>
               Experience
             </a>
           </li>
@@ -35,10 +33,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
       {
         hasEducation && (
           <li>
-            <a
-              href="#education"
-              class="text-text-secondary hover:text-text-primary transition-colors font-medium"
-            >
+            <a href={section("education")} class={linkClass}>
               Education
             </a>
           </li>
@@ -47,11 +42,17 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
       {
         hasProjects && (
           <li>
-            <a
-              href="#projects"
-              class="text-text-secondary hover:text-text-primary transition-colors font-medium"
-            >
+            <a href={section("projects")} class={linkClass}>
               Projects
+            </a>
+          </li>
+        )
+      }
+      {
+        hasPosts && (
+          <li>
+            <a href="/blog" class={linkClass}>
+              Blog
             </a>
           </li>
         )
@@ -59,6 +60,18 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
     </ul>
   </nav>
 </header>
+
+{
+  /* Mobile: the header above is desktop-only, so surface Blog on its own. */
+  hasPosts && isHome && (
+    <a
+      href="/blog"
+      class="md:hidden fixed top-4 left-4 z-50 px-3 py-2 rounded-full text-sm font-medium bg-surface border border-border text-text-primary shadow-lg hover:bg-decoration transition-colors"
+    >
+      Blog
+    </a>
+  )
+}
 
 <script>
   window.addEventListener("scroll", () => {
@@ -70,9 +83,3 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
     }
   });
 </script>
-
-<style>
-  html {
-    scroll-behavior: smooth;
-  }
-</style>
