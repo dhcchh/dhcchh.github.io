@@ -23,41 +23,41 @@ export const siteConfig = {
       company: "Xiaomi",
       companyColor: "#FF6700", // Xiaomi orange
       title: "Data Engineer",
-      dateRange: "Starting Aug 2026",
+      dateRange: "Aug 2026 - Present",
       bullets: [
-        "My first full-time role, starting this August. It marks the step from internships into building data systems full-time as an engineer, and I'm really looking forward to getting started and the work ahead.",
+        "My first full-time role. I'm building offline data pipelines on Apache Iceberg, Doris, and Spark SQL that process around 10 TB a day of SEA eCommerce transaction data, partitioned to power stakeholder reporting. I'm also architecting GDPR-compliant pipelines in Java and Spring Boot, with PII hashing on defined TTLs, to serve governed data access to seven business units across Xiaomi's mobile and IoT divisions. It's the step from internships into building data systems full-time as an engineer, and I'm looking forward to the work ahead.",
       ],
-      skills: [],
+      skills: ["Apache Iceberg", "Apache Doris", "Spark SQL", "Java", "Spring Boot", "Data Modeling"],
     },
     {
       company: "Wise",
       companyColor: "#9FE870", // Wise light green
-      title: "Product Analytics Intern",
+      title: "Product Analyst Intern",
       dateRange: "Mar 2026 - Jul 2026",
       bullets: [
-        "On the Send High Volume team, I worked the full analytics stack end-to-end. I built data pipelines with dbt, transforming raw transaction data into analytics-ready models, and refactored existing models to run more efficiently and reduce compute cost. On top of that foundation, I ran analytics into high-value customer segments and their transaction patterns, turning those findings into insights that helped drive product and business direction, and built dashboards that gave stakeholders self-serve visibility into how those segments were performing.",
+        "On the Send High Volume team, I worked the full analytics stack end-to-end. I refactored a 2B+ row dbt model on Snowflake that kept timing out, cutting its runtime from 5 hours to 1.5 through incremental materialisation, watermark-based filtering, and partition-aligned merge keys. I designed star-schema fact and dimension models with proper slowly-changing-dimension handling so three stakeholder teams could work off a single governed layer, and wrote Airflow DAGs in Python to keep everything refreshed with dependency and failure handling. On that foundation I ran deep-dive analyses into high-value customer segments and their transaction patterns by region, surfacing metric shifts that shaped product and business decisions. I also built an MCP server that exposes the dbt semantic layer to LLM agents, so governed metrics can be queried in natural language while the correct join paths and definitions stay enforced.",
       ],
-      skills: ["dbt", "Airflow", "Git", "SQL", "Python", "Data Modeling", "Lightdash", "Apache Superset"],
+      skills: ["dbt", "Snowflake", "Airflow", "Python", "SQL", "Dimensional Modeling", "MCP"],
     },
     {
       company: "ByteDance",
       companyColor: "#5AA7FF", // ByteDance light blue
-      title: "Data Analyst Intern",
+      title: "Payments Risk Analyst Intern",
       dateRange: "Jan 2026 - Mar 2026",
       bullets: [
-        "I worked on fraud detection for new user registrations, running exploratory analysis to surface behavioral signals (IP geolocation, device fingerprinting, velocity patterns) indicative of spam account creation, which established baseline fraud rates and feature candidates for a risk scoring framework. To do this at scale, I developed HiveSQL queries to extract and analyze 1M+ daily user records, performing quantile analysis across device and IP distributions to pinpoint anomalous registration patterns.",
+        "I worked on fraud detection for new user registrations. I engineered PySpark and HiveSQL pipelines over 20TB-scale registration and event data, producing partitioned Hive feature tables with quantile aggregations across device and IP distributions for fraud scoring. Getting that to run at scale meant tuning the SparkSQL execution with partition pruning, broadcast joins, and skew handling on high-cardinality IP and device joins, which brought runtime down by 20%. The behavioral features I built from it (IP geolocation, device fingerprinting, velocity patterns) were adopted directly into the production fraud risk scoring framework.",
       ],
-      skills: ["SQL", "Python", "Hive", "Spark"],
+      skills: ["PySpark", "Spark SQL", "HiveSQL", "Python", "Hive"],
     },
     {
       company: "Razer",
       companyColor: "#44D62C", // Razer green
-      title: "Data Analyst Intern",
+      title: "Analytics Engineering Intern",
       dateRange: "Jul 2025 - Dec 2025",
       bullets: [
-        "This was where I got my first real exposure to analytics engineering at scale. I built data transformation pipelines with dbt and AWS Redshift, focusing on the transformation layer (the T in ETL) by building and maintaining dbt models that turned raw data into analytics-ready datasets for different business teams. On the presentation side, I built Apache Superset dashboards to track recommendation engine performance and surface key business metrics to stakeholders (CTR, moving averages of revenue, etc.), which taught me how production data systems actually operate day to day.",
+        "This was where I got my first real exposure to analytics engineering at scale. I delivered stakeholder reporting on 10TB+ of internal data through dbt and Apache Superset, cutting dashboard load times by half and shortening the product team's decision cycles. I also diagnosed data-quality issues in software-usage datasets with Python and SQL, then specified the fixes and handed them off to the data engineering team. It taught me how production data systems actually operate day to day.",
       ],
-      skills: ["dbt", "AWS Redshift", "AWS Sagemaker", "Apache Superset", "SQL", "bash (Ubuntu)"],
+      skills: ["dbt", "AWS Redshift", "Apache Superset", "Python", "SQL", "bash (Ubuntu)"],
     },
     {
       company: "Ocean Network Express (ONE)",
@@ -65,9 +65,9 @@ export const siteConfig = {
       title: "Data Analyst Intern",
       dateRange: "Jun 2024 - Dec 2024",
       bullets: [
-        "My first data internship, where I optimized truck routes using a CI/CD pipeline on GCP with Python and SQL, cutting distance by 5% and saving $500K+ annually. Getting there meant tracing undocumented data sources through SQL query analysis on a legacy Oracle Database to enable accurate route optimization. I also built an internal AI showcase portal on Google Sites that increased AI adoption by 30% across the company. More than the technical work, this shaped how I approach problems, always leading with the business value first.",
+        "My first data internship, where I cut logistics costs by $500K+ a year by encoding domain constraints like Hazmat routing rules into a route-optimization model that reduced total route distance by 5%. I built the CI/CD pipeline around it on GCP with Python and SQL so fleet decisions could happen in real time, improving processing speed by 10%. More than the technical work, this shaped how I approach problems, always leading with the business value first.",
       ],
-      skills: ["GCP BigQuery", "GCP VertexAI", "Python", "SQL"],
+      skills: ["GCP", "Python", "SQL", "CI/CD"],
     },
   ],
   education: [
