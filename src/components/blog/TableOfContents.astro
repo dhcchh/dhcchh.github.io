@@ -1,0 +1,74 @@
+---
+import type { MarkdownHeading } from "astro";
+interface Props {
+  headings: MarkdownHeading[];
+}
+const { headings } = Astro.props;
+---
+
+{headings.length > 1 && (
+  <nav class="contents" aria-label="On this page">
+    <details open data-contents>
+      <summary class="eyebrow">On this page</summary>
+      <ol role="list">
+        {headings.map(({ slug, text }, index) => (
+          <li>
+            <a href={`#${slug}`}>
+              <span aria-hidden="true">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              {text}
+            </a>
+          </li>
+        ))}
+      </ol>
+    </details>
+  </nav>
+)}
+<script>
+  // Native details remains usable without JS; start collapsed on small screens.
+  const contents =
+    document.querySelector<HTMLDetailsElement>("[data-contents]");
+  if (contents && window.matchMedia("(max-width: 900px)").matches)
+    contents.open = false;
+</script>
+<style>
+  .contents {
+    position: sticky;
+    top: 7rem;
+    max-height: calc(100dvh - 9rem);
+    overflow-y: auto;
+    padding: 0.35rem 0.5rem 0.5rem 0;
+  }
+  summary {
+    padding-block: 0.25rem;
+  }
+  ol {
+    display: grid;
+    gap: 0.15rem;
+    margin-top: 1rem;
+  }
+  a {
+    display: flex;
+    gap: 0.7rem;
+    padding-block: 0.5rem;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    color: rgb(var(--color-text-secondary));
+  }
+  a span {
+    color: rgb(var(--color-text-muted));
+    font: 0.6rem/2 var(--font-mono);
+  }
+  a:hover {
+    color: var(--link-color);
+  }
+  @media (max-width: 900px) {
+    .contents {
+      position: static;
+      max-height: none;
+      border-bottom: 1px solid rgb(var(--color-border));
+      padding-bottom: 1rem;
+    }
+  }
+</style>

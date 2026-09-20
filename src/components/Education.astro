@@ -1,68 +1,63 @@
 ---
 import { siteConfig } from "../config";
-const hasEducation = siteConfig.education && siteConfig.education.length > 0;
+import Section from "./ui/Section.astro";
 ---
 
-{
-  hasEducation && (
-    <section id="education" class="p-8 sm:p-12 md:p-16 lg:p-24">
-      <div>
-        <div class="grid grid-cols-1 2xl:grid-cols-12 gap-12 2xl:gap-[clamp(2rem,5vw,4rem)] items-start">
-          <div class="2xl:col-span-4">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-text-primary">
-              Education
-            </h2>
-            <div
-              class="w-[75px] h-[5px] mt-2 rounded-full"
-              style={`background-color: ${siteConfig.accentColor}`}
-            />
-          </div>
-
-          <div class="2xl:col-span-8 mt-4 2xl:mt-0">
-            <div class="space-y-8">
-              {siteConfig.education.map((edu) => (
-                <div class="bg-background rounded-lg shadow-sm border border-border p-4 sm:p-5 md:p-6 hover:shadow-md transition-shadow duration-300">
-                  <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4">
-                    <div>
-                      <h3 class="text-lg sm:text-xl font-semibold text-text-primary">
-                        {edu.degree}
-                      </h3>
-                      <p
-                        class="text-base sm:text-lg"
-                        style={`color: ${siteConfig.accentColor}`}
-                      >
-                        {edu.school}
-                      </p>
-                    </div>
-                    <span class="text-xs sm:text-sm text-text-muted mt-2 sm:mt-0">
-                      {edu.dateRange}
-                    </span>
-                  </div>
-
-                  {edu.description && (
-                    <p class="text-sm sm:text-base text-text-secondary mb-4">
-                      {edu.description}
-                    </p>
-                  )}
-
-                  <h4 class="text-sm font-semibold text-text-secondary mb-3">Relevant Coursework</h4>
-
-                  <ul class="space-y-2">
-                    {edu.relevantCoursework.map((coursework) => (
-                      <li class="flex items-start">
-                        <span class="inline-block w-1.5 h-1.5 rounded-full mt-2 mr-3 flex-shrink-0" style={`background-color: ${siteConfig.accentColor}`} />
-                        <span class="text-sm sm:text-base text-text-secondary">
-                          {coursework}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
+{siteConfig.education.length > 0 && (
+  <Section id="education" eyebrow="The foundations" title="Always a student.">
+    <div class="education-list">
+      {siteConfig.education.map((education) => (
+        <article>
+          <p class="eyebrow">{education.dateRange}</p>
+          <h3>{education.school}</h3>
+          <p class="degree">{education.degree}</p>
+          <p class="paragraphs">{education.description}</p>
+          {education.relevantCoursework.length > 0 && (
+            <details>
+              <summary>Relevant coursework</summary>
+              <ul role="list">
+                {education.relevantCoursework.map((course) => (
+                  <li>{course}</li>
+                ))}
+              </ul>
+            </details>
+          )}
+        </article>
+      ))}
+    </div>
+  </Section>
+)}
+<style>
+  .education-list {
+    display: grid;
+    gap: 2rem;
+  }
+  h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-top: 0.6rem;
+  }
+  .degree {
+    margin-top: 0.4rem;
+    color: var(--link-color);
+    font-size: 0.9rem;
+  }
+  .paragraphs {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+  details {
+    margin-top: 1.25rem;
+    font-size: 0.85rem;
+  }
+  summary {
+    padding-block: 0.4rem;
+  }
+  ul {
+    display: grid;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    color: rgb(var(--color-text-secondary));
+  }
+</style>

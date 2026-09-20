@@ -1,10 +1,10 @@
 ---
 import { render } from "astro:content";
 import BlogPostLayout from "../../layouts/BlogPostLayout.astro";
-import { getPublishedPosts, readingTime } from "../../lib/posts";
+import { getPosts, readingTime } from "../../lib/posts";
 
 export async function getStaticPaths() {
-  const posts = await getPublishedPosts();
+  const posts = await getPosts();
   return posts.map((post, i) => ({
     params: { slug: post.id },
     props: {
@@ -16,10 +16,16 @@ export async function getStaticPaths() {
 }
 
 const { post, newer, older } = Astro.props;
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
 const minutes = readingTime(post.body);
 ---
 
-<BlogPostLayout post={post} minutes={minutes} newer={newer} older={older}>
+<BlogPostLayout
+  post={post}
+  minutes={minutes}
+  headings={headings}
+  newer={newer}
+  older={older}
+>
   <Content />
 </BlogPostLayout>

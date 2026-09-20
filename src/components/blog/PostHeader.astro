@@ -1,0 +1,65 @@
+---
+import { siteConfig } from "../../config";
+import type { Post } from "../../lib/posts";
+import TagList from "../ui/TagList.astro";
+import PostMeta from "./PostMeta.astro";
+interface Props {
+  post: Post;
+  minutes: number;
+}
+const { post, minutes } = Astro.props;
+---
+
+<header class="post-header">
+  <a class="eyebrow back-link" href="/blog">
+    ← All writing
+  </a>
+  <h1 class="display">{post.data.title}</h1>
+  <p class="description">{post.data.description}</p>
+  <div class="byline">
+    <span class="author">{siteConfig.name}</span>
+    <PostMeta post={post} minutes={minutes} />
+  </div>
+  <TagList items={post.data.tags} label="Topics" />
+</header>
+<style>
+  .post-header {
+    padding-block: 4rem 3rem;
+    border-bottom: 1px solid rgb(var(--color-border));
+  }
+  .back-link:hover {
+    color: var(--link-color);
+  }
+  h1 {
+    max-width: 950px;
+    margin-top: 2rem;
+    font-size: clamp(2.8rem, 5.4vw, 4.5rem);
+    line-height: 1.1;
+  }
+  .description {
+    max-width: 780px;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: rgb(var(--color-text-secondary));
+    margin-top: 1.5rem;
+  }
+  .byline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.5rem;
+    margin-block: 1.8rem 1.2rem;
+  }
+  .author {
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  @media (max-width: 700px) {
+    .post-header {
+      padding-block: 2.5rem;
+    }
+    .description {
+      font-size: 1rem;
+    }
+  }
+</style>

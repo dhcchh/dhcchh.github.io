@@ -1,0 +1,66 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  eyebrow?: string;
+  wide?: boolean;
+  heading?: "h1" | "h2";
+}
+const {
+  id,
+  title,
+  eyebrow,
+  wide = false,
+  heading: Heading = "h2",
+} = Astro.props;
+---
+
+<section
+  id={id}
+  class:list={["section", { wide, "page-section": Heading === "h1" }]}
+  aria-labelledby={`${id}-title`}
+>
+  <header>
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <Heading id={`${id}-title`} class="display section-title">
+      {title}
+    </Heading>
+    <slot name="intro" />
+  </header>
+  <div class="section-content">
+    <slot />
+  </div>
+</section>
+<style>
+  .section {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    padding-block: 5rem;
+    border-top: 1px solid rgb(var(--color-border));
+  }
+  .wide {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .section-title {
+    font-size: clamp(2.2rem, 3.5vw, 3rem);
+    margin-top: 0.65rem;
+  }
+  .section-content {
+    min-width: 0;
+  }
+  .page-section {
+    border-top: 0;
+  }
+  .page-section .section-title {
+    font-size: clamp(2.75rem, 5vw, 4rem);
+  }
+  @media (max-width: 850px) {
+    .section {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding-block: 3.5rem;
+    }
+  }
+</style>

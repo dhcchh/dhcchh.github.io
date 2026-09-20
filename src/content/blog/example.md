@@ -70,10 +70,11 @@ def transform(rows):
     return {"count": len(rows), "total": total}
 ```
 
-Syntax highlighting follows the site theme (light and dark), with a copy button
-on hover.
+Syntax highlighting follows the site theme (light and dark), with a visible copy button.
 
 ## Math
+
+Long equations scroll horizontally. Focus the block to scroll with the keyboard.
 
 Inline: the estimator is unbiased when $\mathbb{E}[\hat\theta] = \theta$.
 

@@ -1,0 +1,57 @@
+---
+import { readingTime, type Post } from "../../lib/posts";
+import TagList from "../ui/TagList.astro";
+import PostMeta from "./PostMeta.astro";
+interface Props {
+  post: Post;
+  heading?: "h2" | "h3";
+}
+const { post, heading: Heading = "h3" } = Astro.props;
+---
+
+<article class="post-card">
+  <PostMeta post={post} minutes={readingTime(post.body)} />
+  <Heading class="post-title">
+    <a href={`/blog/${post.id}`}>
+      {post.data.title}
+      <span aria-hidden="true">↗</span>
+    </a>
+  </Heading>
+  <p>{post.data.description}</p>
+  <TagList items={post.data.tags} label="Topics" />
+</article>
+<style>
+  .post-card {
+    padding-block: 2rem;
+    border-top: 1px solid rgb(var(--color-border));
+  }
+  .post-card:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+  .post-title {
+    font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+    font-weight: 550;
+    line-height: 1.35;
+    letter-spacing: -0.035em;
+    margin-top: 0.9rem;
+  }
+  .post-title a {
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+  }
+  .post-title a:hover {
+    color: var(--link-color);
+  }
+  .post-title span {
+    font-weight: 400;
+    color: var(--link-color);
+  }
+  p {
+    line-height: 1.8;
+    color: rgb(var(--color-text-secondary));
+    font-size: 0.95rem;
+    margin-block: 0.8rem 1.1rem;
+  }
+</style>

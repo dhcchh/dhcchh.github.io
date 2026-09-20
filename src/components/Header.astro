@@ -1,85 +1,124 @@
 ---
 import { siteConfig } from "../config";
-import { getPublishedPosts } from "../lib/posts";
-
-const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
-const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
-const hasEducation = siteConfig.education && siteConfig.education.length > 0;
-const hasPosts = (await getPublishedPosts()).length > 0;
-
-const isHome = Astro.url.pathname === "/";
-const section = (id: string) => (isHome ? `#${id}` : `/#${id}`);
-
-const linkClass =
-  "text-text-secondary hover:text-text-primary transition-colors font-medium";
+import { getPosts } from "../lib/posts";
+import ThemeToggle from "./ThemeToggle.astro";
+const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
+const currentPage = (href: string) => {
+  if (pathname === href) return "page";
+  if (href !== "/" && pathname.startsWith(`${href}/`)) return "location";
+  return undefined;
+};
+const links = [
+  { label: "Home", href: "/" },
+  ...(siteConfig.aboutMe ||
+  siteConfig.education.length ||
+  siteConfig.certifications.length
+    ? [{ label: "About", href: "/about" }]
+    : []),
+  ...(siteConfig.experience.length
+    ? [{ label: "Experience", href: "/experience" }]
+    : []),
+  ...(siteConfig.projects.some((project) => project.name.trim())
+    ? [{ label: "Projects", href: "/projects" }]
+    : []),
+  ...((await getPosts({ includeDrafts: false })).length
+    ? [{ label: "Writing", href: "/blog" }]
+    : []),
+];
 ---
 
-<header
-  id="header"
-  class="fixed top-0 left-0 right-0 z-50 hidden md:block transition-all duration-300"
->
-  <nav class="max-w-7xl mx-auto px-8 py-4">
-    <ul class="flex items-center gap-8 justify-center">
-      <li><a href={section("about")} class={linkClass}>About</a></li>
-      {
-        hasExperience && (
-          <li>
-            <a href={section("experience")} class={linkClass}>
-              Experience
-            </a>
-          </li>
-        )
-      }
-      {
-        hasEducation && (
-          <li>
-            <a href={section("education")} class={linkClass}>
-              Education
-            </a>
-          </li>
-        )
-      }
-      {
-        hasProjects && (
-          <li>
-            <a href={section("projects")} class={linkClass}>
-              Projects
-            </a>
-          </li>
-        )
-      }
-      {
-        hasPosts && (
-          <li>
-            <a href="/blog" class={linkClass}>
-              Blog
-            </a>
-          </li>
-        )
-      }
-    </ul>
-  </nav>
-</header>
-
-{
-  /* Mobile: the header above is desktop-only, so surface Blog on its own. */
-  hasPosts && isHome && (
-    <a
-      href="/blog"
-      class="md:hidden fixed top-4 left-4 z-50 px-3 py-2 rounded-full text-sm font-medium bg-surface border border-border text-text-primary shadow-lg hover:bg-decoration transition-colors"
-    >
-      Blog
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label={`${siteConfig.name} — home`}>
+      <span class="monogram" aria-hidden="true">
+        {siteConfig.name
+          .split(" ")
+          .map((part) => part[0])
+          .join("")}
+        <span>.</span>
+      </span>
+      <span class="brand-name">{siteConfig.name}</span>
     </a>
-  )
-}
-
-<script>
-  window.addEventListener("scroll", () => {
-    const header = document.getElementById("header");
-    if (window.scrollY > 100) {
-      header?.classList.add("bg-background/80", "backdrop-blur-sm");
-    } else {
-      header?.classList.remove("bg-background/80", "backdrop-blur-sm");
+    <nav aria-label="Main navigation">
+      {links.map(({ label, href }) => (
+        <a href={href} aria-current={currentPage(href)}>
+          {label}
+        </a>
+      ))}
+    </nav>
+    <ThemeToggle />
+  </div>
+</header>
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 1px solid rgb(var(--color-border));
+    background: rgb(var(--color-background) / 0.95);
+    backdrop-filter: blur(12px);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    min-height: 84px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-right: auto;
+  }
+  .monogram {
+    font-size: 1.5rem;
+    font-weight: 750;
+    letter-spacing: -0.08em;
+  }
+  .monogram span {
+    color: var(--link-color);
+  }
+  .brand-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.8rem;
+  }
+  nav a {
+    font-size: 0.8rem;
+    padding-block: 0.65rem;
+    border-bottom: 2px solid transparent;
+    color: rgb(var(--color-text-secondary));
+  }
+  nav a:hover,
+  nav a[aria-current] {
+    color: var(--link-color);
+  }
+  nav a[aria-current] {
+    border-bottom-color: var(--link-color);
+  }
+  @media (max-width: 700px) {
+    .header-inner {
+      flex-wrap: wrap;
+      gap: 0 1rem;
+      padding-top: 0.6rem;
     }
-  });
-</script>
+    .brand-name {
+      font-size: 0.75rem;
+    }
+    nav {
+      order: 3;
+      width: 100%;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding-block: 0.25rem;
+    }
+    nav a {
+      font-size: 0.75rem;
+    }
+  }
+</style>

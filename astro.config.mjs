@@ -6,6 +6,7 @@ import remarkMath from "remark-math";
 import remarkDirective from "remark-directive";
 import rehypeKatex from "rehype-katex";
 import remarkCallouts from "./src/lib/remark-callouts.mjs";
+import rehypeContent from "./src/lib/rehype-content.mjs";
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,9 +14,9 @@ export default defineConfig({
   integrations: [sitemap()],
   markdown: {
     remarkPlugins: [remarkMath, remarkDirective, remarkCallouts],
-    rehypePlugins: [rehypeKatex],
+    rehypePlugins: [rehypeKatex, rehypeContent],
     shikiConfig: {
-      themes: { light: "github-light", dark: "github-dark" },
+      themes: { light: "github-light", dark: "github-dark-high-contrast" },
     },
   },
   vite: {

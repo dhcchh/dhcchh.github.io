@@ -1,0 +1,40 @@
+---
+import { siteConfig } from "../../config";
+const labels: Record<string, string> = {
+  linkedin: "LinkedIn",
+  github: "GitHub",
+  medium: "Medium",
+  twitter: "Twitter",
+};
+const links = Object.entries(siteConfig.social).filter(
+  ([key, value]) => key !== "email" && value,
+);
+---
+
+<ul class="social-links" role="list" aria-label="Social profiles">
+  {links.map(([key, href]) => (
+    <li>
+      <a href={href}>
+        {labels[key] ?? key} <span aria-hidden="true">↗</span>
+      </a>
+    </li>
+  ))}
+</ul>
+<style>
+  .social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+  }
+  a {
+    font: 0.75rem/1.7 var(--font-mono);
+    color: rgb(var(--color-text-secondary));
+  }
+  a:hover {
+    color: var(--link-color);
+    text-decoration: underline;
+  }
+  span {
+    margin-left: 0.2rem;
+  }
+</style>

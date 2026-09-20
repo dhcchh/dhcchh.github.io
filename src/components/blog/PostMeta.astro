@@ -1,0 +1,40 @@
+---
+import { formatDate, type Post } from "../../lib/posts";
+interface Props {
+  post: Post;
+  minutes?: number;
+}
+const { post, minutes } = Astro.props;
+---
+
+<div class="post-meta">
+  {post.data.draft && <span class="draft">Draft</span>}
+  <time datetime={post.data.pubDate.toISOString()}>
+    {formatDate(post.data.pubDate)}
+  </time>
+  {minutes && <span>{minutes} min read</span>}
+  {post.data.updatedDate && (
+    <span>
+      Updated{" "}
+      <time datetime={post.data.updatedDate.toISOString()}>
+        {formatDate(post.data.updatedDate)}
+      </time>
+    </span>
+  )}
+</div>
+<style>
+  .post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1rem;
+    font: 0.7rem/1.6 var(--font-mono);
+    color: rgb(var(--color-text-muted));
+  }
+  .draft {
+    color: var(--link-color);
+    border: 1px solid currentColor;
+    border-radius: 3px;
+    padding: 0.1rem 0.4rem;
+  }
+</style>

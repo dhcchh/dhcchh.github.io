@@ -1,0 +1,14 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import Experience from "../components/Experience.astro";
+import { siteConfig } from "../config";
+---
+
+<SiteLayout
+  title={`Experience — ${siteConfig.name}`}
+  description={`${siteConfig.name}'s experience building data platforms, analytics pipelines, and business insights.`}
+>
+  <div class="container">
+    <Experience heading="h1" />
+  </div>
+</SiteLayout>

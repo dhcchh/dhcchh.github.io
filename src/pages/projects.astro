@@ -1,0 +1,14 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import Projects from "../components/Projects.astro";
+import { siteConfig } from "../config";
+---
+
+<SiteLayout
+  title={`Projects — ${siteConfig.name}`}
+  description={`Explore ${siteConfig.name}'s projects in data engineering, analytics, and machine learning.`}
+>
+  <div class="container">
+    <Projects heading="h1" />
+  </div>
+</SiteLayout>

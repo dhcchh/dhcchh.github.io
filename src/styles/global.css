@@ -1,329 +1,154 @@
 @import "tailwindcss";
+@config "../../tailwind.config.js";
 
-/* CSS Custom Properties for theme system */
 :root {
-  /* Light theme colors */
-  --color-background: 255 255 255;
-  --color-surface: 249 250 251;
-  --color-decoration: 243 244 246;
-  --color-border: 229 231 235;
-  --color-text-primary: 17 24 39;
-  --color-text-secondary: 55 65 81;
-  --color-text-muted: 107 114 128;
+  --color-background: 250 249 246;
+  --color-surface: 242 241 236;
+  --color-decoration: 233 233 226;
+  --color-border: 218 220 214;
+  --color-text-primary: 28 38 42;
+  --color-text-secondary: 73 84 88;
+  --color-text-muted: 100 109 112;
   --color-text-inverse: 255 255 255;
-
-  /* Accent color (from config) */
   --accent-color: #1d4ed8;
-
-  /* Smooth transitions for theme changes */
-  --theme-transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, fill 0.3s ease;
+  --link-color: var(--accent-color);
+  --font-mono: "IBM Plex Mono", monospace;
+  --font-display: Georgia, "Times New Roman", serif;
+  color-scheme: light;
 }
 
-/* Dark theme colors */
-[data-theme="dark"] {
-  --color-background: 3 7 18;
-  --color-surface: 15 23 42;
-  --color-decoration: 30 41 59;
-  --color-border: 51 65 85;
-  --color-text-primary: 248 250 252;
-  --color-text-secondary: 203 213 225;
-  --color-text-muted: 148 163 184;
-  --color-text-inverse: 17 24 39;
-}
-
-/* Apply theme transitions to all elements */
-* {
-  transition: var(--theme-transition);
-}
-
-/* Base styles */
-body {
-  font-family: 'IBM Plex Mono', monospace;
-  background-color: rgb(var(--color-background));
-  color: rgb(var(--color-text-primary));
-}
-
-/* Ensure smooth transitions don't affect animations */
-body *:not(.no-transition) {
-  transition: var(--theme-transition);
-}
-
-/* Custom scrollbar for dark theme consistency */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgb(var(--color-surface));
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgb(var(--color-border));
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgb(var(--color-text-muted));
+:root[data-theme="dark"] {
+  --color-background: 19 25 29;
+  --color-surface: 27 34 39;
+  --color-decoration: 38 47 53;
+  --color-border: 56 67 74;
+  --color-text-primary: 241 241 231;
+  --color-text-secondary: 192 200 203;
+  --color-text-muted: 156 168 173;
+  --color-text-inverse: 19 25 29;
+  --link-color: color-mix(in srgb, var(--accent-color) 45%, white);
+  color-scheme: dark;
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 7rem;
 }
-
-/* ------------------------------------------------------------------ */
-/* Blog article prose                                                  */
-/* ------------------------------------------------------------------ */
-
-.prose {
-  color: rgb(var(--color-text-secondary));
-  font-size: 1.05rem;
-  line-height: 1.75;
-  overflow-wrap: break-word;
-}
-
-.prose > * + * {
-  margin-top: 1.25em;
-}
-
-.prose h2,
-.prose h3,
-.prose h4 {
-  color: rgb(var(--color-text-primary));
-  font-weight: 700;
-  line-height: 1.3;
-  margin-top: 2em;
-  margin-bottom: 0.6em;
-}
-
-.prose h2 {
-  font-size: 1.6rem;
-  padding-bottom: 0.3em;
-  border-bottom: 1px solid rgb(var(--color-border));
-}
-.prose h3 {
-  font-size: 1.3rem;
-}
-.prose h4 {
-  font-size: 1.1rem;
-}
-
-.prose a {
-  color: var(--accent-color);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-.prose a:hover {
-  text-decoration-thickness: 2px;
-}
-
-.prose strong {
-  color: rgb(var(--color-text-primary));
-  font-weight: 700;
-}
-
-.prose ul,
-.prose ol {
-  padding-left: 1.5em;
-}
-.prose ul {
-  list-style: disc;
-}
-.prose ol {
-  list-style: decimal;
-}
-.prose li {
-  margin-top: 0.4em;
-}
-.prose li > ul,
-.prose li > ol {
-  margin-top: 0.4em;
-}
-
-/* GitHub-style task lists */
-.prose li:has(> input[type="checkbox"]) {
-  list-style: none;
-  margin-left: -1.5em;
-}
-.prose input[type="checkbox"] {
-  margin-right: 0.5em;
-  accent-color: var(--accent-color);
-}
-
-.prose blockquote {
-  border-left: 3px solid var(--accent-color);
-  padding-left: 1em;
-  color: rgb(var(--color-text-muted));
-  font-style: italic;
-}
-
-.prose hr {
-  border: 0;
-  border-top: 1px solid rgb(var(--color-border));
-  margin: 2.5em 0;
-}
-
-/* Inline code */
-.prose :not(pre) > code {
-  background: rgb(var(--color-decoration));
-  color: rgb(var(--color-text-primary));
-  padding: 0.15em 0.4em;
-  border-radius: 4px;
-  font-size: 0.9em;
-}
-
-/* Shiki code blocks (dual light/dark themes) */
-.prose pre {
-  position: relative;
-  border: 1px solid rgb(var(--color-border));
-  border-radius: 8px;
-  padding: 1em 1.2em;
-  overflow-x: auto;
-  font-size: 0.9rem;
-  line-height: 1.6;
-}
-.prose pre .copy-btn {
-  position: absolute;
-  top: 0.5em;
-  right: 0.5em;
-  padding: 0.25em 0.6em;
-  font: inherit;
-  font-size: 0.7rem;
-  color: rgb(var(--color-text-muted));
+body {
+  margin: 0;
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
   background: rgb(var(--color-background));
-  border: 1px solid rgb(var(--color-border));
-  border-radius: 5px;
+  color: rgb(var(--color-text-primary));
+  -webkit-font-smoothing: antialiased;
+}
+::selection {
+  background: color-mix(in srgb, var(--accent-color) 20%, transparent);
+}
+a,
+button,
+summary {
+  -webkit-tap-highlight-color: transparent;
+}
+button,
+summary {
   cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.15s ease, color 0.15s ease;
 }
-.prose pre:hover .copy-btn,
-.prose pre .copy-btn:focus-visible {
-  opacity: 1;
+a {
+  text-underline-offset: 4px;
 }
-.prose pre .copy-btn:hover {
-  color: rgb(var(--color-text-primary));
+:focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: 5px;
 }
-.prose pre > code {
-  background: none;
-  padding: 0;
-  font-size: inherit;
+.container {
+  width: min(1160px, calc(100% - 6rem));
+  margin-inline: auto;
 }
-:root[data-theme="dark"] .prose .astro-code,
-:root[data-theme="dark"] .prose .astro-code span {
-  color: var(--shiki-dark) !important;
-  background-color: var(--shiki-dark-bg) !important;
-  font-style: var(--shiki-dark-font-style) !important;
-  font-weight: var(--shiki-dark-font-weight) !important;
-  text-decoration: var(--shiki-dark-text-decoration) !important;
-}
-
-/* Tables */
-.prose table {
-  display: block;
-  width: max-content;
-  max-width: 100%;
-  overflow-x: auto;
-  border-collapse: collapse;
-  font-size: 0.95rem;
-}
-.prose th,
-.prose td {
-  border: 1px solid rgb(var(--color-border));
-  padding: 0.5em 0.85em;
-  text-align: left;
-}
-.prose th {
-  background: rgb(var(--color-surface));
-  color: rgb(var(--color-text-primary));
-  font-weight: 600;
-}
-
-/* Images */
-.prose img {
-  border-radius: 8px;
-  border: 1px solid rgb(var(--color-border));
-}
-
-/* Block math: keep long expressions scrollable, not clipped */
-.prose .katex-display {
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: 0.5em 0;
-}
-
-/* ------------------------------------------------------------------ */
-/* Callouts + toggles (see src/lib/remark-callouts.mjs)                */
-/* ------------------------------------------------------------------ */
-
-.prose .callout {
-  --callout-color: #3b82f6;
-  margin-top: 1.5em;
-  padding: 1em 1.2em;
-  border-left: 3px solid var(--callout-color);
-  border-radius: 6px;
-  background: color-mix(in srgb, var(--callout-color) 10%, rgb(var(--color-surface)));
-}
-.prose .callout > * + * {
-  margin-top: 0.75em;
-}
-.prose .callout-tip {
-  --callout-color: #10b981;
-}
-.prose .callout-warning {
-  --callout-color: #f59e0b;
-}
-.prose .callout-danger {
-  --callout-color: #ef4444;
-}
-.prose .callout-title {
-  color: rgb(var(--color-text-primary));
-  font-weight: 700;
-  font-size: 0.8rem;
-  letter-spacing: 0.05em;
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  line-height: 1.7;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  color: rgb(var(--color-text-muted));
 }
-.prose .callout-title::before {
-  content: "";
-  display: inline-block;
-  width: 0.55em;
-  height: 0.55em;
-  margin-right: 0.55em;
-  border-radius: 2px;
-  background: var(--callout-color);
-  vertical-align: middle;
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 1.06;
+  text-wrap: balance;
+}
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 500;
+  color: var(--link-color);
+}
+.text-link:hover {
+  text-decoration: underline;
+}
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+  min-height: 48px;
+  padding: 0.85rem 1.3rem;
+  border: 1px solid var(--accent-color);
+  border-radius: 4px;
+  background: var(--accent-color);
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition:
+    background 0.15s,
+    transform 0.15s;
+}
+.button:hover {
+  background: color-mix(in srgb, var(--accent-color) 85%, black);
+  transform: translateY(-2px);
+}
+.paragraphs {
+  color: rgb(var(--color-text-secondary));
+  line-height: 1.8;
+}
+.paragraphs > * + * {
+  margin-top: 1rem;
+}
+.skip-link {
+  position: fixed;
+  z-index: 100;
+  top: 0.5rem;
+  left: 0.5rem;
+  transform: translateY(-200%);
+}
+.skip-link:focus {
+  transform: none;
 }
 
-.prose .md-toggle {
-  margin-top: 1.5em;
-  border: 1px solid rgb(var(--color-border));
-  border-radius: 8px;
-  padding: 0 1.2em;
-  background: rgb(var(--color-surface));
+@media (max-width: 700px) {
+  .container {
+    width: calc(100% - 2.5rem);
+  }
 }
-.prose .md-toggle > summary {
-  cursor: pointer;
-  padding: 0.9em 0;
-  font-weight: 600;
-  color: rgb(var(--color-text-primary));
-  list-style: none;
-}
-.prose .md-toggle > summary::-webkit-details-marker {
-  display: none;
-}
-.prose .md-toggle > summary::before {
-  content: "▸";
-  display: inline-block;
-  margin-right: 0.6em;
-  color: rgb(var(--color-text-muted));
-  transition: transform 0.15s ease;
-}
-.prose .md-toggle[open] > summary::before {
-  transform: rotate(90deg);
-}
-.prose .md-toggle > :not(summary) {
-  margin-top: 0;
-  margin-bottom: 1em;
-}
-.prose .md-toggle > summary + * {
-  margin-top: 0;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }

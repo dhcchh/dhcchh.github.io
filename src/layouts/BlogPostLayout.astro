@@ -1,129 +1,78 @@
 ---
-import BaseLayout from "./BaseLayout.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import type { MarkdownHeading } from "astro";
+import SiteLayout from "./SiteLayout.astro";
+import PostHeader from "../components/blog/PostHeader.astro";
+import TableOfContents from "../components/blog/TableOfContents.astro";
+import ArticleContent from "../components/blog/ArticleContent.astro";
+import PostNavigation from "../components/blog/PostNavigation.astro";
 import { siteConfig } from "../config";
-import { formatDate, type Post } from "../lib/posts";
-import "katex/dist/katex.min.css";
-
+import { getOutline, type Post } from "../lib/posts";
 interface Props {
   post: Post;
   minutes: number;
+  headings: MarkdownHeading[];
   newer?: Post;
   older?: Post;
 }
-
-const { post, minutes, newer, older } = Astro.props;
-const { title, description, pubDate, updatedDate, tags, cover } = post.data;
-const accent = `--accent-color:${siteConfig.accentColor}`;
+const { post, minutes, headings, newer, older } = Astro.props;
+const outline = getOutline(headings);
+const showSidebar =
+  Astro.slots.has("aside") || (post.data.toc && outline.length > 1);
 ---
 
-<BaseLayout
-  title={`${title} — ${siteConfig.name}`}
-  description={description}
-  image={cover}
+<SiteLayout
+  title={`${post.data.title} — ${siteConfig.name}`}
+  description={post.data.description}
+  image={post.data.cover}
+  type="article"
 >
-  <Header />
-  <main class="mx-auto max-w-3xl px-6 pt-28 pb-20 sm:px-8">
-    <a
-      href="/blog"
-      class="text-sm text-text-muted hover:text-text-primary transition-colors"
-    >
-      ← All posts
-    </a>
-
-    <article>
-      <header class="mt-6 mb-10">
-        <h1
-          class="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-text-primary"
-        >
-          {title}
-        </h1>
-        <div
-          class="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-text-muted"
-        >
-          <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
-          <span aria-hidden="true">·</span>
-          <span>{minutes} min read</span>
-          {
-            updatedDate && (
-              <>
-                <span aria-hidden="true">·</span>
-                <span>updated {formatDate(updatedDate)}</span>
-              </>
-            )
-          }
-        </div>
-        {
-          tags.length > 0 && (
-            <ul class="mt-4 flex flex-wrap gap-2">
-              {tags.map((t) => (
-                <li class="px-2.5 py-1 rounded-full text-xs bg-surface text-text-secondary border border-border">
-                  {t}
-                </li>
-              ))}
-            </ul>
-          )
-        }
-      </header>
-
-      <div class="prose">
-        <slot />
+  <article class="container blog-post">
+    <slot name="header">
+      <PostHeader post={post} minutes={minutes} />
+    </slot>
+    <div class:list={["reading-layout", { "with-sidebar": showSidebar }]}>
+      {showSidebar && (
+        <aside>
+          <slot name="aside">
+            <TableOfContents headings={outline} />
+          </slot>
+        </aside>
+      )}
+      <div class="article-column">
+        <ArticleContent>
+          <slot />
+        </ArticleContent>
+        <slot name="after-content" />
+        <PostNavigation newer={newer} older={older} />
       </div>
-    </article>
-
-    {
-      (newer || older) && (
-        <nav class="mt-16 grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-border pt-8 text-sm">
-          <div>
-            {older && (
-              <a
-                href={`/blog/${older.id}`}
-                class="block text-text-secondary hover:text-text-primary transition-colors"
-                style={accent}
-              >
-                <span class="text-text-muted">Older</span>
-                <span class="block font-medium">{older.data.title}</span>
-              </a>
-            )}
-          </div>
-          <div class="sm:text-right">
-            {newer && (
-              <a
-                href={`/blog/${newer.id}`}
-                class="block text-text-secondary hover:text-text-primary transition-colors"
-                style={accent}
-              >
-                <span class="text-text-muted">Newer</span>
-                <span class="block font-medium">{newer.data.title}</span>
-              </a>
-            )}
-          </div>
-        </nav>
-      )
+    </div>
+  </article>
+</SiteLayout>
+<style>
+  .blog-post {
+    padding-bottom: 5rem;
+  }
+  .reading-layout {
+    padding-top: 3rem;
+  }
+  .with-sidebar {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 4rem;
+  }
+  .article-column {
+    width: 100%;
+    max-width: 740px;
+    min-width: 0;
+    margin-inline: auto;
+  }
+  @media (max-width: 900px) {
+    .with-sidebar {
+      grid-template-columns: 1fr;
+      gap: 2rem;
     }
-  </main>
-  <Footer />
-</BaseLayout>
-
-<script>
-  // Copy button for every code block.
-  document.querySelectorAll<HTMLPreElement>(".prose pre").forEach((pre) => {
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "copy-btn";
-    btn.textContent = "Copy";
-    btn.addEventListener("click", async () => {
-      const code = pre.querySelector("code")?.innerText ?? pre.innerText;
-      try {
-        await navigator.clipboard.writeText(code.replace(/\n$/, ""));
-        btn.textContent = "Copied";
-      } catch {
-        btn.textContent = "Failed";
-      }
-      setTimeout(() => (btn.textContent = "Copy"), 1500);
-    });
-    pre.appendChild(btn);
-  });
-</script>
-
+    .reading-layout {
+      padding-top: 2rem;
+    }
+  }
+</style>

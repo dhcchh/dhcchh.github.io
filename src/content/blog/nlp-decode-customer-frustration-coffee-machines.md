@@ -13,19 +13,19 @@ I figured it would be straightforward. Spoiler: it wasn't. There were no instruc
 
 ![Was too frustrated with the descaling process to take pictures of it](/blog/nlp-decode-customer-frustration-coffee-machines/descaling-machine.png)
 
-### The Hidden Problem: Metrics vs. reality
+## The Hidden Problem: Metrics vs. reality
 
 What really surprised me, though, was the like-to-dislike ratio on that video — 3600 likes to 279 + 1 dislikes (13:1), and 1.1 million views. At first, I genuinely wondered if I was just being dumb? But then I scrolled down to the comments, and sure enough, they were full of people just as confused and frustrated as I was. Turns out I wasn't alone, the video was just that bad.
 
 Despite the positive-looking stats, the video failed to serve its purpose. It didn't help me descale my machine, it sent me down a frustrating path that ended in a call to customer support. What should have been a simple task ended up costing me over an hour and a half of my day.
 
-#### The Business Impact: Cost of misleading metrics
+### The Business Impact: Cost of misleading metrics
 
 From a business perspective, a Nespresso manager might look at the metrics and feel confident that it's doing its job, and conclude that there is no need for further analyses. That surface-level data can be dangerously misleading. If you actually read the comments, a very different story emerges. Frustration, confusion and in some cases, anger, all emotions that leads to customer churn in the long run.
 
 That disconnect between perceived and actual effectiveness really stood out to me. It's inspired me to start an NLP project of my own; a tool to help companies like Nespresso go beyond basic engagement stats and truly understand customer sentiment at scale. There's real value in surfacing insights that metrics alone can't capture.
 
-### Building the Solution
+## Building the Solution
 
 As someone new to NLP, I set out to build a system that could automatically analyse YouTube comments and extract actionable business insights.
 
@@ -36,7 +36,7 @@ I wanted to be able to determine how the population felt about the video, and th
 
 Ultimately, the goal was to create structured data from unstructured data to generate business insights.
 
-### The Technical Challenge
+## The Technical Challenge
 
 The goal was simple: analyse customer feedback in YouTube comments to identify pain points. But simple goals often hide complex implementations.
 
@@ -48,7 +48,7 @@ The goal was simple: analyse customer feedback in YouTube comments to identify p
 - Extract business-specific insights (not just "positive" or "negative")
 - Present findings in a way stakeholders can act on
 
-### Architecture
+## Architecture
 
 I structured the pipeline with clear separation of concerns:
 
@@ -61,7 +61,7 @@ I structured the pipeline with clear separation of concerns:
 - Pipeline: End-to-end orchestration
 - Streamlit Dashboard: For displaying the business insights
 
-### Sentiment Analysis: BERT
+## Sentiment Analysis: BERT
 
 **Model Selection: Domain-Specific Training**
 
@@ -94,7 +94,7 @@ def analyze_confidence_distribution(self):
 
 With this, we will be able to catch the edge cases where the sentiment may not be classified correctly.
 
-#### **Model Validation**
+### **Model Validation**
 
 Initially, I opted to do sampling from all confidence levels but found that medium and high confidence classifications were generally correct.
 
@@ -149,7 +149,7 @@ Here's another instance of humour that BERT failed to grasp. It was classified a
 
 Such instances are manually adjusted to the correct classification.
 
-### Extracting user problems and requested features: Regex matching
+## Extracting user problems and requested features: Regex matching
 
 **The Real Challenge: Regex Pattern Development**
 
@@ -187,7 +187,7 @@ self.categories = {
 
 This then paved a way for me to create a structure to detect specific business issues, allowing vague complaints into specific product feedback: "47 customers want a dedicated descaling button" is more actionable than "sentiment is 60% negative."
 
-### Results: What the Data Actually Revealed
+## Results: What the Data Actually Revealed
 
 After running the pipeline, we get our results and we can run the dashboard.
 
@@ -213,7 +213,7 @@ Analyzing the Nespresso descaling video confirmed my suspicions. Despite the ini
 - High negative sentiment with high engagement = amplified dissatisfaction
 - Based on my own experience requiring a 17-minute support call, and seeing similar frustration patterns in comments, there's likely a correlation worth investigating.
 
-### The Bigger Picture
+## The Bigger Picture
 
 This project started with personal frustration but revealed a broader opportunity. Companies often have access to rich customer feedback data but lack the tools to extract actionable insights at scale.
 
@@ -225,7 +225,7 @@ The next time you see positive engagement metrics on customer-facing content, re
 
 *Building this taught me that the most valuable data science projects often start with personal pain points. What's frustrating you that could be solved with data?*
 
-#### Resources
+### Resources
 
 Some resources that I utilised to help with learning in this project:
 
