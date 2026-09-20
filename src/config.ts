@@ -43,7 +43,7 @@ export const siteConfig = {
     title: "Documenting my work and learning",
     navLabel: "Blog",
     description:
-      "Notes on data engineering, distributed systems, and things I build.",
+      "Random thoughts, personal projects, and things I’m learning along the way.",
   },
   aboutMe:
     "I studied Economics but found my way into data through building things and solving problems hands-on. \n\n On the side, I'm diving deep into distributed systems—Spark, Iceberg, and the infrastructure that powers large-scale data platforms. I also write about my projects on Medium/GitHub when I find interesting problems worth sharing.",
