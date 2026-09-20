@@ -7,15 +7,28 @@ interface Props {
   heading?: "h2" | "h3";
 }
 const { post, heading: Heading = "h3" } = Astro.props;
+const href = post.data.externalUrl ?? `/blog/${post.id}`;
+const isExternal = Boolean(post.data.externalUrl);
+const minutes = post.data.readingMinutes ?? readingTime(post.body);
 ---
 
 <article class="post-card">
-  <PostMeta post={post} minutes={readingTime(post.body)} />
+  <PostMeta post={post} minutes={minutes} />
   <Heading class="post-title">
-    <a href={`/blog/${post.id}`}>
-      {post.data.title}
-      <span aria-hidden="true">↗</span>
-    </a>
+    {
+      isExternal ? (
+        <a href={href} target="_blank" rel="noreferrer">
+          {post.data.title}
+          <span aria-hidden="true">↗</span>
+          <span class="sr-only"> (opens in a new tab)</span>
+        </a>
+      ) : (
+        <a href={href}>
+          {post.data.title}
+          <span aria-hidden="true">↗</span>
+        </a>
+      )
+    }
   </Heading>
   <p>{post.data.description}</p>
   <TagList items={post.data.tags} label="Topics" />

@@ -5,12 +5,13 @@ import { getPosts, readingTime } from "../../lib/posts";
 
 export async function getStaticPaths() {
   const posts = await getPosts();
-  return posts.map((post, i) => ({
+  const internalPosts = posts.filter((post) => !post.data.externalUrl);
+  return internalPosts.map((post, i) => ({
     params: { slug: post.id },
     props: {
       post,
-      newer: posts[i - 1],
-      older: posts[i + 1],
+      newer: internalPosts[i - 1],
+      older: internalPosts[i + 1],
     },
   }));
 }

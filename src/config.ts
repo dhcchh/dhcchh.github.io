@@ -228,12 +228,7 @@ export const siteConfig = {
       description:
         "My first exposure to AI Engineering and building an AI product. We constructed a Retrieval-Augmented Generation (RAG) app for eSports team-building using AWS Bedrock, S3, and Lambda. \n\n Engineered custom chunking strategies with Cohere v3 Embeddings for both structured (csv) and unstructured data (md), then set up vector retrieval pipelines with Pinecone to enhance LLM-based player selection. Deployed on Streamlit Cloud for seamless user interaction.",
       github: "https://github.com/dhcchh/vct-hackathon-esports-manager",
-      articles: [
-        {
-          title: "VCT eSports Manager Hackathon: Our Attempt",
-          link: "https://medium.com/@chdinghao/vct-esports-manager-hackthon-our-attempt-fbb7a2e37b4c",
-        },
-      ],
+      articles: [],
       skills: [
         "AWS Bedrock",
         "Pinecone",
