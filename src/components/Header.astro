@@ -17,7 +17,7 @@ const links = [
     ? [{ label: "Projects", href: "/projects" }]
     : []),
   ...((await getPosts({ includeDrafts: false })).length
-    ? [{ label: "Writing", href: "/blog" }]
+    ? [{ label: siteConfig.blog.title, href: "/blog" }]
     : []),
 ];
 ---

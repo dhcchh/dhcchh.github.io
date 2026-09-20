@@ -21,11 +21,11 @@ const { experience, expanded = false, heading: Heading = "h3" } = Astro.props;
     </div>
   </summary>
   <div class="detail">
-    <div class="paragraphs">
-      {experience.bullets.map((paragraph) => (
-        <p>{paragraph}</p>
+    <ul class="bullets">
+      {experience.bullets.map((bullet) => (
+        <li>{bullet}</li>
       ))}
-    </div>
+    </ul>
     {experience.skills && (
       <div class="skills">
         <TagList items={experience.skills} />
@@ -91,6 +91,18 @@ const { experience, expanded = false, heading: Heading = "h3" } = Astro.props;
   .detail {
     padding-bottom: 1.75rem;
     font-size: 0.9rem;
+  }
+  .bullets {
+    padding-left: 1.25rem;
+    color: rgb(var(--color-text-secondary));
+    line-height: 1.8;
+    list-style: disc;
+  }
+  .bullets li + li {
+    margin-top: 0.7rem;
+  }
+  .bullets li::marker {
+    color: var(--link-color);
   }
   .skills {
     margin-top: 1.25rem;

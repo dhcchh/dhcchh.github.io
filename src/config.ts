@@ -11,7 +11,7 @@ export const siteConfig = {
   title: "Data Engineer",
   intro: {
     paragraphs: [
-      "Hey there, I’m Ding Hao, a Data Engineer with a background in Economics. I first got interested in data through econometrics, then explored it further through internships and personal projects. My data-analytics internships involved more data-engineering work than I expected, and I found I enjoyed that part most. That is what drew me deeper into data engineering.",
+      "Hey there, I’m Ding Hao, a Data Engineer with a Bachelor’s in Economics. I first got interested in data through econometrics, then explored it further through internships and personal projects. My data-analytics internships involved more data-engineering work than I expected, and I found I enjoyed that part most. That is what drew me deeper into data engineering.",
       "At university, grades were never my priority. They are a superficial and short-lived signal; what really matters is learning continuously, building things, and gaining experience. That has become even clearer as I’ve built a career in tech.",
     ],
     learningIntro:
@@ -41,7 +41,7 @@ export const siteConfig = {
     // Used for the /blog index heading, meta description and RSS feed.
     // The Blog nav link stays hidden until the first non-draft post exists in
     // src/content/blog/.
-    title: "Writing",
+    title: "Blog",
     description:
       "Notes on data engineering, distributed systems, and things I build.",
   },
@@ -112,7 +112,11 @@ export const siteConfig = {
       title: "Data Analyst Intern",
       dateRange: "Jun 2024 - Dec 2024",
       bullets: [
-        "My first data internship, where I cut logistics costs by $500K+ a year by encoding domain constraints like Hazmat routing rules into a route-optimization model that reduced total route distance by 5%. I built the CI/CD pipeline around it on GCP with Python and SQL so fleet decisions could happen in real time, improving processing speed by 10%. More than the technical work, this shaped how I approach problems, always leading with the business value first.",
+        "First data internship and first look at how data could shape day-to-day logistics decisions.",
+        "Working through 300-line SQL queries and unfamiliar functions. It made me much more comfortable with SQL.",
+        "First exposure to GCP, production data pipelines, and the container-routing workflow behind them.",
+        "Navigating an object-oriented Python codebase I did not initially understand. It was a big step in becoming a better Python developer.",
+        "Learning to begin with the business problem. An early look at how AI could improve operational processes.",
       ],
       skills: ["GCP", "Python", "SQL", "CI/CD"],
     },
