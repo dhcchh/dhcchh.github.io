@@ -17,10 +17,12 @@ const internships = siteConfig.experience.filter((experience) =>
 {siteConfig.experience.length > 0 && (
   <Section
     id="experience"
-    eyebrow="Putting it into practice"
     title="Where I've been."
     heading={heading}
   >
+    <p slot="intro" class="experience-intro">
+      This is not a standard resume. It is a more personal look at what I learned, not a list of action verbs and numbers. A downloadable resume is coming soon.
+    </p>
     {fullTimeRoles.length > 0 && (
       <section class="experience-group" aria-labelledby="full-time-title">
         <p id="full-time-title" class="group-label">Full-time roles</p>
@@ -54,6 +56,17 @@ const internships = siteConfig.experience.filter((experience) =>
 )}
 
 <style>
+  :global(#experience-title) {
+    white-space: nowrap;
+    font-size: clamp(2rem, 3vw, 2.7rem);
+  }
+
+  .experience-intro {
+    margin: 1rem 0 0;
+    color: rgb(var(--color-text-muted));
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
   .experience-group + .experience-group {
     margin-top: 2.5rem;
   }

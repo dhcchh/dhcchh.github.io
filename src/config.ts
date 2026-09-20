@@ -11,11 +11,11 @@ export const siteConfig = {
   title: "Data Engineer",
   intro: {
     paragraphs: [
-      "Hey there, I’m Ding Hao, a Data Engineer with a Bachelor’s in Economics. I first got interested in data through econometrics, then explored it further through internships and personal projects. My data-analytics internships involved more data-engineering work than I expected, and I found I enjoyed that part most. That is what drew me deeper into data engineering.",
-      "At university, grades were never my priority. They are a superficial and short-lived signal; what really matters is learning continuously, building things, and gaining experience. That has become even clearer as I’ve built a career in tech.",
+      "Hey there, I’m Ding Hao, a Data Engineer with a BSc in Economics. I first got interested in data through econometrics, then explored it further through internships and personal projects. My data-analytics internships involved more data-engineering work than I expected, and I found I enjoyed that part most. That is what drew me deeper into data engineering.",
+      "At university, grades were never my priority. They are a superficial and short-lived signal; what really matters is learning continuously, building things, and gaining experience. This is now my guiding principle in developing my tech career.",
     ],
     learningIntro:
-      "Outside work, I’m working towards becoming a better data engineer by learning more about:",
+      "I’m working towards becoming a better data engineer by learning more about:",
     learningTopics: [
       "Java backend development and APIs",
       "The JVM and how systems work under the hood",
