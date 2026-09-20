@@ -35,7 +35,6 @@ export const siteConfig = {
     email: "chandinghao@yahoo.com",
     linkedin: "https://www.linkedin.com/in/dhchan/",
     github: "https://github.com/dhcchh",
-    medium: "https://medium.com/@chdinghao",
   },
   blog: {
     // Used for the /blog index heading, meta description and RSS feed.

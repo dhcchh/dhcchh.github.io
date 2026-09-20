@@ -22,7 +22,7 @@ const internships = siteConfig.experience.filter((experience) =>
     heading={heading}
   >
     <p slot="intro" class="experience-intro">
-      This is not a standard resume. It is a more personal look at what I learned, not a list of action verbs and numbers. A downloadable resume is coming soon.
+      This is not a standard resume. It is a more personal look at what I learned, not a list of action verbs and numbers. If you want to see my actual resume, drop me an email at <a href={`mailto:${siteConfig.social.email}`}>{siteConfig.social.email}</a>.
     </p>
     {fullTimeRoles.length > 0 && (
       <section class="experience-group" aria-labelledby="full-time-title">
@@ -67,6 +67,9 @@ const internships = siteConfig.experience.filter((experience) =>
     color: rgb(var(--color-text-muted));
     font-size: 0.95rem;
     line-height: 1.65;
+  }
+  .experience-intro a {
+    color: var(--link-color);
   }
   .experience-group + .experience-group {
     margin-top: 2.5rem;

@@ -6,7 +6,7 @@ import SocialLinks from "./ui/SocialLinks.astro";
 <footer class="container site-footer">
   <div class="footer-bottom">
     <p>
-      © {new Date().getFullYear()} {siteConfig.name}
+      © <span data-current-year>{new Date().getFullYear()}</span> {siteConfig.name}
     </p>
     <SocialLinks />
     <a class="back-top" href="#top">
@@ -33,3 +33,11 @@ import SocialLinks from "./ui/SocialLinks.astro";
     color: var(--link-color);
   }
 </style>
+
+<script>
+  const currentYear = document.querySelector<HTMLElement>("[data-current-year]");
+
+  if (currentYear) {
+    currentYear.textContent = String(new Date().getFullYear());
+  }
+</script>
