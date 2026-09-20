@@ -70,7 +70,11 @@ export const siteConfig = {
       title: "Product Analyst Intern",
       dateRange: "Mar 2026 - Jul 2026",
       bullets: [
-        "On the Send High Volume team, I worked the full analytics stack end-to-end. I refactored a 2B+ row dbt model on Snowflake that kept timing out, cutting its runtime from 5 hours to 1.5 through incremental materialisation, watermark-based filtering, and partition-aligned merge keys. I designed star-schema fact and dimension models with proper slowly-changing-dimension handling so three stakeholder teams could work off a single governed layer, and wrote Airflow DAGs in Python to keep everything refreshed with dependency and failure handling. On that foundation I ran deep-dive analyses into high-value customer segments and their transaction patterns by region, surfacing metric shifts that shaped product and business decisions. I also built an MCP server that exposes the dbt semantic layer to LLM agents, so governed metrics can be queried in natural language while the correct join paths and definitions stay enforced.",
+        "Owned analytics end to end on Wise’s Send High Volume team. This covered pipelines and product analysis.",
+        "Got hands-on with Snowflake, dbt, and Airflow. Did plenty of pipeline optimisation work.",
+        "Learned more about the growth side of fintech and high-value customer behaviour.",
+        "Ran analyses that helped improve the team’s product line.",
+        "First time working across time zones. Also got a memorable month-long sponsored Europe trip 🔥",
       ],
       skills: [
         "dbt",
