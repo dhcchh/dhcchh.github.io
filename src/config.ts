@@ -54,7 +54,10 @@ export const siteConfig = {
       title: "Data Engineer",
       dateRange: "Aug 2026 - Present",
       bullets: [
-        "My first full-time role. I'm building offline data pipelines on Apache Iceberg, Doris, and Spark SQL that process around 10 TB a day of SEA eCommerce transaction data, partitioned to power stakeholder reporting. I'm also architecting GDPR-compliant pipelines in Java and Spring Boot, with PII hashing on defined TTLs, to serve governed data access to seven business units across Xiaomi's mobile and IoT divisions. It's the step from internships into building data systems full-time as an engineer, and I'm looking forward to the work ahead.",
+        "My first full-time data engineering role. I build offline pipelines with Spark SQL, Xiaomi’s internal DAG scheduling platform, and extensive use of Iceberg and Hive tables.",
+        "Governance and privacy are a big focus, especially supporting a Chinese company in privacy-sensitive markets like North America and Europe.",
+        "Building a backend app for governed data access. My first real exposure to APIs, Java, and Spring Boot.",
+        "Interviewed in Chinese and now work closely with Chinese stakeholders. My Chinese has improved a lot too 😁",
       ],
       skills: [
         "Apache Iceberg",
