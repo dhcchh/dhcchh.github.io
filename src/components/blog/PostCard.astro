@@ -4,9 +4,10 @@ import TagList from "../ui/TagList.astro";
 import PostMeta from "./PostMeta.astro";
 interface Props {
   post: Post;
+  children?: Post[];
   heading?: "h2" | "h3";
 }
-const { post, heading: Heading = "h3" } = Astro.props;
+const { post, children = [], heading: Heading = "h3" } = Astro.props;
 const href = post.data.externalUrl ?? `/blog/${post.id}`;
 const isExternal = Boolean(post.data.externalUrl);
 const minutes =
@@ -33,6 +34,31 @@ const minutes =
     }
   </Heading>
   <p>{post.data.description}</p>
+  {children.length > 0 && (
+    <section class="subposts" aria-label={`Articles in ${post.data.title}`}>
+      <p class="series-label">In this series</p>
+      <ol>
+        {children.map((child) => {
+          const childHref = child.data.externalUrl ?? `/blog/${child.id}`;
+          const childIsExternal = Boolean(child.data.externalUrl);
+          return (
+            <li>
+              {childIsExternal ? (
+                <a href={childHref} target="_blank" rel="noreferrer">
+                  {child.data.title}
+                  <span aria-hidden="true">↗</span>
+                  <span class="sr-only"> (opens in a new tab)</span>
+                </a>
+              ) : (
+                <a href={childHref}>{child.data.title}</a>
+              )}
+              <p>{child.data.description}</p>
+            </li>
+          );
+        })}
+      </ol>
+    </section>
+  )}
   <TagList items={post.data.tags} label="Topics" />
 </article>
 <style>
@@ -68,5 +94,45 @@ const minutes =
     color: rgb(var(--color-text-secondary));
     font-size: 0.95rem;
     margin-block: 0.8rem 1.1rem;
+  }
+  .subposts {
+    width: 100%;
+    margin: 1.6rem 0 0.4rem;
+    padding: 1rem 1.25rem;
+    border-left: 2px solid var(--link-color);
+    background: rgb(var(--color-surface) / 0.35);
+  }
+  .series-label {
+    margin: 0 0 0.85rem;
+    font: 0.65rem/1.4 var(--font-mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgb(var(--color-text-muted));
+  }
+  ol {
+    display: grid;
+    gap: 1rem;
+    margin: 0;
+    padding-left: 1.35rem;
+  }
+  li {
+    padding-left: 0.25rem;
+  }
+  li a {
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  li a:hover {
+    color: var(--link-color);
+  }
+  li a span {
+    margin-left: 0.35rem;
+    font-weight: 400;
+    color: var(--link-color);
+  }
+  li p {
+    margin: 0.25rem 0 0;
+    font-size: 0.82rem;
   }
 </style>

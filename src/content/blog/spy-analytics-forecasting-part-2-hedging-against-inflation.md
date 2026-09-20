@@ -6,5 +6,6 @@ draft: false
 tags: ["finance", "inflation", "data-analysis"]
 externalUrl: "https://medium.com/@chdinghao/spy-analytics-forecasting-part-2-hedging-against-inflation-a52a48b9469b"
 readingMinutes: 8
+parentSlug: "spy-analytics-and-forecasting"
 toc: false
 ---

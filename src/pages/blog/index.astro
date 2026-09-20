@@ -5,6 +5,11 @@ import { siteConfig } from "../../config";
 import { getPosts } from "../../lib/posts";
 const posts = await getPosts();
 const { title, description } = siteConfig.blog;
+const topLevelPosts = posts.filter((post) => !post.data.parentSlug);
+const childrenFor = (parentSlug: string) =>
+  posts
+    .filter((post) => post.data.parentSlug === parentSlug)
+    .sort((a, b) => a.id.localeCompare(b.id));
 ---
 
 <SiteLayout title={`${title} — ${siteConfig.name}`} description={description}>
@@ -18,8 +23,10 @@ const { title, description } = siteConfig.blog;
       <p class="description">{description}</p>
     </header>
     <section class="posts" aria-label="Articles">
-      {posts.length ? (
-        posts.map((post) => <PostCard post={post} heading="h2" />)
+      {topLevelPosts.length ? (
+        topLevelPosts.map((post) => (
+          <PostCard post={post} children={childrenFor(post.id)} heading="h2" />
+        ))
       ) : (
         <p class="empty-state">
           No posts yet. A few things are taking shape—check back soon.

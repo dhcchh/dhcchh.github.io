@@ -15,6 +15,7 @@ const blog = defineCollection({
     toc: z.boolean().default(true),
     externalUrl: z.string().url().optional(),
     readingMinutes: z.number().int().positive().optional(),
+    parentSlug: z.string().optional(),
   }),
 });
 

@@ -6,5 +6,6 @@ draft: false
 tags: ["finance", "time-series-analysis", "machine-learning", "python"]
 externalUrl: "https://medium.com/@chdinghao/spy-analytics-forecasting-part-3-forecasting-future-returns-3c3cb650beef"
 readingMinutes: 30
+parentSlug: "spy-analytics-and-forecasting"
 toc: false
 ---
