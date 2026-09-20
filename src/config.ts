@@ -12,7 +12,7 @@ export const siteConfig = {
   intro: {
     paragraphs: [
       "Hey there 👋, I’m Ding Hao, a Data Engineer with a BSc in Economics. I first got interested in data through econometrics, then explored it further through internships and personal projects. My data-analytics internships involved more data-engineering work than I expected, and I found I enjoyed that part most. That is what drew me deeper into data engineering.",
-      "At university, grades were never my priority. They are a superficial and short-lived signal; what really matters is learning continuously, building things, and gaining experience. This is now my guiding principle in developing my tech career.",
+      "At university, grades were never my priority. They are a superficial and short-lived signal; what really matters is learning continuously, building things, and gaining experience. This is now my guiding principle in developing my tech career. Breaking into the tech/data job market in 2026 has solidified this belief all the more.",
     ],
     learningIntro:
       "I’m working towards becoming a better data engineer by learning more about:",
@@ -56,7 +56,7 @@ export const siteConfig = {
       bullets: [
         "My first full-time data engineering role. I build offline pipelines with Spark SQL, Xiaomi’s internal DAG scheduling platform, and extensive use of Iceberg and Hive tables.",
         "Governance and privacy are a big focus, especially supporting a Chinese company in privacy-sensitive markets like North America and Europe.",
-        "Building a backend app for governed data access. My first real exposure to API development, Java, and Spring Boot.",
+        "Building a backend app (Feishu, Xiaomi Internal BPM & Cloud Platform) for governed data access. My first real exposure to API development, Java, and Spring Boot.",
         "Interviewed in Chinese and now work closely with Chinese stakeholders. My Chinese has improved a lot too 😁",
       ],
       skills: [
@@ -73,8 +73,8 @@ export const siteConfig = {
       title: "Product Analyst Intern",
       dateRange: "Mar 2026 - Jul 2026",
       bullets: [
-        "Owned analytics end to end on Wise’s Send High Volume team. This covered pipelines and product analysis.",
-        "Got hands-on with Snowflake, dbt, and Airflow.",
+        "Owned analytics end to end on Wise’s Send High Volume team, covering pipelines, product analysis, building visualisation tools, and creating stakeholder presentation slides.",
+        "Got more hands-on experience with Snowflake, dbt, and Airflow, and made cool charts with Lightdash and Superset.",
         "Did plenty of pipeline optimisation work. Refactored a 1,000-line dbt model to accommodate additional business logic and make it more efficient.",
         "Learned more about the growth side of fintech and high-value customer behaviour.",
         "Ran analyses that helped improve the team’s product line.",
@@ -99,6 +99,7 @@ export const siteConfig = {
         "Thinking about signals versus noise when deciding what is genuinely suspicious.",
         "Building signals to stop bot-created accounts before they could be used for fraud.",
         "First exposure to a Chinese company’s data ecosystem.",
+        "Really enjoyed the free lunches.",
       ],
       skills: ["PySpark", "Spark SQL", "HiveSQL", "Python", "Hive"],
     },
