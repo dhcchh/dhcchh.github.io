@@ -199,20 +199,7 @@ export const siteConfig = {
       description:
         "Project came about with my interest in exploring the stock market. Decided to structure the it in 2 different areas to learn two specalities. \n\n First, I analyzed SPY's historical and inflation-adjusted returns alongside Federal Reserve data to understand long-term investment performance. Then, I applied time-series techniques like stationarity testing (ADF) and differencing to prep the data, then built a weighted ensemble model (LSTM-PyTorch, Prophet, Monte Carlo) to forecast SPY log returns over the next 20 years with confidence intervals.",
       github: "https://github.com/dhcchh/SPY-Analytics-Forecasting-Project",
-      articles: [
-        {
-          title: "Nominal Returns",
-          link: "https://medium.com/@chdinghao/spy-analytics-forecasting-part-1-consistent-returns-3cfe49e7b9b5",
-        },
-        {
-          title: "Real Returns",
-          link: "https://medium.com/@chdinghao/spy-analytics-forecasting-part-2-hedging-against-inflation-a52a48b9469b",
-        },
-        {
-          title: "Forecasting Future Returns",
-          link: "https://medium.com/@chdinghao/spy-analytics-forecasting-part-3-forecasting-future-returns-3c3cb650beef",
-        },
-      ],
+      articles: [],
       skills: [
         "Time Series Analysis",
         "Python",

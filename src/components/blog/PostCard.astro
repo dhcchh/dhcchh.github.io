@@ -9,7 +9,9 @@ interface Props {
 const { post, heading: Heading = "h3" } = Astro.props;
 const href = post.data.externalUrl ?? `/blog/${post.id}`;
 const isExternal = Boolean(post.data.externalUrl);
-const minutes = post.data.readingMinutes ?? readingTime(post.body);
+const minutes =
+  post.data.readingMinutes ??
+  (post.data.externalUrl ? undefined : readingTime(post.body));
 ---
 
 <article class="post-card">
