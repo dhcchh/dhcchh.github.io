@@ -6,6 +6,12 @@ interface Props {
   heading?: "h1" | "h2";
 }
 const { heading = "h2" } = Astro.props;
+const fullTimeRoles = siteConfig.experience.filter(
+  (experience) => !/intern/i.test(experience.title),
+);
+const internships = siteConfig.experience.filter((experience) =>
+  /intern/i.test(experience.title),
+);
 ---
 
 {siteConfig.experience.length > 0 && (
@@ -15,12 +21,45 @@ const { heading = "h2" } = Astro.props;
     title="Where I've been."
     heading={heading}
   >
-    {siteConfig.experience.map((experience, index) => (
-      <ExperienceItem
-        experience={experience}
-        expanded={index === 0}
-        heading={heading === "h1" ? "h2" : "h3"}
-      />
-    ))}
+    {fullTimeRoles.length > 0 && (
+      <section class="experience-group" aria-labelledby="full-time-title">
+        <p id="full-time-title" class="group-label">Full-time roles</p>
+        {fullTimeRoles.map((experience, index) => (
+          <ExperienceItem
+            experience={experience}
+            expanded={index === 0}
+            heading={heading === "h1" ? "h2" : "h3"}
+          />
+        ))}
+      </section>
+    )}
+    {internships.length > 0 && (
+      <section class="experience-group internships" aria-labelledby="internships-title">
+        <p id="internships-title" class="group-label">Internships</p>
+        {internships.map((experience, index) => (
+          <ExperienceItem
+            experience={experience}
+            expanded={fullTimeRoles.length === 0 && index === 0}
+            heading={heading === "h1" ? "h2" : "h3"}
+          />
+        ))}
+      </section>
+    )}
   </Section>
 )}
+
+<style>
+  .experience-group + .experience-group {
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 2px solid rgb(var(--color-border));
+  }
+  .group-label {
+    margin-bottom: 1.25rem;
+    font: 0.7rem/1.7 var(--font-mono);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--link-color);
+  }
+</style>

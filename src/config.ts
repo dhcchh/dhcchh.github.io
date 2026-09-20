@@ -93,10 +93,13 @@ export const siteConfig = {
     },
     {
       company: "Razer",
-      title: "Analytics Engineering Intern",
+      title: "Data Analyst Intern",
       dateRange: "Jul 2025 - Dec 2025",
       bullets: [
-        "This was where I got my first real exposure to analytics engineering at scale. I delivered stakeholder reporting on 10TB+ of internal data through dbt and Apache Superset, cutting dashboard load times by half and shortening the product team's decision cycles. I also diagnosed data-quality issues in software-usage datasets with Python and SQL, then specified the fixes and handed them off to the data engineering team. It taught me how production data systems actually operate day to day.",
+        "First exposure to software-engineering practices: versioning dbt projects with Git.",
+        "Learning to work in a Linux environment through WSL.",
+        "First look at a professional AWS data ecosystem.",
+        "Seeing Airflow and scheduled data pipelines in practice.",
       ],
       skills: [
         "dbt",
