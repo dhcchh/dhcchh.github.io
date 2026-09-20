@@ -225,7 +225,12 @@ export const siteConfig = {
       description:
         "Project came about with my interest in exploring the stock market. Decided to structure the it in 2 different areas to learn two specalities. \n\n First, I analyzed SPY's historical and inflation-adjusted returns alongside Federal Reserve data to understand long-term investment performance. Then, I applied time-series techniques like stationarity testing (ADF) and differencing to prep the data, then built a weighted ensemble model (LSTM-PyTorch, Prophet, Monte Carlo) to forecast SPY log returns over the next 20 years with confidence intervals.",
       github: "https://github.com/dhcchh/SPY-Analytics-Forecasting-Project",
-      articles: [],
+      articles: [
+        {
+          title: "Read the case study",
+          link: "/blog/spy-analytics-and-forecasting",
+        },
+      ],
       skills: [
         "Time Series Analysis",
         "Python",
@@ -241,7 +246,12 @@ export const siteConfig = {
       description:
         "My first exposure to AI Engineering and building an AI product. We constructed a Retrieval-Augmented Generation (RAG) app for eSports team-building using AWS Bedrock, S3, and Lambda. \n\n Engineered custom chunking strategies with Cohere v3 Embeddings for both structured (csv) and unstructured data (md), then set up vector retrieval pipelines with Pinecone to enhance LLM-based player selection. Deployed on Streamlit Cloud for seamless user interaction.",
       github: "https://github.com/dhcchh/vct-hackathon-esports-manager",
-      articles: [],
+      articles: [
+        {
+          title: "Read the case study",
+          link: "/blog/vct-esports-manager-hackathon-our-attempt",
+        },
+      ],
       skills: [
         "AWS Bedrock",
         "Pinecone",
