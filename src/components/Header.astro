@@ -24,16 +24,6 @@ const links = [
 
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="/" aria-label={`${siteConfig.name} — home`}>
-      <span class="monogram" aria-hidden="true">
-        {siteConfig.name
-          .split(" ")
-          .map((part) => part[0])
-          .join("")}
-        <span>.</span>
-      </span>
-      <span class="brand-name">{siteConfig.name}</span>
-    </a>
     <nav aria-label="Main navigation">
       {links.map(({ label, href }) => (
         <a href={href} aria-current={currentPage(href)}>
@@ -54,28 +44,12 @@ const links = [
     backdrop-filter: blur(12px);
   }
   .header-inner {
+    position: relative;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 2rem;
     min-height: 84px;
-  }
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-right: auto;
-  }
-  .monogram {
-    font-size: 1.5rem;
-    font-weight: 750;
-    letter-spacing: -0.08em;
-  }
-  .monogram span {
-    color: var(--link-color);
-  }
-  .brand-name {
-    font-size: 0.8rem;
-    font-weight: 600;
   }
   nav {
     display: flex;
@@ -96,20 +70,23 @@ const links = [
   nav a[aria-current] {
     border-bottom-color: var(--link-color);
   }
+  .header-inner > :global(#theme-toggle) {
+    position: absolute;
+    top: 1.25rem;
+    right: 0;
+  }
+
   @media (max-width: 700px) {
     .header-inner {
       flex-wrap: wrap;
       gap: 0 1rem;
       padding-top: 0.6rem;
     }
-    .brand-name {
-      font-size: 0.75rem;
-    }
     nav {
       order: 3;
       width: 100%;
-      justify-content: space-between;
-      gap: 0.75rem;
+      justify-content: center;
+      gap: 1.25rem;
       padding-block: 0.25rem;
     }
     nav a {
