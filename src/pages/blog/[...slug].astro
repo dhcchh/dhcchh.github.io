@@ -18,7 +18,7 @@ export async function getStaticPaths() {
 
 const { post, newer, older } = Astro.props;
 const { Content, headings } = await render(post);
-const minutes = readingTime(post.body);
+const minutes = post.data.readingMinutes ?? readingTime(post.body);
 ---
 
 <BlogPostLayout
