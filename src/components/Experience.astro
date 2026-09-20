@@ -34,16 +34,21 @@ const internships = siteConfig.experience.filter((experience) =>
       </section>
     )}
     {internships.length > 0 && (
-      <section class="experience-group internships" aria-labelledby="internships-title">
-        <p id="internships-title" class="group-label">Internships</p>
-        {internships.map((experience, index) => (
-          <ExperienceItem
-            experience={experience}
-            expanded={fullTimeRoles.length === 0 && index === 0}
-            heading={heading === "h1" ? "h2" : "h3"}
-          />
-        ))}
-      </section>
+      <details class="experience-group internships">
+        <summary>
+          <span class="group-label">Internships</span>
+          <span class="internship-toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="internship-list">
+          {internships.map((experience, index) => (
+            <ExperienceItem
+              experience={experience}
+              expanded={fullTimeRoles.length === 0 && index === 0}
+              heading={heading === "h1" ? "h2" : "h3"}
+            />
+          ))}
+        </div>
+      </details>
     )}
   </Section>
 )}
@@ -51,8 +56,6 @@ const internships = siteConfig.experience.filter((experience) =>
 <style>
   .experience-group + .experience-group {
     margin-top: 2.5rem;
-    padding-top: 2.5rem;
-    border-top: 2px solid rgb(var(--color-border));
   }
   .group-label {
     margin-bottom: 1.25rem;
@@ -61,5 +64,36 @@ const internships = siteConfig.experience.filter((experience) =>
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--link-color);
+  }
+  .internships summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    padding-block: 0.5rem;
+    cursor: pointer;
+  }
+  .internships summary::-webkit-details-marker {
+    display: none;
+  }
+  .internships .group-label {
+    margin: 0;
+  }
+  .internship-toggle {
+    display: grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    border: 1px solid rgb(var(--color-border));
+    border-radius: 50%;
+  }
+  .internship-toggle::before {
+    content: "+";
+  }
+  .internships[open] .internship-toggle::before {
+    content: "−";
+  }
+  .internship-list {
+    padding-top: 1rem;
   }
 </style>

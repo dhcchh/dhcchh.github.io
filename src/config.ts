@@ -87,7 +87,10 @@ export const siteConfig = {
       title: "Payments Risk Analyst Intern",
       dateRange: "Jan 2026 - Mar 2026",
       bullets: [
-        "I worked on fraud detection for new user registrations. I engineered PySpark and HiveSQL pipelines over 20TB-scale registration and event data, producing partitioned Hive feature tables with quantile aggregations across device and IP distributions for fraud scoring. Getting that to run at scale meant tuning the SparkSQL execution with partition pruning, broadcast joins, and skew handling on high-cardinality IP and device joins, which brought runtime down by 20%. The behavioral features I built from it (IP geolocation, device fingerprinting, velocity patterns) were adopted directly into the production fraud risk scoring framework.",
+        "Payments risk for TikTok LIVE and how card payments work behind the scenes.",
+        "Thinking about signals versus noise when deciding what is genuinely suspicious.",
+        "Building signals to stop bot-created accounts before they could be used for fraud.",
+        "First exposure to a Chinese company’s data ecosystem.",
       ],
       skills: ["PySpark", "Spark SQL", "HiveSQL", "Python", "Hive"],
     },
