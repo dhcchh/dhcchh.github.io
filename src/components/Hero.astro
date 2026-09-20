@@ -1,13 +1,16 @@
 ---
 import { siteConfig } from "../config";
+
+const heroTitle = `${siteConfig.name} - ${siteConfig.title}`;
 ---
 
 <section class="hero" aria-labelledby="hero-title">
-  <p class="eyebrow">
-    <span class="status-dot" aria-hidden="true"></span>
-    {siteConfig.name} - {siteConfig.title}
-  </p>
-  <h1 id="hero-title" class="sr-only">{siteConfig.name}, {siteConfig.title}</h1>
+  <h1 id="hero-title" class="display hero-title" aria-label={heroTitle}>
+    <span data-typed-title={heroTitle} aria-hidden="true">{heroTitle}</span><span
+      class="cursor"
+      aria-hidden="true"
+    ></span>
+  </h1>
   <div class="description">
     {siteConfig.intro.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
     <p>{siteConfig.intro.learningIntro}</p>
@@ -25,30 +28,22 @@ import { siteConfig } from "../config";
 <style>
   .hero {
     max-width: 43rem;
+    margin-inline: auto;
     padding-block: clamp(4rem, 9vw, 7rem);
+    text-align: center;
   }
-  .eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 0.65rem;
+  .hero-title {
+    margin: 0;
+    font-size: clamp(3.7rem, 7.5vw, 6.5rem);
   }
-  .status-dot {
+  .cursor {
     display: inline-block;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
+    width: 0.065em;
+    height: 0.82em;
+    margin-left: 0.08em;
     background: var(--link-color);
-  }
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
+    vertical-align: -0.04em;
+    animation: blink 0.9s steps(2, start) infinite;
   }
   .description {
     max-width: 36rem;
@@ -65,9 +60,57 @@ import { siteConfig } from "../config";
     margin-top: 1.1rem;
   }
   .description ul {
+    width: fit-content;
+    max-width: 100%;
+    margin-right: auto;
+    margin-left: auto;
     padding-left: 1.25rem;
+    text-align: left;
   }
   .button {
     margin-top: 2rem;
   }
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+  @media (max-width: 700px) {
+    .hero-title {
+      font-size: clamp(3rem, 13vw, 4.5rem);
+    }
+  }
 </style>
+
+<script>
+  const title = document.querySelector<HTMLElement>("[data-typed-title]");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  if (title && !reduceMotion.matches) {
+    const fullTitle = title.dataset.typedTitle ?? "";
+    let length = 0;
+    let isDeleting = false;
+
+    const animateTitle = () => {
+      title.textContent = fullTitle.slice(0, length);
+
+      if (!isDeleting && length === fullTitle.length) {
+        isDeleting = true;
+        window.setTimeout(animateTitle, 1800);
+        return;
+      }
+
+      if (isDeleting && length === 0) {
+        isDeleting = false;
+        window.setTimeout(animateTitle, 450);
+        return;
+      }
+
+      length += isDeleting ? -1 : 1;
+      window.setTimeout(animateTitle, isDeleting ? 42 : 76);
+    };
+
+    title.textContent = "";
+    animateTitle();
+  }
+</script>

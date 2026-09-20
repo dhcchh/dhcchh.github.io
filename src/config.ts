@@ -11,7 +11,7 @@ export const siteConfig = {
   title: "Data Engineer",
   intro: {
     paragraphs: [
-      "Hi, I’m Ding Hao, a Data Engineer with a background in Economics. I first got interested in data through econometrics, then explored it further through internships and personal projects. My data-analytics internships involved more data-engineering work than I expected—building the foundations that made analysis possible—and I found I enjoyed that part most. That is what drew me deeper into data engineering.",
+      "Hey there, I’m Ding Hao, a Data Engineer with a background in Economics. I first got interested in data through econometrics, then explored it further through internships and personal projects. My data-analytics internships involved more data-engineering work than I expected, and I found I enjoyed that part most. That is what drew me deeper into data engineering.",
       "At university, grades were never my priority. They are a superficial and short-lived signal; what really matters is learning continuously, building things, and gaining experience. That has become even clearer as I’ve built a career in tech.",
     ],
     learningIntro:
