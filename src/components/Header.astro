@@ -10,11 +10,6 @@ const currentPage = (href: string) => {
 };
 const links = [
   { label: "Home", href: "/" },
-  ...(siteConfig.aboutMe ||
-  siteConfig.education.length ||
-  siteConfig.certifications.length
-    ? [{ label: "About", href: "/about" }]
-    : []),
   ...(siteConfig.experience.length
     ? [{ label: "Experience", href: "/experience" }]
     : []),

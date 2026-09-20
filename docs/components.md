@@ -9,9 +9,9 @@ mobile contents state. Native `<details>` handles expandable content.
 - `src/config.ts`: identity, intro, socials, experience, projects, education,
   credentials, accent color, and the default theme. Empty sections disappear.
 - `src/content/blog/*.md`: articles. See the [authoring guide](../src/content/blog/_README.md).
-- `src/pages/`: separate Home (`/`), About (`/about`), Experience (`/experience`),
-  Projects (`/projects`), and Writing (`/blog`) routes. About also includes education
-  and credentials. Navigation uses ordinary links with a visible current-page state.
+- `src/pages/`: separate Home (`/`), Experience (`/experience`), Projects (`/projects`),
+  and Writing (`/blog`) routes. Navigation uses ordinary links with a visible current-page
+  state.
 - `src/styles/global.css`: palette, typography, containers, and shared controls.
   The existing Tailwind configuration is explicitly loaded here.
 - `src/styles/prose.css`: Markdown only, loaded by `ArticleContent`.
@@ -97,7 +97,7 @@ Run `npm run build` after changing templates or content. Preview with
 `npm run preview`; this excludes drafts. `npm run dev` includes drafts in the
 blog index and article routes, with a visible draft label. Navigation visibility and RSS always use published posts only.
 
-Check the homepage, `/about`, `/experience`, `/projects`, `/blog`, and an article at desktop and mobile widths in both
+Check the homepage, `/experience`, `/projects`, `/blog`, and an article at desktop and mobile widths in both
 themes. The draft `/blog/example` exercises code, math, tables, callouts, toggles,
 and task lists. Check keyboard navigation and disable JavaScript when changing
 shared controls; content and disclosures should remain usable.
