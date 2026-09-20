@@ -6,8 +6,8 @@ const links = [
     label: siteConfig.social.email,
     href: `mailto:${siteConfig.social.email}`,
   },
-  { key: "linkedin", label: "LinkedIn", href: siteConfig.social.linkedin },
-  { key: "github", label: "GitHub", href: siteConfig.social.github },
+  { key: "linkedin", label: "Dinghao Chan", href: siteConfig.social.linkedin },
+  { key: "github", label: "dhcchh", href: siteConfig.social.github },
 ].filter((link) => link.href);
 ---
 
@@ -32,7 +32,7 @@ const links = [
             <path d="M9 18c-3 .92-3-1.5-4.2-1.8"></path>
           </svg>
         )}
-        {key === "email" ? <span>{label}</span> : null}
+        <span>{label}</span>
       </a>
     </li>
   ))}
@@ -53,11 +53,6 @@ const links = [
     color: rgb(var(--color-text-secondary));
     font: 0.75rem/1.7 var(--font-mono);
   }
-  li:not(:first-child) a {
-    width: 2rem;
-    border: 1px solid rgb(var(--color-border));
-    border-radius: 50%;
-  }
   svg {
     width: 1rem;
     height: 1rem;
@@ -70,9 +65,5 @@ const links = [
   a:hover {
     color: var(--link-color);
     text-decoration: underline;
-  }
-  li:not(:first-child) a:hover {
-    text-decoration: none;
-    border-color: var(--link-color);
   }
 </style>

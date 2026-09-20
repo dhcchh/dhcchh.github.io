@@ -1,6 +1,7 @@
 ---
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import PostCard from "../../components/blog/PostCard.astro";
+import Section from "../../components/ui/Section.astro";
 import { siteConfig } from "../../config";
 import { getPosts } from "../../lib/posts";
 const posts = await getPosts();
@@ -13,50 +14,29 @@ const childrenFor = (parentSlug: string) =>
 ---
 
 <SiteLayout title={`${title} — ${siteConfig.name}`} description={description}>
-  <div class="container writing-page">
-    <header>
-      <p class="eyebrow">Ideas, experiments & lessons learned</p>
-      <h1 class="display">
-        {title}
-        <span>.</span>
-      </h1>
-      <p class="description">{description}</p>
-    </header>
-    <section class="posts" aria-label="Articles">
-      {topLevelPosts.length ? (
-        topLevelPosts.map((post) => (
-          <PostCard post={post} children={childrenFor(post.id)} heading="h2" />
-        ))
-      ) : (
-        <p class="empty-state">
-          No posts yet. A few things are taking shape—check back soon.
-        </p>
-      )}
-    </section>
+  <div class="container">
+    <Section id="blog" title={`${title}.`} heading="h1" wide>
+      <p slot="intro" class="description">{description}</p>
+      <section class="posts" aria-label="Articles">
+        {topLevelPosts.length ? (
+          topLevelPosts.map((post) => (
+            <PostCard post={post} children={childrenFor(post.id)} heading="h2" />
+          ))
+        ) : (
+          <p class="empty-state">
+            No posts yet. A few things are taking shape—check back soon.
+          </p>
+        )}
+      </section>
+    </Section>
   </div>
 </SiteLayout>
 <style>
-  .writing-page {
-    display: grid;
-    grid-template-columns: 1fr 1.7fr;
-    gap: 5rem;
-    padding-block: 5rem 7rem;
-  }
-  h1 {
-    font-size: clamp(3.5rem, 6vw, 5rem);
-    margin-top: 1.25rem;
-  }
-  h1 span {
-    color: var(--link-color);
-  }
   .description {
     font-size: 1rem;
     line-height: 1.8;
     color: rgb(var(--color-text-secondary));
-    margin-block: 1.5rem;
-  }
-  .text-link {
-    font-size: 0.8rem;
+    margin: 1rem 0 0;
   }
   .posts {
     min-width: 0;
@@ -64,12 +44,5 @@ const childrenFor = (parentSlug: string) =>
   .empty-state {
     color: rgb(var(--color-text-secondary));
     line-height: 1.8;
-  }
-  @media (max-width: 850px) {
-    .writing-page {
-      grid-template-columns: 1fr;
-      gap: 3rem;
-      padding-block: 3rem 5rem;
-    }
   }
 </style>

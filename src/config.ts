@@ -11,7 +11,7 @@ export const siteConfig = {
   title: "Data Engineer",
   intro: {
     paragraphs: [
-      "Hey there, I’m Ding Hao, a Data Engineer with a BSc in Economics. I first got interested in data through econometrics, then explored it further through internships and personal projects. My data-analytics internships involved more data-engineering work than I expected, and I found I enjoyed that part most. That is what drew me deeper into data engineering.",
+      "Hey there 👋, I’m Ding Hao, a Data Engineer with a BSc in Economics. I first got interested in data through econometrics, then explored it further through internships and personal projects. My data-analytics internships involved more data-engineering work than I expected, and I found I enjoyed that part most. That is what drew me deeper into data engineering.",
       "At university, grades were never my priority. They are a superficial and short-lived signal; what really matters is learning continuously, building things, and gaining experience. This is now my guiding principle in developing my tech career.",
     ],
     learningIntro:
@@ -55,7 +55,7 @@ export const siteConfig = {
       bullets: [
         "My first full-time data engineering role. I build offline pipelines with Spark SQL, Xiaomi’s internal DAG scheduling platform, and extensive use of Iceberg and Hive tables.",
         "Governance and privacy are a big focus, especially supporting a Chinese company in privacy-sensitive markets like North America and Europe.",
-        "Building a backend app for governed data access. My first real exposure to APIs, Java, and Spring Boot.",
+        "Building a backend app for governed data access. My first real exposure to API development, Java, and Spring Boot.",
         "Interviewed in Chinese and now work closely with Chinese stakeholders. My Chinese has improved a lot too 😁",
       ],
       skills: [
