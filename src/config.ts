@@ -40,7 +40,8 @@ export const siteConfig = {
     // Used for the /blog index heading, meta description and RSS feed.
     // The Blog nav link stays hidden until the first non-draft post exists in
     // src/content/blog/.
-    title: "Blog",
+    title: "Documenting my work and learning",
+    navLabel: "Blog",
     description:
       "Notes on data engineering, distributed systems, and things I build.",
   },
@@ -73,7 +74,8 @@ export const siteConfig = {
       dateRange: "Mar 2026 - Jul 2026",
       bullets: [
         "Owned analytics end to end on Wise’s Send High Volume team. This covered pipelines and product analysis.",
-        "Got hands-on with Snowflake, dbt, and Airflow. Did plenty of pipeline optimisation work.",
+        "Got hands-on with Snowflake, dbt, and Airflow.",
+        "Did plenty of pipeline optimisation work. Refactored a 1,000-line dbt model to accommodate additional business logic and make it more efficient.",
         "Learned more about the growth side of fintech and high-value customer behaviour.",
         "Ran analyses that helped improve the team’s product line.",
         "First time working across time zones. Also got a memorable month-long sponsored Europe trip 🔥",

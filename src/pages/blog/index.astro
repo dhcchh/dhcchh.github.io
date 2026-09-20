@@ -13,7 +13,11 @@ const childrenFor = (parentSlug: string) =>
     .sort((a, b) => a.id.localeCompare(b.id));
 ---
 
-<SiteLayout title={`${title} — ${siteConfig.name}`} description={description}>
+<SiteLayout
+  title={`${title} — ${siteConfig.name}`}
+  description={description}
+  showFooter={false}
+>
   <div class="container">
     <Section id="blog" title={`${title}.`} heading="h1" wide>
       <p slot="intro" class="description">{description}</p>
