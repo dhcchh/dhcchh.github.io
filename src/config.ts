@@ -10,10 +10,20 @@ export const siteConfig = {
   name: "Ding Hao",
   title: "Data Engineer",
   intro: {
-    headline: "Behind the data.",
-    emphasis: "Beyond the numbers.",
-    description:
-      "I'm Ding Hao, a data engineer with roots in economics. I build data platforms, untangle messy problems, and turn what I learn into things that work.",
+    paragraphs: [
+      "Hi, I’m Ding Hao, a Data Engineer with a background in Economics. I first got interested in data through econometrics, then explored it further through internships and personal projects. My data-analytics internships involved more data-engineering work than I expected—building the foundations that made analysis possible—and I found I enjoyed that part most. That is what drew me deeper into data engineering.",
+      "At university, grades were never my priority. They are a superficial and short-lived signal; what really matters is learning continuously, building things, and gaining experience. That has become even clearer as I’ve built a career in tech.",
+    ],
+    learningIntro:
+      "Outside work, I’m working towards becoming a better data engineer by learning more about:",
+    learningTopics: [
+      "Java backend development and APIs",
+      "The JVM and how systems work under the hood",
+      "Streaming systems",
+      "Cloud data infrastructure",
+    ],
+    closing:
+      "I’m balancing that with a 9–6, and while I’m not always as consistent as I’d like to be, this is where I’ll share what I’m learning and building along the way.",
   },
   description: "Ding Hao's Portfolio Website",
   accentColor: "#1d4ed8",
