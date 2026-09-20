@@ -6,6 +6,10 @@ interface Props {
   heading?: "h1" | "h2";
 }
 const { heading = "h2" } = Astro.props;
+const current = siteConfig.experience.find((role) =>
+  /present/i.test(role.dateRange),
+);
+const currentSkills = current?.skills.slice(0, 4) ?? [];
 ---
 
 {siteConfig.aboutMe && (
@@ -16,6 +20,13 @@ const { heading = "h2" } = Astro.props;
     heading={heading}
   >
     <div class="paragraphs about-copy">
+      {current && (
+        <p class="current-focus">
+          I’m currently a {current.title} at {current.company}, working with {currentSkills.join(
+            ", ",
+          )}.
+        </p>
+      )}
       {siteConfig.aboutMe.split(/\n\s*\n/).map((paragraph) => (
         <p>{paragraph.trim()}</p>
       ))}
@@ -30,6 +41,9 @@ const { heading = "h2" } = Astro.props;
 <style>
   .about-copy {
     font-size: 1.15rem;
+  }
+  .current-focus {
+    color: rgb(var(--color-text-primary));
   }
   .skills {
     margin-top: 1.5rem;

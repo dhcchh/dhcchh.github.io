@@ -1,89 +1,30 @@
 ---
 import { siteConfig } from "../config";
-import TagList from "./ui/TagList.astro";
-const current = siteConfig.experience.find((role) =>
-  /present/i.test(role.dateRange),
-);
-const previous = siteConfig.experience
-  .filter((role) => role !== current)
-  .slice(0, 4);
 ---
 
 <section class="hero" aria-labelledby="hero-title">
-  <div class="hero-main">
-    <div class="intro">
-      <p class="eyebrow">
-        <span class="status-dot" aria-hidden="true"></span>
-        {siteConfig.name} / {siteConfig.title}
-      </p>
-      <h1 id="hero-title" class="display">
-        {siteConfig.intro.headline}
-        <br />
-        <em>{siteConfig.intro.emphasis}</em>
-      </h1>
-      <p class="description">{siteConfig.intro.description}</p>
-      <div class="actions">
-        {siteConfig.projects.length > 0 && (
-          <a class="button" href="/projects">
-            Explore my projects <span aria-hidden="true">↗</span>
-          </a>
-        )}
-        {siteConfig.social.email && (
-          <a class="text-link" href={`mailto:${siteConfig.social.email}`}>
-            Get in touch <span aria-hidden="true">→</span>
-          </a>
-        )}
-      </div>
-    </div>
-    {current && (
-      <aside class="current-role" aria-label="Current role">
-        <div class="card-label">
-          <span class="eyebrow">Currently building at</span>
-          <span class="status-dot" aria-hidden="true"></span>
-        </div>
-        <p class="company">
-          {current.company}
-          <span aria-hidden="true">↗</span>
-        </p>
-        <p class="role">{current.title}</p>
-        <p class="dates">{current.dateRange}</p>
-        <div class="pipeline" aria-hidden="true">
-          <span>Ingest</span>
-          <i>→</i>
-          <span>Model</span>
-          <i>→</i>
-          <span>Serve</span>
-        </div>
-        <TagList items={current.skills} />
-        <a class="card-link" href="/experience">
-          More about my work <span aria-hidden="true">→</span>
-        </a>
-      </aside>
-    )}
-  </div>
-  {previous.length > 0 && (
-    <div class="previous">
-      <p class="eyebrow">Along the way</p>
-      <ul role="list">
-        {previous.map((role) => (
-          <li>{role.company}</li>
-        ))}
-      </ul>
-    </div>
+  <p class="eyebrow">
+    <span class="status-dot" aria-hidden="true"></span>
+    {siteConfig.name} / {siteConfig.title}
+  </p>
+  <h1 id="hero-title" class="display">
+    {siteConfig.intro.headline}
+    <br />
+    <em>{siteConfig.intro.emphasis}</em>
+  </h1>
+  <p class="description">{siteConfig.intro.description}</p>
+  {siteConfig.projects.length > 0 && (
+    <a class="button" href="/projects">
+      Explore my projects <span aria-hidden="true">↗</span>
+    </a>
   )}
 </section>
 <style>
   .hero {
-    padding-top: clamp(3.5rem, 7vw, 6rem);
+    max-width: 43rem;
+    padding-block: clamp(4rem, 9vw, 7rem);
   }
-  .hero-main {
-    display: grid;
-    grid-template-columns: 1.8fr 1fr;
-    gap: 4rem;
-    align-items: center;
-    padding-bottom: 5rem;
-  }
-  .intro > .eyebrow {
+  .eyebrow {
     display: flex;
     align-items: center;
     gap: 0.65rem;
@@ -104,131 +45,23 @@ const previous = siteConfig.experience
     font-weight: 400;
   }
   .description {
-    max-width: 32rem;
+    max-width: 36rem;
     margin-top: 1.6rem;
     font-size: 1.05rem;
     line-height: 1.8;
     color: rgb(var(--color-text-secondary));
   }
-  .actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem 2rem;
-    align-items: center;
+  .button {
     margin-top: 2rem;
-    font-size: 0.85rem;
-  }
-  .current-role {
-    padding: 1.8rem;
-    border: 1px solid rgb(var(--color-border));
-    border-radius: 5px;
-    background: rgb(var(--color-surface));
-  }
-  .card-label {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .card-label .eyebrow {
-    font-size: 0.6rem;
-  }
-  .company {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 2.2rem;
-    font-size: 2rem;
-    font-weight: 600;
-    letter-spacing: -0.05em;
-  }
-  .company span {
-    font-size: 1.2rem;
-    color: rgb(var(--color-text-muted));
-  }
-  .role {
-    font-size: 0.9rem;
-    margin-top: 0.3rem;
-  }
-  .dates {
-    font: 0.65rem/1.6 var(--font-mono);
-    color: rgb(var(--color-text-muted));
-    margin-top: 0.5rem;
-  }
-  .pipeline {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
-    padding-block: 1.8rem;
-    font: 0.65rem/1 var(--font-mono);
-  }
-  .pipeline span {
-    border: 1px solid rgb(var(--color-border));
-    background: rgb(var(--color-background));
-    border-radius: 3px;
-    padding: 0.7rem 0.55rem;
-  }
-  .pipeline i {
-    color: rgb(var(--color-text-muted));
-    font-style: normal;
-  }
-  .card-link {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 1.5rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgb(var(--color-border));
-    font-size: 0.75rem;
-  }
-  .card-link:hover {
-    color: var(--link-color);
-  }
-  .previous {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 1.5rem 3rem;
-    border-top: 1px solid rgb(var(--color-border));
-    padding-block: 1.5rem;
-  }
-  .previous ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem 2.5rem;
-    color: rgb(var(--color-text-secondary));
-    font-weight: 600;
-    font-size: 0.9rem;
   }
   @media (max-width: 900px) {
-    .hero-main {
-      gap: 2rem;
-    }
     h1 {
       font-size: 3.8rem;
     }
-    .current-role {
-      padding: 1.3rem;
-    }
   }
   @media (max-width: 700px) {
-    .hero-main {
-      grid-template-columns: 1fr;
-      gap: 3rem;
-      padding-bottom: 3rem;
-    }
     h1 {
       font-size: clamp(3rem, 11.5vw, 4.5rem);
-    }
-    .current-role {
-      padding: 1.5rem;
-    }
-    .company {
-      margin-top: 1rem;
-    }
-    .previous ul {
-      gap: 1rem 1.5rem;
-      font-size: 0.8rem;
     }
   }
 </style>
