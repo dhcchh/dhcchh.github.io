@@ -7,7 +7,7 @@ interface Props {
   heading?: "h2" | "h3";
 }
 const { project, index, heading: Heading = "h3" } = Astro.props;
-const [intro, ...details] = project.description
+const paragraphs = project.description
   .split(/\n\s*\n/)
   .map((text) => text.trim());
 ---
@@ -18,17 +18,11 @@ const [intro, ...details] = project.description
     <span class="date">{project.dateRange}</span>
   </div>
   <Heading class="project-title">{project.name}</Heading>
-  <p class="intro">{intro}</p>
-  {details.length > 0 && (
-    <details>
-      <summary>Project details</summary>
-      <div class="paragraphs">
-        {details.map((paragraph) => (
-          <p>{paragraph}</p>
-        ))}
-      </div>
-    </details>
-  )}
+  <div class="description">
+    {paragraphs.map((paragraph) => (
+      <p>{paragraph}</p>
+    ))}
+  </div>
   <div class="skills">
     <TagList items={project.skills} />
   </div>
@@ -76,23 +70,14 @@ const [intro, ...details] = project.description
     letter-spacing: -0.03em;
     margin-top: 1.7rem;
   }
-  .intro {
+  .description {
     font-size: 0.9rem;
     line-height: 1.8;
     color: rgb(var(--color-text-secondary));
     margin-top: 1rem;
   }
-  details {
-    font-size: 0.85rem;
-    margin-top: 1rem;
-    width: 100%;
-  }
-  summary {
-    color: var(--link-color);
-    padding-block: 0.25rem;
-  }
-  details .paragraphs {
-    margin-top: 0.75rem;
+  .description p + p {
+    margin-top: 0.9rem;
   }
   .skills {
     margin-block: 1.5rem;

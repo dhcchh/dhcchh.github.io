@@ -169,7 +169,7 @@ export const siteConfig = {
       name: "Card Payments Analytics",
       dateRange: "Dec 2026",
       description:
-        "Completed as part of Wise's hiring process, this project involves building a data analytics platform to analyze card payment transactions using SQL and Python. \n\n Was a good opportunity for me to practice my data analytics skills. For a detailed walkthrough of the project, check out the GitHub repository by clicking the box.",
+        "Completed as part of Wise's hiring process. Was a good opportunity for me to practice my data analytics skills. Managed to utilise new Python packages too. See link below for the GitHub repo.",
       github: "https://github.com/dhcchh/card-payments-analytics",
       articles: [], // Array of { title: "", link: "" }
       skills: [
@@ -184,7 +184,7 @@ export const siteConfig = {
       name: "Machine Learning for Credit Card Fraud Detection",
       dateRange: "Aug 2025 - Dec 2025",
       description:
-        "Done as part of my Machine Learning coursework (IS460) at SMU. Had interest in a form of fraud detection and settled on credit card fraud detection.\n\n Built a system using Neural Network, VAE, and CatBoost ensemble that saved $20K+ over the baseline Logistic Regression model. Optimized for production with 0.75 PRAUC and 0.82 recall. ",
+        "Done as part of my Machine Learning coursework (IS460) at SMU. Had interest in a form of fraud detection and settled on credit card fraud detection. Tinkered around with ML evaluation metrics, different models from Tree based to deep learning and custom loss functions.",
       github:
         "https://github.com/dhcchh/Machine-Learning-for-Credit-Card-Fraud-Detection",
       articles: [], // Array of { title: "", link: "" }
@@ -194,7 +194,7 @@ export const siteConfig = {
       name: "SMU BIA x ISD Datathon 2025",
       dateRange: "Jan 2025 - Feb 2025",
       description:
-        "Built a risk intelligence system for Singapore's Internal Security Department using LLM-powered document extraction. Engineered prompt pipelines with Claude Haiku 3.0 on AWS Bedrock to structure unstructured WikiLeaks and news data.\n\nDelivered interactive Plotly Dash dashboards to visualize trends, relationships, and risks for ISD decision-making. Managed to make it into finals (top 10 out of 80 teams).",
+        "Built a risk intelligence system for Singapore's Internal Security Department that turned unstructured WikiLeaks and news data into clear, searchable insights. Created interactive dashboards to visualise trends, relationships, and risks for decision-making. Made it to the finals, placing in the top 10 out of 80 teams.",
       github:
         "https://github.com/dhcchh/Team-xgboosted---SMU-BIA-Datathon-2025",
       articles: [],
@@ -204,7 +204,7 @@ export const siteConfig = {
       name: "YouTube Customer Sentiment Analysis",
       dateRange: "May 2025 - Jun 2025",
       description:
-        "Inspired by issues with my Nespresso machine, the tutorial video sucked and I took a long time to get the issue fixed. The surface level metrics (1.3mil views, 13:1 LDR ratio) shocked me but the comments told a different story. \n\n As a result, I built an end-to-end NLP pipeline analyzing 250 YouTube comments using RoBERTa transformer model, uncovering 55% negative sentiment hidden behind positive engagement metrics. \n\n Also used regex pattern matching to extract actionable insights - 23 complexity complaints and 18 feature requests - then created a Streamlit dashboard to show the gap between surface KPIs and actual customer satisfaction and present areas for future improvements.",
+        "Inspired by issues with my Nespresso machine, the tutorial video sucked and I took a long time to get the issue fixed. The surface level metrics (1.3mil views, 13:1 LDR ratio) shocked me but the comments told a different story.",
       github: "https://github.com/dhcchh/youtube-customer-insights",
       articles: [
         {
@@ -223,7 +223,7 @@ export const siteConfig = {
       name: "SPY Analytics and Forecasting",
       dateRange: "Aug 2024 - Dec 2024",
       description:
-        "Project came about with my interest in exploring the stock market. Decided to structure the it in 2 different areas to learn two specalities. \n\n First, I analyzed SPY's historical and inflation-adjusted returns alongside Federal Reserve data to understand long-term investment performance. Then, I applied time-series techniques like stationarity testing (ADF) and differencing to prep the data, then built a weighted ensemble model (LSTM-PyTorch, Prophet, Monte Carlo) to forecast SPY log returns over the next 20 years with confidence intervals.",
+        "Project came about with my interest in exploring the stock market. Decided to structure the it in 2 different areas to learn two specalities.",
       github: "https://github.com/dhcchh/SPY-Analytics-Forecasting-Project",
       articles: [
         {
@@ -244,7 +244,7 @@ export const siteConfig = {
       name: "VCT eSports Manager Hackathon",
       dateRange: "Aug 2024 - Oct 2024",
       description:
-        "My first exposure to AI Engineering and building an AI product. We constructed a Retrieval-Augmented Generation (RAG) app for eSports team-building using AWS Bedrock, S3, and Lambda. \n\n Engineered custom chunking strategies with Cohere v3 Embeddings for both structured (csv) and unstructured data (md), then set up vector retrieval pipelines with Pinecone to enhance LLM-based player selection. Deployed on Streamlit Cloud for seamless user interaction.",
+        "Built an AI assistant that helped users build VALORANT eSports teams. It searched player statistics and tournament data to answer questions and recommend players based on a team's needs. Created for the AWS × Riot Games VCT 2025 Hackathon.",
       github: "https://github.com/dhcchh/vct-hackathon-esports-manager",
       articles: [
         {
