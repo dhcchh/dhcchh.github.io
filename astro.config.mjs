@@ -7,13 +7,21 @@ import remarkDirective from "remark-directive";
 import rehypeKatex from "rehype-katex";
 import remarkCallouts from "./src/lib/remark-callouts.mjs";
 import rehypeContent from "./src/lib/rehype-content.mjs";
+import remarkInlineHtmlMath from "./src/lib/remark-inline-html-math.mjs";
+import remarkCodeTabs from "./src/lib/remark-code-tabs.mjs";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://dhcchh.github.io",
   integrations: [sitemap()],
   markdown: {
-    remarkPlugins: [remarkMath, remarkDirective, remarkCallouts],
+    remarkPlugins: [
+      remarkMath,
+      remarkInlineHtmlMath,
+      remarkDirective,
+      remarkCodeTabs,
+      remarkCallouts,
+    ],
     rehypePlugins: [rehypeKatex, rehypeContent],
     shikiConfig: {
       themes: { light: "github-light", dark: "github-dark-high-contrast" },

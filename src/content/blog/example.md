@@ -72,6 +72,20 @@ def transform(rows):
 
 Syntax highlighting follows the site theme (light and dark), with a visible copy button.
 
+### Language tabs
+
+Use tabs when readers should compare the same idea in more than one language.
+
+:::code-tabs[Python | TypeScript]
+```python
+def greeting(name: str) -> str:
+    return f"Hello, {name}!"
+```
+```typescript
+const greeting = (name: string) => `Hello, ${name}!`;
+```
+:::
+
 ## Math
 
 Long equations scroll horizontally. Focus the block to scroll with the keyboard.

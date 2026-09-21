@@ -7,36 +7,146 @@ import "katex/dist/katex.min.css";
   <slot />
 </div>
 <script>
+  const languageLabel = (language?: string) => {
+    const labels: Record<string, string> = {
+      bash: "Bash",
+      cs: "C#",
+      css: "CSS",
+      html: "HTML",
+      javascript: "JavaScript",
+      js: "JavaScript",
+      json: "JSON",
+      py: "Python",
+      python: "Python",
+      sh: "Shell",
+      shell: "Shell",
+      sql: "SQL",
+      ts: "TypeScript",
+      typescript: "TypeScript",
+      yaml: "YAML",
+      yml: "YAML",
+    };
+    return labels[language?.toLowerCase() ?? ""] ?? language ?? "Code";
+  };
+
+  const addCodeToolbar = (pre: HTMLPreElement, showLabel = true) => {
+    if (pre.parentElement?.classList.contains("code-block")) return;
+    const code = pre.querySelector("code");
+    if (!code) return;
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "code-block";
+    const toolbar = document.createElement("div");
+    toolbar.className = "code-toolbar";
+    if (!showLabel) toolbar.classList.add("copy-only");
+
+    if (showLabel) {
+      const label = document.createElement("span");
+      label.textContent = languageLabel(pre.dataset.language);
+      toolbar.append(label);
+    }
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = "Copy code";
+    button.setAttribute("aria-live", "polite");
+    button.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(
+          code.textContent?.replace(/\n$/, "") ?? "",
+        );
+        button.textContent = "Copied!";
+      } catch {
+        button.textContent = "Copy unavailable";
+      }
+      setTimeout(() => {
+        button.textContent = "Copy code";
+      }, 2000);
+    });
+
+    toolbar.append(button);
+    pre.before(wrapper);
+    wrapper.append(toolbar, pre);
+  };
+
+  document
+    .querySelectorAll<HTMLElement>("[data-article-content] [data-code-tabs]")
+    .forEach((group, groupIndex) => {
+      const sourceBlocks = Array.from(group.children).filter(
+        (child): child is HTMLPreElement =>
+          child instanceof HTMLPreElement,
+      );
+      if (sourceBlocks.length < 2) return;
+
+      let labels: string[] = [];
+      try {
+        labels = JSON.parse(group.dataset.codeTabLabels ?? "[]");
+      } catch {
+        // Invalid labels should never be emitted by the Markdown plugin.
+      }
+
+      const tabList = document.createElement("div");
+      tabList.className = "code-tab-list";
+      tabList.setAttribute("role", "tablist");
+      tabList.setAttribute("aria-label", "Code languages");
+      const tabs: HTMLButtonElement[] = [];
+      const panels: HTMLDivElement[] = [];
+
+      sourceBlocks.forEach((pre, index) => {
+        const panel = document.createElement("div");
+        panel.className = "code-tab-panel";
+        panel.id = `code-tab-panel-${groupIndex}-${index}`;
+        panel.setAttribute("role", "tabpanel");
+        const tab = document.createElement("button");
+        tab.type = "button";
+        tab.className = "code-tab";
+        tab.id = `code-tab-${groupIndex}-${index}`;
+        tab.setAttribute("role", "tab");
+        tab.setAttribute("aria-controls", panel.id);
+        tab.textContent =
+          labels[index] || languageLabel(pre.dataset.language);
+        panel.setAttribute("aria-labelledby", tab.id);
+
+        pre.before(panel);
+        panel.append(pre);
+        addCodeToolbar(pre, false);
+        tabList.append(tab);
+        tabs.push(tab);
+        panels.push(panel);
+      });
+
+      const selectTab = (selectedIndex: number, shouldFocus = false) => {
+        tabs.forEach((tab, index) => {
+          const selected = index === selectedIndex;
+          tab.setAttribute("aria-selected", String(selected));
+          tab.tabIndex = selected ? 0 : -1;
+          panels[index].hidden = !selected;
+        });
+        if (shouldFocus) tabs[selectedIndex].focus();
+      };
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener("click", () => selectTab(index));
+        tab.addEventListener("keydown", (event) => {
+          if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+          event.preventDefault();
+          const nextIndex =
+            event.key === "Home"
+              ? 0
+              : event.key === "End"
+                ? tabs.length - 1
+                : (index + (event.key === "ArrowRight" ? 1 : -1) + tabs.length) %
+                  tabs.length;
+          selectTab(nextIndex, true);
+        });
+      });
+
+      group.prepend(tabList);
+      group.classList.add("is-enhanced");
+      selectTab(0);
+    });
+
   document
     .querySelectorAll<HTMLPreElement>("[data-article-content] pre")
-    .forEach((pre) => {
-      const code = pre.querySelector("code");
-      if (!code) return;
-      const wrapper = document.createElement("div");
-      wrapper.className = "code-block";
-      const toolbar = document.createElement("div");
-      toolbar.className = "code-toolbar";
-      const label = document.createElement("span");
-      label.textContent = pre.dataset.language || "Code";
-      const button = document.createElement("button");
-      button.type = "button";
-      button.textContent = "Copy code";
-      button.setAttribute("aria-live", "polite");
-      button.addEventListener("click", async () => {
-        try {
-          await navigator.clipboard.writeText(
-            code.textContent?.replace(/\n$/, "") ?? "",
-          );
-          button.textContent = "Copied!";
-        } catch {
-          button.textContent = "Copy unavailable";
-        }
-        setTimeout(() => {
-          button.textContent = "Copy code";
-        }, 2000);
-      });
-      toolbar.append(label, button);
-      pre.before(wrapper);
-      wrapper.append(toolbar, pre);
-    });
+    .forEach((pre) => addCodeToolbar(pre));
 </script>

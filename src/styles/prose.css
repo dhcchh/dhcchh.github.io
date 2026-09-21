@@ -273,6 +273,59 @@
   border-radius: 0;
   margin: 0;
 }
+
+/* Adjacent implementations can be authored as :::code-tabs in Markdown. */
+.prose .code-tabs:not(.is-enhanced) > pre + pre {
+  margin-top: 1em;
+}
+.prose .code-tabs.is-enhanced {
+  margin-top: 1.5em;
+  overflow: hidden;
+  border: 1px solid rgb(var(--color-border));
+  border-radius: 8px;
+}
+.prose .code-tab-list {
+  display: flex;
+  gap: 0.2rem;
+  overflow-x: auto;
+  padding: 0.45rem 0.65rem 0;
+  border-bottom: 1px solid rgb(var(--color-border));
+  background: rgb(var(--color-surface));
+}
+.prose .code-tab {
+  flex: 0 0 auto;
+  min-height: 32px;
+  padding: 0.3rem 0.65rem;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 4px 4px 0 0;
+  background: transparent;
+  color: rgb(var(--color-text-muted));
+  font: 0.7rem/1.4 var(--font-mono);
+  cursor: pointer;
+}
+.prose .code-tab:hover,
+.prose .code-tab[aria-selected="true"] {
+  color: rgb(var(--color-text-primary));
+}
+.prose .code-tab[aria-selected="true"] {
+  border-bottom-color: var(--link-color);
+  background: rgb(var(--color-background));
+}
+.prose .code-tab:focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: -2px;
+}
+.prose .code-tabs.is-enhanced .code-block {
+  border: 0;
+  border-radius: 0;
+}
+.prose .code-tabs.is-enhanced .code-toolbar {
+  border-bottom: 1px solid rgb(var(--color-border));
+}
+.prose .code-toolbar.copy-only {
+  justify-content: flex-end;
+}
 @media (max-width: 700px) {
   .prose {
     font-size: 1rem;

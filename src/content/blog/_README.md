@@ -45,11 +45,28 @@ hidden markdown, including code blocks
 :::
 ```
 
-Math (KaTeX): inline `$…$`, block `$$…$$`.
+Math (KaTeX): inline `$x$` (or a full expression such as `$x^2$`), block
+`$$…$$`. This also works in imported literal HTML while leaving currency such
+as `$10,000` alone.
 
 Code: standard fenced blocks with a language, e.g. ` ```python `. Syntax colors
 follow the light/dark theme. Each block gets a visible copy button; without
 JavaScript, code remains selectable and horizontally scrollable.
+
+Language tabs: wrap two or more fenced blocks in `:::code-tabs`. The optional
+label lists tab names in the same order as the fences; otherwise language names
+are used.
+
+````md
+:::code-tabs[Python | TypeScript]
+```python
+print("Hello")
+```
+```typescript
+console.log("Hello");
+```
+:::
+````
 
 See `example.md` in this folder for one of everything (it is a permanent draft).
 
