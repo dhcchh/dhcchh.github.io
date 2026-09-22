@@ -30,7 +30,6 @@ const internships = siteConfig.experience.filter((experience) =>
         {fullTimeRoles.map((experience, index) => (
           <ExperienceItem
             experience={experience}
-            expanded={index === 0}
             heading={heading === "h1" ? "h2" : "h3"}
           />
         ))}
@@ -43,10 +42,9 @@ const internships = siteConfig.experience.filter((experience) =>
           <span class="internship-toggle" aria-hidden="true"></span>
         </summary>
         <div class="internship-list">
-          {internships.map((experience, index) => (
+          {internships.map((experience) => (
             <ExperienceItem
               experience={experience}
-              expanded={fullTimeRoles.length === 0 && index === 0}
               heading={heading === "h1" ? "h2" : "h3"}
             />
           ))}
