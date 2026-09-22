@@ -36,7 +36,7 @@ const internships = siteConfig.experience.filter((experience) =>
       </section>
     )}
     {internships.length > 0 && (
-      <details class="experience-group internships">
+      <details class="experience-group internships" open>
         <summary>
           <span class="group-label">Internships</span>
           <span class="internship-toggle" aria-hidden="true"></span>
@@ -45,6 +45,7 @@ const internships = siteConfig.experience.filter((experience) =>
           {internships.map((experience) => (
             <ExperienceItem
               experience={experience}
+              expanded
               heading={heading === "h1" ? "h2" : "h3"}
             />
           ))}
