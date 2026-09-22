@@ -12,7 +12,7 @@ const heroTitle = `${siteConfig.name} - ${siteConfig.title}`;
     ></span>
   </h1>
   <div class="description">
-    {siteConfig.intro.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+    {siteConfig.intro.paragraphs.map((paragraph) => <p set:html={paragraph} />)}
     <p>{siteConfig.intro.learningIntro}</p>
     <ul>
       {siteConfig.intro.learningTopics.map((topic) => <li>{topic}</li>)}
@@ -51,6 +51,9 @@ const heroTitle = `${siteConfig.name} - ${siteConfig.title}`;
   }
   .description p {
     margin: 0;
+  }
+  .description :global(a) {
+    color: var(--link-color);
   }
   .description p + p,
   .description ul {

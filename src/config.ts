@@ -12,7 +12,7 @@ export const siteConfig = {
   intro: {
     paragraphs: [
       "Hey there 👋, I’m Ding Hao, a Data Engineer with a BSc in Economics. I first got interested in data through econometrics, then explored it further through internships and personal projects. My data-analytics internships involved more data-engineering work than I expected, and I found I enjoyed that part most. That is what drew me deeper into data engineering.",
-      "At university, grades were never my priority. They are a superficial and short-lived signal; what really matters is learning continuously, building things, and gaining experience. This is now my guiding principle in developing my tech career. Breaking into the tech/data job market in 2026 has solidified this belief all the more.",
+      "At university, what actually hooked me was building things — check out my <a href=\"/projects\">projects</a> — and teaching myself whatever a problem needed, well beyond the syllabus. Grades were never the priority; they're a superficial, short-lived signal. Learning continuously, building things, and gaining real experience is what built my skillset, and it's still the principle driving my tech career. Breaking into the tech/data job market in 2026 only confirmed I had it right.",
     ],
     learningIntro:
       "I’m working towards becoming a better data engineer by learning more about:",

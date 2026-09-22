@@ -30,6 +30,7 @@ const internships = siteConfig.experience.filter((experience) =>
         {fullTimeRoles.map((experience, index) => (
           <ExperienceItem
             experience={experience}
+            expanded
             heading={heading === "h1" ? "h2" : "h3"}
           />
         ))}
