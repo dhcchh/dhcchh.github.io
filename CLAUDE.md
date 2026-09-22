@@ -52,6 +52,11 @@ When modifying components:
 3. Maintain the existing monospace font aesthetic
 4. Use Tabler Icons for consistency with existing icons
 
+## Writing Math in Blog Posts
+
+- Math must be written as KaTeX, using `$...$` for inline and `$$...$$` for block. The markdown pipeline runs `remark-math` + `rehype-katex` (see `astro.config.mjs`), plus a custom `remarkInlineHtmlMath` plugin (`src/lib/remark-inline-html-math.mjs`) that also renders `$...$` found inside raw HTML nodes (posts imported from Medium/elsewhere often contain literal `<p>` HTML rather than pure markdown).
+- Never use Unicode super/subscript characters (e.g. `H₀`, `x²`, `Cₜ`, `eˣ`) or raw Greek letters (`α`, `μ`, `σ`, `δ`) as a stand-in for math. The site's IBM Plex Mono web font does not cover the Unicode super/subscript block or Greek block, so those characters silently fall back to the browser's default system font and look visually mismatched. Always write `$H_0$`, `$x^2$`, `$C_t$`, `$e^x$`, `$\alpha$`, `$\mu$`, etc. instead.
+
 ## Configuration Structure
 
 The `src/config.ts` exports a `siteConfig` object with these sections:

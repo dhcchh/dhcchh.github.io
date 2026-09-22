@@ -149,4 +149,63 @@ import "katex/dist/katex.min.css";
   document
     .querySelectorAll<HTMLPreElement>("[data-article-content] pre")
     .forEach((pre) => addCodeToolbar(pre));
+
+  const lightbox = document.createElement("div");
+  lightbox.className = "lightbox";
+  lightbox.setAttribute("role", "dialog");
+  lightbox.setAttribute("aria-modal", "true");
+  lightbox.setAttribute("aria-hidden", "true");
+
+  const lightboxImg = document.createElement("img");
+  const lightboxCaption = document.createElement("p");
+  lightboxCaption.className = "lightbox-caption";
+  const closeButton = document.createElement("button");
+  closeButton.type = "button";
+  closeButton.className = "lightbox-close";
+  closeButton.setAttribute("aria-label", "Close enlarged image");
+  closeButton.textContent = "✕";
+
+  lightbox.append(lightboxImg, lightboxCaption, closeButton);
+  document.body.append(lightbox);
+
+  let lastFocused: HTMLElement | null = null;
+
+  const closeLightbox = () => {
+    lightbox.classList.remove("is-open");
+    lightbox.setAttribute("aria-hidden", "true");
+    document.body.style.removeProperty("overflow");
+    lastFocused?.focus();
+  };
+
+  const openLightbox = (img: HTMLImageElement) => {
+    lastFocused = document.activeElement as HTMLElement;
+    lightboxImg.src = img.currentSrc || img.src;
+    lightboxImg.alt = img.alt;
+    const caption = img
+      .closest("figure")
+      ?.querySelector("figcaption")
+      ?.textContent?.trim();
+    lightboxCaption.textContent = caption ?? "";
+    lightboxCaption.hidden = !caption;
+    lightbox.classList.add("is-open");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    closeButton.focus();
+  };
+
+  lightbox.addEventListener("click", (event) => {
+    if (event.target === lightbox) closeLightbox();
+  });
+  closeButton.addEventListener("click", closeLightbox);
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && lightbox.classList.contains("is-open")) {
+      closeLightbox();
+    }
+  });
+
+  document
+    .querySelectorAll<HTMLImageElement>("[data-article-content] img")
+    .forEach((img) => {
+      img.addEventListener("click", () => openLightbox(img));
+    });
 </script>
