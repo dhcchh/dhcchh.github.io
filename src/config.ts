@@ -172,7 +172,7 @@ export const siteConfig = {
       name: "Crypto Market Intelligence Pipeline",
       dateRange: "Jan 2026 - Apr 2026",
       description:
-        "An end-to-end crypto analytics pipeline for retail-trader style insights. Airflow ingests OHLC data from Kraken into S3, dbt transforms it through Glue/Athena into marts for daily volume, returns, drawdown, and volatility regimes, and Grafana dashboards surface the results.",
+        "Done as part of my Big Data Analytics coursework (IS459) at SMU. An end-to-end crypto analytics pipeline for retail-trader style insights. Airflow ingests OHLC data from Kraken into S3, dbt transforms it through Glue/Athena into marts for daily volume, returns, drawdown, and volatility regimes, and Grafana dashboards surface the results.",
       github: "https://github.com/dhcchh/crypto-market-data-pipeline",
       articles: [], // Array of { title: "", link: "" }
       skills: ["Airflow", "dbt", "AWS Glue", "AWS Athena", "AWS S3", "Grafana", "Python"],
