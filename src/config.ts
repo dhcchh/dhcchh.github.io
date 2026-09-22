@@ -12,7 +12,7 @@ export const siteConfig = {
   intro: {
     paragraphs: [
       "Hey there 👋, I’m Ding Hao, a Data Engineer with a BSc in Economics. I first got interested in data through econometrics, then explored it further through internships and personal projects. My data-analytics internships involved more data-engineering work than I expected, and I found I enjoyed that part most. That is what drew me deeper into data engineering.",
-      "At university, what actually hooked me was building things — check out my <a href=\"/projects\">projects</a> — and teaching myself whatever a problem needed, well beyond the syllabus. Grades were never the priority; they're a superficial, short-lived signal. Learning continuously, building things, and gaining real experience is what built my skillset, and it's still the principle driving my tech career — I write about it on my <a href=\"/blog\">blog</a> too. Breaking into the tech/data job market in 2026 only confirmed I had it right.",
+      "At university, what actually hooked me was building things — check out my <a href=\"/projects\">projects</a> and <a href=\"/blog\">blog</a> — and teaching myself whatever a problem needed, well beyond the syllabus. Grades were never the priority; they're a superficial, short-lived signal. Learning continuously, building things, and gaining real experience is what built my skillset, and it's still the principle driving my tech career. Breaking into the tech/data job market in 2026 only confirmed I had it right.",
     ],
     learningIntro:
       "I’m working towards becoming a better data engineer by learning more about:",
@@ -168,6 +168,15 @@ export const siteConfig = {
     // },
   ] as Certification[],
   projects: [
+    {
+      name: "Crypto Market Intelligence Pipeline",
+      dateRange: "Jan 2026 - Apr 2026",
+      description:
+        "An end-to-end crypto analytics pipeline for retail-trader style insights. Airflow ingests OHLC data from Kraken into S3, dbt transforms it through Glue/Athena into marts for daily volume, returns, drawdown, and volatility regimes, and Grafana dashboards surface the results.",
+      github: "https://github.com/dhcchh/crypto-market-data-pipeline",
+      articles: [], // Array of { title: "", link: "" }
+      skills: ["Airflow", "dbt", "AWS Glue", "AWS Athena", "AWS S3", "Grafana", "Python"],
+    },
     {
       name: "Card Payments Analytics",
       dateRange: "Dec 2025",
