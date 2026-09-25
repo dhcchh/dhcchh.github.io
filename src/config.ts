@@ -73,7 +73,7 @@ export const siteConfig = {
       title: "Product Analyst Intern",
       dateRange: "Mar 2026 - Jul 2026",
       bullets: [
-        "Owned analytics end to end on Wise’s Send High Volume team, covering pipelines, product analysis, building visualisation tools, and creating stakeholder presentation slides.",
+        "Worked across the full analytics lifecycle on Wise’s Send High Volume team—from building data pipelines and analysing product performance to creating visualisation tools and communicating insights to stakeholders.",
         "Got more hands-on experience with Snowflake, dbt, and Airflow, and made cool charts with Lightdash and Superset.",
         "Did plenty of pipeline optimisation work. Refactored a 1,000-line dbt model to accommodate additional business logic and make it more efficient.",
         "Learned more about the growth side of fintech and high-value customer behaviour.",
