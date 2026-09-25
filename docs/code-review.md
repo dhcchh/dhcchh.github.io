@@ -10,7 +10,7 @@ levels were normalized without changing its prose.
 | --- | --- |
 | Tailwind v4 was not loading the JavaScript theme configuration, so custom color utilities were absent from the CSS | Explicit `@config` in `global.css`; color tokens now resolve |
 | Theme code ignored `theme.defaultTheme`, initialized redundantly, and assumed local storage was always available | Resolve once before paint; one small toggle script; guarded storage and system-theme handling |
-| Hero text depended on an endless typewriter timer and animation-driven visibility | Static server-rendered introduction, visible with JS and animation disabled |
+| Hero title animation | The typewriter effect is intentionally retained; the full title is present in server-rendered HTML and typing is skipped for reduced-motion preferences |
 | Repeated SVG social links, section scaffolding, tag markup, and article metadata | Shared components with typed props and slots |
 | Blog prose CSS shipped globally and fonts requested many unused weights | Prose is imported only by article content; reduced font weight requests |
 | Global transition rules overrode component-specific transitions | Removed universal transitions; explicit reduced-motion support |

@@ -1,8 +1,11 @@
 # Extending the portfolio
 
 The site uses Astro components and static HTML. There is no client framework or
-router. JavaScript is limited to theme selection, code copying, and the initial
-mobile contents state. Native `<details>` handles expandable content.
+router. Small client-side scripts handle theme selection, the intentionally
+retained hero title typewriter effect, code copying, and the initial mobile
+contents state. The hero title is present in server-rendered HTML, and typing is
+skipped for reduced-motion preferences. Native `<details>` handles expandable
+content.
 
 ## Content and presentation
 
