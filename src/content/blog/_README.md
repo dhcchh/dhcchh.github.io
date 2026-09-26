@@ -17,14 +17,21 @@ draft: true                   # optional — hidden in production, shown in `npm
 tags: ["spark", "iceberg"]    # optional
 toc: true                    # optional — automatic contents navigation; false hides it
 cover: /covers/post.png       # optional — social-card image in /public
+readingMinutes: 12            # optional — overrides the word-count estimate
+parentSlug: "series-overview" # optional — lists this post under that post on /blog
+externalUrl: https://...      # optional — index/RSS link out instead of a local page
 ---
 ```
 
-The **Writing** nav link stays hidden until at least one non-draft post exists.
+The **Blog** nav link (label: `siteConfig.blog.navLabel`) stays hidden until at least one non-draft post exists.
 Navigation visibility and RSS always exclude drafts. The development blog index labels them.
 
 Start sections with `##` and use `###` for subsections. The contents list is
 generated from the top-level sections and omitted for posts with fewer than two.
+Headings inside literal HTML (imported posts) count too.
+
+Standalone images (`![alt text](src)` on their own line) get the alt text as a
+visible caption, and every post image opens in a lightbox when clicked.
 See [the component guide](../../../docs/components.md) for layout extension slots.
 
 ## Blocks beyond standard Markdown

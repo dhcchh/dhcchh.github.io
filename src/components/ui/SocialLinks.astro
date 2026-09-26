@@ -4,7 +4,7 @@ const links = [
   {
     key: "email",
     label: siteConfig.social.email,
-    href: `mailto:${siteConfig.social.email}`,
+    href: siteConfig.social.email && `mailto:${siteConfig.social.email}`,
   },
   { key: "linkedin", label: "Dinghao Chan", href: siteConfig.social.linkedin },
   { key: "github", label: "dhcchh", href: siteConfig.social.github },

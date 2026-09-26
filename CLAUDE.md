@@ -4,14 +4,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a modern, minimalist portfolio template built with Astro and Tailwind CSS v4. It's designed to be easily customizable through a single configuration file while maintaining a clean, professional appearance.
+This is a personal portfolio and blog built with Astro and Tailwind CSS v4. Site content lives in a single configuration file; blog posts are Markdown files in a content collection.
 
 ## Tech Stack
 
-- **Astro**: Static site generator
-- **Tailwind CSS v4**: Utility-first CSS framework using the new @tailwindcss/vite plugin
+- **Astro**: Static site generator (multi-page, no client framework)
+- **Tailwind CSS v4**: Loaded through the @tailwindcss/vite plugin, used for its base reset and `sr-only`; components are styled with scoped `<style>` blocks
 - **TypeScript**: For type-safe configuration
-- **Tabler Icons**: Icon library
+- **KaTeX + Shiki**: Math and syntax highlighting in blog posts
+- **Icons**: Small hand-written inline SVGs (no icon library)
 
 ## Development Commands
 
@@ -23,11 +24,13 @@ npm run preview   # Preview production build
 
 ## Architecture
 
-The project follows a component-based architecture with all customization centralized in `src/config.ts`:
+The project follows a component-based architecture with all site content centralized in `src/config.ts`:
 
-- **Components** (`src/components/`): Individual Astro components for each section (Hero, About, Projects, Experience, Education, Header, Footer)
-- **Main Layout** (`src/pages/index.astro`): Single-page layout that imports all components
-- **Configuration** (`src/config.ts`): Single source of truth for all content and customization
+- **Pages** (`src/pages/`): Separate routes for Home (`/`, the `Hero`), Experience (`/experience`), Projects (`/projects`), the blog index (`/blog`), blog posts (`/blog/[...slug]`), and the RSS feed
+- **Layouts** (`src/layouts/`): `BaseLayout` (document head, theme resolution), `SiteLayout` (header, main, footer), `BlogPostLayout` (article header, contents list, navigation)
+- **Components** (`src/components/`): Page sections (Hero, Experience, Projects, Header, Footer), `ui/` building blocks (Section, TagList, SocialLinks), and `blog/` article components
+- **Configuration** (`src/config.ts`): Single source of truth for site content and customization
+- **Blog** (`src/content/blog/*.md`): Posts; see `src/content/blog/_README.md` for frontmatter and supported blocks, and `docs/components.md` for extension points
 
 ### Key Architectural Decisions
 
@@ -38,24 +41,25 @@ The project follows a component-based architecture with all customization centra
 
 ## Important Implementation Details
 
-- The site uses Tailwind CSS v4 with the Vite plugin configuration
+- The site uses Tailwind CSS v4 with the Vite plugin; there is no `tailwind.config.js`
+- Tailwind generates a utility for any matching word it finds in the source, and those utilities apply to any element with that class name. Avoid naming your own classes after Tailwind utilities (`contents`, `hidden`, `table`, `block`, `flex`, ...). `global.css` deliberately overrides the `.container` utility's max-widths
 - No linting or testing framework is currently configured
 - All components are in `.astro` format (not React/Vue/etc)
-- The project uses IBM Plex Mono font loaded from Google Fonts
+- Typography: system sans-serif body text, Georgia for `.display` headings, and IBM Plex Mono (loaded from Google Fonts) for labels, tags, dates, and code
 - Social links in the config are all optional and will conditionally render
 
 ## Working with Components
 
 When modifying components:
 1. Components read directly from the imported `siteConfig` object
-2. Use Tailwind utility classes for styling
-3. Maintain the existing monospace font aesthetic
-4. Use Tabler Icons for consistency with existing icons
+2. Style with the component's scoped `<style>` block using the CSS custom properties in `src/styles/global.css`; only promote a rule to global CSS when several components need it
+3. Maintain the existing typography (display serif headings, monospace labels)
+4. Draw new icons as small inline SVGs matching the existing stroke style
 
 ## Writing Math in Blog Posts
 
 - Math must be written as KaTeX, using `$...$` for inline and `$$...$$` for block. The markdown pipeline runs `remark-math` + `rehype-katex` (see `astro.config.mjs`), plus a custom `remarkInlineHtmlMath` plugin (`src/lib/remark-inline-html-math.mjs`) that also renders `$...$` found inside raw HTML nodes (posts imported from Medium/elsewhere often contain literal `<p>` HTML rather than pure markdown).
-- Never use Unicode super/subscript characters (e.g. `H₀`, `x²`, `Cₜ`, `eˣ`) or raw Greek letters (`α`, `μ`, `σ`, `δ`) as a stand-in for math. The site's IBM Plex Mono web font does not cover the Unicode super/subscript block or Greek block, so those characters silently fall back to the browser's default system font and look visually mismatched. Always write `$H_0$`, `$x^2$`, `$C_t$`, `$e^x$`, `$\alpha$`, `$\mu$`, etc. instead.
+- Never use Unicode super/subscript characters (e.g. `H₀`, `x²`, `Cₜ`, `eˣ`) or raw Greek letters (`α`, `μ`, `σ`, `δ`) as a stand-in for math. They render in whichever system font happens to have the glyph (IBM Plex Mono covers neither the super/subscript block nor Greek), so they look mismatched next to KaTeX-rendered math. Always write `$H_0$`, `$x^2$`, `$C_t$`, `$e^x$`, `$\alpha$`, `$\mu$`, etc. instead.
 
 ## Images in Blog Posts
 
@@ -66,9 +70,9 @@ When modifying components:
 
 The `src/config.ts` exports a `siteConfig` object with these sections:
 - Basic info: name, title, description, accentColor
-- Social links: email, linkedin, twitter, github (all optional)
-- aboutMe: string
-- skills: string[]
-- projects: array of {name, description, link, skills}
-- experience: array of {company, title, dateRange, bullets}
-- education: array of {school, degree, dateRange, achievements}
+- intro: {paragraphs, learningIntro, learningTopics, closing} for the homepage (paragraphs may contain HTML links)
+- theme: {enableDarkMode, defaultTheme}
+- social: email, linkedin, github (all optional)
+- blog: {title, navLabel, description} for the blog index, nav link, and RSS feed
+- experience: array of {company, title, dateRange, bullets, skills}; titles containing "intern" are grouped under Internships
+- projects: array of {name, dateRange, description, github, articles: {title, link}[], skills}

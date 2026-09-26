@@ -1,11 +1,3 @@
-interface Certification {
-  name: string;
-  issuer: string;
-  dateObtained?: string;
-  credentialUrl: string;
-  image?: string;
-}
-
 export const siteConfig = {
   name: "Ding Hao",
   title: "Data Engineer",
@@ -45,9 +37,6 @@ export const siteConfig = {
     description:
       "Random thoughts, personal projects, and things I’m learning along the way.",
   },
-  aboutMe:
-    "I studied Economics but found my way into data through building things and solving problems hands-on. \n\n On the side, I'm diving deep into distributed systems—Spark, Iceberg, and the infrastructure that powers large-scale data platforms. I also write about my projects on Medium/GitHub when I find interesting problems worth sharing.",
-  skills: [],
   experience: [
     {
       company: "Xiaomi",
@@ -136,37 +125,6 @@ export const siteConfig = {
       skills: ["GCP", "Python", "SQL", "CI/CD"],
     },
   ],
-  education: [
-    {
-      school: "Singapore Management University",
-      degree: "Bachelor of Science in Economics",
-      dateRange: "2022 - 2026",
-      description:
-        "Discovered my passion for data first through Econometrics and later through hands-on projects. Also did many courses outside of my Economics major to deepen my data skills.",
-      relevantCoursework: [
-        "IS460: Machine Learning & Applications",
-        "IS459: Big Data Architecture",
-        "IS428: Visual Analytics for Business Intelligence",
-        "IS105: Business Data Management",
-        "DSA212: Data Analytics with R",
-        "DSA211: Statistical Learning with R",
-        "DSA201: Statistical Inference for Data Science",
-        "IS115: Algorithms & Programming",
-        "COR-IS1704: Computational Thinking & Programming",
-        "ECON207: Intermediate Econometrics",
-      ],
-    },
-  ],
-  certifications: [
-    // Example format:
-    // {
-    //   name: "AWS Solutions Architect",
-    //   issuer: "Amazon Web Services",
-    //   dateObtained: "Jan 2025",
-    //   credentialUrl: "https://...",
-    //   image: "/certs/aws-sa.png", // optional: path to cert image/badge in public folder
-    // },
-  ] as Certification[],
   projects: [
     {
       name: "Crypto Market Intelligence Pipeline",
@@ -235,7 +193,7 @@ export const siteConfig = {
       name: "SPY Analytics and Forecasting",
       dateRange: "Aug 2024 - Dec 2024",
       description:
-        "Project came about with my interest in exploring the stock market. Decided to structure the it in 2 different areas to learn two specalities.",
+        "Project came about with my interest in exploring the stock market. Decided to structure it in two different areas to learn two specialities.",
       github: "https://github.com/dhcchh/SPY-Analytics-Forecasting-Project",
       articles: [
         {

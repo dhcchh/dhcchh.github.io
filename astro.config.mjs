@@ -5,6 +5,7 @@ import sitemap from "@astrojs/sitemap";
 import remarkMath from "remark-math";
 import remarkDirective from "remark-directive";
 import rehypeKatex from "rehype-katex";
+import rehypeRaw from "rehype-raw";
 import remarkCallouts from "./src/lib/remark-callouts.mjs";
 import rehypeContent from "./src/lib/rehype-content.mjs";
 import remarkInlineHtmlMath from "./src/lib/remark-inline-html-math.mjs";
@@ -24,7 +25,9 @@ export default defineConfig({
       remarkCallouts,
       remarkFigureCaptions,
     ],
-    rehypePlugins: [rehypeKatex, rehypeContent],
+    // Parse raw HTML (imported posts) first, so the plugins below and Astro's
+    // heading collection (contents list, anchors) also see those elements.
+    rehypePlugins: [rehypeRaw, rehypeKatex, rehypeContent],
     shikiConfig: {
       themes: { light: "github-light", dark: "github-dark-high-contrast" },
     },

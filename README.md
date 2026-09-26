@@ -9,8 +9,8 @@ This website is built using the excellent [DevPortfolio Template](https://github
 ## Built With
 
 - **[Astro](https://astro.build/)** - Static site generator for modern web apps
-- **[Tailwind CSS v4](https://tailwindcss.com/)** - Utility-first CSS framework
-- **[Tabler Icons](https://tabler.io/icons)** - Free and open source icons
+- **[Tailwind CSS v4](https://tailwindcss.com/)** - Base styles; components use scoped CSS
+- **[KaTeX](https://katex.org/)** and **[Shiki](https://shiki.style/)** - Math and code highlighting in blog posts
 - **TypeScript** - For type-safe configuration
 
 ## Updating the Template
@@ -21,16 +21,15 @@ The template is designed to be easily customizable through the `src/config.ts` f
 
 - **Personal Information**: Name, title, description, homepage intro
 - **Accent Color**: Primary color theme (changing this will change the accent color site wide)
-- **Social Links**: Email, LinkedIn, Twitter, GitHub (all optional)
-- **About Section**: Personal bio/description
-- **Skills**: List of technical skills
+- **Theme**: Dark mode toggle and default theme
+- **Social Links**: Email, LinkedIn, GitHub (all optional)
+- **Blog**: Blog index title, nav label, and RSS description
+- **Experience**: Work history with bullet points and skills
 - **Projects**: Project showcase with descriptions and links
-- **Experience**: Work history with bullet points
-- **Education**: Educational background and achievements
 
 ## Component architecture
 
-Home, About, Experience, Projects, and Writing are separate pages. They share
+Home, Experience, Projects, and Blog are separate pages. They share
 `SiteLayout`, navigation with an active tab, theme controls, and footer.
 Reusable sections, cards, tags, and article components live in `src/components`.
 Content stays in `src/config.ts` and `src/content/blog/*.md`.

@@ -79,8 +79,13 @@ const links = [
   @media (max-width: 700px) {
     .header-inner {
       flex-wrap: wrap;
-      gap: 0 1rem;
+      justify-content: flex-end;
+      gap: 0;
       padding-top: 0.6rem;
+    }
+    /* No room beside the centered links; give the toggle its own row. */
+    .header-inner > :global(#theme-toggle) {
+      position: static;
     }
     nav {
       order: 3;

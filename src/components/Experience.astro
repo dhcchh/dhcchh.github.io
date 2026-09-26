@@ -22,12 +22,12 @@ const internships = siteConfig.experience.filter((experience) =>
     heading={heading}
   >
     <p slot="intro" class="experience-intro">
-      A more personal look at what I learnt in my career. There won't be a list of action verbs and numbers here, If you want to see my actual resume, drop me an email at <a href={`mailto:${siteConfig.social.email}`}>{siteConfig.social.email}</a>.
+      A more personal look at what I learnt in my career. There won't be a list of action verbs and numbers here. If you want to see my actual resume, drop me an email at <a href={`mailto:${siteConfig.social.email}`}>{siteConfig.social.email}</a>.
     </p>
     {fullTimeRoles.length > 0 && (
       <section class="experience-group" aria-labelledby="full-time-title">
         <p id="full-time-title" class="group-label">Full-time roles</p>
-        {fullTimeRoles.map((experience, index) => (
+        {fullTimeRoles.map((experience) => (
           <ExperienceItem
             experience={experience}
             expanded
@@ -59,7 +59,6 @@ const internships = siteConfig.experience.filter((experience) =>
 <style>
   :global(#experience-title) {
     white-space: nowrap;
-    font-size: clamp(2rem, 3vw, 2.7rem);
   }
 
   .experience-intro {

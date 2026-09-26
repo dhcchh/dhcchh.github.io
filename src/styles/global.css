@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@config "../../tailwind.config.js";
 
 :root {
   --color-background: 250 249 246;
@@ -10,7 +9,7 @@
   --color-text-secondary: 73 84 88;
   --color-text-muted: 100 109 112;
   --color-text-inverse: 255 255 255;
-  --accent-color: #1d4ed8;
+  /* --accent-color is set from siteConfig.accentColor in BaseLayout. */
   --link-color: var(--accent-color);
   --font-mono: "IBM Plex Mono", monospace;
   --font-display: Georgia, "Times New Roman", serif;
@@ -67,8 +66,11 @@ a {
   outline: 2px solid var(--link-color);
   outline-offset: 5px;
 }
+/* Tailwind also emits a `.container` utility with per-breakpoint max-widths;
+   this unlayered max-width overrides them. */
 .container {
-  width: min(1160px, calc(100% - 6rem));
+  width: calc(100% - 6rem);
+  max-width: 1160px;
   margin-inline: auto;
 }
 .eyebrow {

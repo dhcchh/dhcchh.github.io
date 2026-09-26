@@ -7,7 +7,7 @@ const { headings } = Astro.props;
 ---
 
 {headings.length > 1 && (
-  <nav class="contents" aria-label="On this page">
+  <nav class="toc" aria-label="On this page">
     <details open data-contents>
       <summary class="eyebrow">On this page</summary>
       <ol role="list">
@@ -33,7 +33,7 @@ const { headings } = Astro.props;
     contents.open = false;
 </script>
 <style>
-  .contents {
+  .toc {
     position: sticky;
     top: 7rem;
     max-height: calc(100dvh - 9rem);
@@ -64,7 +64,7 @@ const { headings } = Astro.props;
     color: var(--link-color);
   }
   @media (max-width: 900px) {
-    .contents {
+    .toc {
       position: static;
       max-height: none;
       border-bottom: 1px solid rgb(var(--color-border));

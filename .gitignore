@@ -26,7 +26,6 @@ pnpm-debug.log*
 .idea/
 
 # local assistant settings
-CLAUDE.md
 .claude/
 
 # test artifacts

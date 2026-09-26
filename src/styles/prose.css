@@ -99,7 +99,6 @@
 
 /* Shiki code blocks (dual light/dark themes) */
 .prose pre {
-  position: relative;
   border: 1px solid rgb(var(--color-border));
   border-radius: 8px;
   padding: 1em 1.2em;
@@ -296,9 +295,6 @@
   margin-top: 0;
   margin-bottom: 1em;
 }
-.prose .md-toggle > summary + * {
-  margin-top: 0;
-}
 
 /* The toolbar sits outside the scrollable code, so its button stays reachable. */
 .prose .code-block {
@@ -381,9 +377,6 @@
 .prose .code-tabs.is-enhanced .code-block {
   border: 0;
   border-radius: 0;
-}
-.prose .code-tabs.is-enhanced .code-toolbar {
-  border-bottom: 1px solid rgb(var(--color-border));
 }
 .prose .code-toolbar.copy-only {
   justify-content: flex-end;

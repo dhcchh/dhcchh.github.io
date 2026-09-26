@@ -2,21 +2,24 @@
 
 The site uses Astro components and static HTML. There is no client framework or
 router. Small client-side scripts handle theme selection, the intentionally
-retained hero title typewriter effect, code copying, and the initial mobile
-contents state. The hero title is present in server-rendered HTML, and typing is
+retained hero title typewriter effect, code copying and language tabs, the
+article image lightbox, the footer year, and the initial mobile contents state. The hero title is present in server-rendered HTML, and typing is
 skipped for reduced-motion preferences. Native `<details>` handles expandable
 content.
 
 ## Content and presentation
 
-- `src/config.ts`: identity, intro, socials, experience, projects, education,
-  credentials, accent color, and the default theme. Empty sections disappear.
+- `src/config.ts`: identity, intro, socials, blog labels, experience, projects,
+  accent color, and the default theme. Empty sections disappear.
 - `src/content/blog/*.md`: articles. See the [authoring guide](../src/content/blog/_README.md).
 - `src/pages/`: separate Home (`/`), Experience (`/experience`), Projects (`/projects`),
-  and Writing (`/blog`) routes. Navigation uses ordinary links with a visible current-page
+  and Blog (`/blog`) routes. Navigation uses ordinary links with a visible current-page
   state.
 - `src/styles/global.css`: palette, typography, containers, and shared controls.
-  The existing Tailwind configuration is explicitly loaded here.
+  Tailwind is imported here for its base reset and `sr-only`. Tailwind emits a
+  utility for any matching word in the source, so don't name classes after
+  utilities (`contents`, `hidden`, `table`, ...); `.container` overrides the
+  utility's breakpoint max-widths on purpose.
 - `src/styles/prose.css`: Markdown only, loaded by `ArticleContent`.
 
 ## Component boundaries
@@ -28,13 +31,13 @@ content.
 | `ui/Section` | Section heading and responsive layout; `heading="h1"` for page titles, default `h2`, content and `intro` slots |
 | `ui/TagList` | Skills or topics; accepts `items` and an accessible `label` |
 | `ui/SocialLinks` | Configured profile links, rendered once from a data map |
-| `ExperienceItem` | One role with native expand/collapse; accepts `experience` and `expanded` |
+| `ExperienceItem` | One role with native expand/collapse; accepts `experience`, `expanded`, and `heading` |
 | `ProjectCard` | One project, supporting details, technologies, and links |
 | `blog/PostCard` | Reusable article preview on the writing index; `heading` is `h2` or `h3` |
 | `blog/PostMeta` | Dates, reading time, and an explicit draft label |
 | `blog/PostHeader` | Article title, summary, author, metadata, and tags |
 | `blog/TableOfContents` | Links from Astro-generated heading slugs, never manually maintained |
-| `blog/ArticleContent` | Markdown styles, syntax themes, math, and copy controls |
+| `blog/ArticleContent` | Markdown styles, syntax themes, math, code tabs, copy controls, and image lightbox |
 | `blog/PostNavigation` | Adjacent articles, falling back to the writing index |
 
 Presentational components take typed props; section components read configuration
@@ -89,9 +92,14 @@ Markdown posts; compose them through a route/layout slot instead.
 
 ### Markdown extensions
 
-`remark-callouts.mjs` handles note/tip/warning/danger and toggle directives.
-`rehype-content.mjs` supplies accessible task labels, keyboard focus for scrollable blocks, and lazy image loading at
-build time. Add rendering transformations here rather than browser DOM scans.
+`remark-callouts.mjs` handles note/tip/warning/danger and toggle directives;
+`remark-code-tabs.mjs` marks `:::code-tabs` groups; `remark-figure-captions.mjs`
+turns standalone images into captioned figures; `remark-inline-html-math.mjs`
+renders `$...$` inside literal HTML. `rehype-raw` runs first among the rehype
+plugins so literal HTML (imported posts) is processed like Markdown, including
+heading ids for the contents list. `rehype-content.mjs` supplies accessible task
+labels, keyboard focus for scrollable blocks, and lazy image loading at build
+time. Add rendering transformations here rather than browser DOM scans.
 Math and code use the existing KaTeX and Shiki pipeline.
 
 ## Validation
