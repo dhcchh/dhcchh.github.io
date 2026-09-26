@@ -97,9 +97,12 @@ Markdown posts; compose them through a route/layout slot instead.
 turns standalone images into captioned figures; `remark-inline-html-math.mjs`
 renders `$...$` inside literal HTML. `rehype-raw` runs first among the rehype
 plugins so literal HTML (imported posts) is processed like Markdown, including
-heading ids for the contents list. `rehype-content.mjs` supplies accessible task
-labels, keyboard focus for scrollable blocks, and lazy image loading at build
-time. Add rendering transformations here rather than browser DOM scans.
+heading ids for the contents list. `rehype-heading-math.mjs` gives headings that
+contain math a clean id and contents label (Astro would otherwise read each
+KaTeX expression three times). `rehype-content.mjs` supplies accessible task
+labels, keyboard focus for scrollable blocks, and async image decoding at build
+time; only images with `width` and `height` are lazy-loaded, so anchor jumps
+don't land on shifting content. Add rendering transformations here rather than browser DOM scans.
 Math and code use the existing KaTeX and Shiki pipeline.
 
 ## Validation
@@ -120,5 +123,5 @@ Scope page-heading assertions to `#main-content h1` and exclude
 
 Astro caches rendered Markdown by content. After editing a Markdown plugin,
 restart the dev server and regenerate the affected content; an unchanged post
-may otherwise keep its old rendering. A fresh build without `.astro/data-store.json`
+may otherwise keep its old rendering. A fresh build without `node_modules/.astro/data-store.json`
 regenerates the content cache.

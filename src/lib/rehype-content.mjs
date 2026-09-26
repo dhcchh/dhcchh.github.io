@@ -24,7 +24,11 @@ export default function rehypeContent() {
         node.properties.ariaLabel ??= textContent(parent).trim() || "Task";
       }
       if (node.tagName === "img") {
-        node.properties.loading ??= "lazy";
+        // A lazy image with no reserved size loads after an anchor jump (such
+        // as a contents link) and pushes the target out of view.
+        if (node.properties.width && node.properties.height) {
+          node.properties.loading ??= "lazy";
+        }
         node.properties.decoding ??= "async";
       }
     });
