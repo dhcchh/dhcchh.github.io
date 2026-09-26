@@ -35,7 +35,7 @@ const minutes =
   </Heading>
   <p>{post.data.description}</p>
   {children.length > 0 && (
-    <details class="subposts" aria-label={`Articles in ${post.data.title}`}>
+    <details class="subposts" open aria-label={`Articles in ${post.data.title}`}>
       <summary class="series-label">In this series ({children.length})</summary>
       <ol>
         {children.map((child) => {
