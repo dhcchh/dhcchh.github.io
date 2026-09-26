@@ -141,8 +141,11 @@
 }
 
 /* Images */
+/* Build-time width/height attributes size the image itself; the 2px leaves
+   room for the border so the bordered box never exceeds the column. */
 .prose img {
-  max-width: 100%;
+  box-sizing: content-box;
+  max-width: calc(100% - 2px);
   height: auto;
   margin-inline: auto;
   border-radius: 8px;

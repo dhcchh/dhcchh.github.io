@@ -100,8 +100,8 @@ plugins so literal HTML (imported posts) is processed like Markdown, including
 heading ids for the contents list. `rehype-heading-math.mjs` gives headings that
 contain math a clean id and contents label (Astro would otherwise read each
 KaTeX expression three times). `rehype-content.mjs` supplies accessible task
-labels, keyboard focus for scrollable blocks, and async image decoding at build
-time; only images with `width` and `height` are lazy-loaded, so anchor jumps
+labels, keyboard focus for scrollable blocks, and image `width`/`height` read
+from `/public` at build time; only sized images are lazy-loaded, so anchor jumps
 don't land on shifting content. Add rendering transformations here rather than browser DOM scans.
 Math and code use the existing KaTeX and Shiki pipeline.
 

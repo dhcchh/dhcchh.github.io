@@ -31,7 +31,10 @@ generated from the top-level sections and omitted for posts with fewer than two.
 Headings inside literal HTML (imported posts) count too.
 
 Standalone images (`![alt text](src)` on their own line) get the alt text as a
-visible caption, and every post image opens in a lightbox when clicked.
+visible caption, and every post image opens in a lightbox when clicked. Put a
+post's images in `public/blog/<slug>/` and reference them as `/blog/<slug>/...`:
+their dimensions are read at build time so they can load lazily without
+shifting the page. Remote images get no dimensions and load eagerly.
 See [the component guide](../../../docs/components.md) for layout extension slots.
 
 ## Blocks beyond standard Markdown

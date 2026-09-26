@@ -64,6 +64,7 @@ When modifying components:
 ## Images in Blog Posts
 
 - A standalone image (`![alt text](src)` on its own line) is automatically wrapped into a `<figure>` with a visible `<figcaption>` built from its alt text, via the custom `remarkFigureCaptions` plugin (`src/lib/remark-figure-captions.mjs`). Always write a real, descriptive alt text for standalone images — it becomes the caption shown under the image, not just accessibility metadata. Leave alt text empty only for a genuinely decorative image that shouldn't get a caption.
+- Host blog images in `public/blog/<slug>/` and reference them as `/blog/<slug>/<file>`, never hotlinked. `src/lib/rehype-content.mjs` reads each local image's dimensions at build time and adds `width`/`height`, which lets it lazy-load without breaking contents-link jumps; remote images can't be sized and load eagerly.
 - Every image inside `[data-article-content]` (i.e. every blog post image) is click-to-enlarge via a lightbox built in `src/components/blog/ArticleContent.astro`. This is automatic and needs no per-image markup; it also picks up a figure's `<figcaption>` text to show under the enlarged image.
 
 ## Configuration Structure
