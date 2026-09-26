@@ -13,8 +13,12 @@ export async function getPosts({
   const posts = await getCollection("blog", ({ data }) => {
     return includeDrafts || !data.draft;
   });
+  // Same-day posts (series parts) fall back to reverse slug order, so
+  // part-4 reads as newer than part-3.
   return posts.sort(
-    (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
+    (a, b) =>
+      b.data.pubDate.getTime() - a.data.pubDate.getTime() ||
+      b.id.localeCompare(a.id),
   );
 }
 
