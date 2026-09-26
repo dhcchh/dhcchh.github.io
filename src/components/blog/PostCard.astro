@@ -35,8 +35,8 @@ const minutes =
   </Heading>
   <p>{post.data.description}</p>
   {children.length > 0 && (
-    <section class="subposts" aria-label={`Articles in ${post.data.title}`}>
-      <p class="series-label">In this series</p>
+    <details class="subposts" aria-label={`Articles in ${post.data.title}`}>
+      <summary class="series-label">In this series ({children.length})</summary>
       <ol>
         {children.map((child) => {
           const childHref = child.data.externalUrl ?? `/blog/${child.id}`;
@@ -57,7 +57,7 @@ const minutes =
           );
         })}
       </ol>
-    </section>
+    </details>
   )}
   <TagList items={post.data.tags} label="Topics" />
 </article>
@@ -103,16 +103,31 @@ const minutes =
     background: rgb(var(--color-surface) / 0.35);
   }
   .series-label {
-    margin: 0 0 0.85rem;
+    list-style: none;
     font: 0.65rem/1.4 var(--font-mono);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: rgb(var(--color-text-muted));
   }
+  .series-label::-webkit-details-marker {
+    display: none;
+  }
+  .series-label::before {
+    content: "▸";
+    display: inline-block;
+    margin-right: 0.6em;
+    transition: transform 0.15s ease;
+  }
+  .subposts[open] .series-label::before {
+    transform: rotate(90deg);
+  }
+  .series-label:hover {
+    color: var(--link-color);
+  }
   ol {
     display: grid;
     gap: 1rem;
-    margin: 0;
+    margin: 0.85rem 0 0;
     padding-left: 1.35rem;
   }
   li {
