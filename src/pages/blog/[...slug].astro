@@ -17,7 +17,14 @@ export async function getStaticPaths() {
 }
 
 const { post, newer, older } = Astro.props;
-const { Content, headings } = await render(post);
+const { Content, headings: renderedHeadings, remarkPluginFrontmatter } =
+  await render(post);
+// Math headings get clean labels from rehype-heading-math.mjs.
+const labels: Record<string, string> = remarkPluginFrontmatter.headingLabels ?? {};
+const headings = renderedHeadings.map((heading) => ({
+  ...heading,
+  text: labels[heading.slug] ?? heading.text,
+}));
 const minutes = post.data.readingMinutes ?? readingTime(post.body);
 ---
 

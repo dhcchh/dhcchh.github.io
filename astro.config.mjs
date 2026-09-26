@@ -11,6 +11,7 @@ import rehypeContent from "./src/lib/rehype-content.mjs";
 import remarkInlineHtmlMath from "./src/lib/remark-inline-html-math.mjs";
 import remarkCodeTabs from "./src/lib/remark-code-tabs.mjs";
 import remarkFigureCaptions from "./src/lib/remark-figure-captions.mjs";
+import rehypeHeadingMath from "./src/lib/rehype-heading-math.mjs";
 
 // https://astro.build/config
 export default defineConfig({
@@ -27,7 +28,7 @@ export default defineConfig({
     ],
     // Parse raw HTML (imported posts) first, so the plugins below and Astro's
     // heading collection (contents list, anchors) also see those elements.
-    rehypePlugins: [rehypeRaw, rehypeKatex, rehypeContent],
+    rehypePlugins: [rehypeRaw, rehypeKatex, rehypeHeadingMath, rehypeContent],
     shikiConfig: {
       themes: { light: "github-light", dark: "github-dark-high-contrast" },
     },
