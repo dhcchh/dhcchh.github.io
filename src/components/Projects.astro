@@ -10,8 +10,8 @@ const cardHeading = heading === "h1" ? "h2" : "h3";
 const projects = siteConfig.projects.filter((project) => project.name.trim());
 const categories = {
   personal: "Personal projects",
-  university: "University projects",
   competition: "Competitions & hackathons",
+  university: "University projects",
 };
 const groups = Object.entries(categories)
   .map(([category, label]) => ({
