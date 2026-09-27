@@ -76,4 +76,4 @@ The `src/config.ts` exports a `siteConfig` object with these sections:
 - social: email, linkedin, github (all optional)
 - blog: {title, navLabel, description} for the blog index, nav link, and RSS feed
 - experience: array of {company, title, dateRange, bullets, skills}; titles containing "intern" are grouped under Internships
-- projects: array of {name, dateRange, description, github, articles: {title, link}[], skills}
+- projects: array of {name, dateRange, category, description, github, articles: {title, link}[], skills}; `category` ("personal", "university", or "competition") picks the collapsible group the project appears under (all open by default)

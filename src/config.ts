@@ -129,6 +129,7 @@ export const siteConfig = {
     {
       name: "Crypto Market Intelligence Pipeline",
       dateRange: "Jan 2026 - Apr 2026",
+      category: "university",
       description:
         "Done as part of my Big Data Analytics coursework (IS459) at SMU. An end-to-end crypto analytics pipeline for retail-trader style insights. Airflow ingests OHLC data from Kraken into S3, dbt transforms it through Glue/Athena into marts for daily volume, returns, drawdown, and volatility regimes, and Grafana dashboards surface the results.",
       github: "https://github.com/dhcchh/crypto-market-data-pipeline",
@@ -138,6 +139,7 @@ export const siteConfig = {
     {
       name: "Card Payments Analytics",
       dateRange: "Dec 2025",
+      category: "personal",
       description:
         "Completed as part of Wise's hiring process. Was a good opportunity for me to practice my data analytics skills. Managed to utilise new Python packages too. See link below for the GitHub repo.",
       github: "https://github.com/dhcchh/card-payments-analytics",
@@ -153,6 +155,7 @@ export const siteConfig = {
     {
       name: "Machine Learning for Credit Card Fraud Detection",
       dateRange: "Aug 2025 - Dec 2025",
+      category: "university",
       description:
         "Done as part of my Machine Learning coursework (IS460) at SMU. Had interest in a form of fraud detection and settled on credit card fraud detection. Tinkered around with ML evaluation metrics, different models from Tree based to deep learning and custom loss functions.",
       github:
@@ -163,6 +166,7 @@ export const siteConfig = {
     {
       name: "SMU BIA x ISD Datathon 2025",
       dateRange: "Jan 2025 - Feb 2025",
+      category: "competition",
       description:
         "Built a risk intelligence system for Singapore's Internal Security Department that turned unstructured WikiLeaks and news data into clear, searchable insights. Created interactive dashboards to visualise trends, relationships, and risks for decision-making. Made it to the finals, placing in the top 10 out of 80 teams.",
       github:
@@ -173,6 +177,7 @@ export const siteConfig = {
     {
       name: "YouTube Customer Sentiment Analysis",
       dateRange: "May 2025 - Jun 2025",
+      category: "personal",
       description:
         "Inspired by issues with my Nespresso machine, the tutorial video sucked and I took a long time to get the issue fixed. The surface level metrics (1.3mil views, 13:1 LDR ratio) shocked me but the comments told a different story.",
       github: "https://github.com/dhcchh/youtube-customer-insights",
@@ -192,6 +197,7 @@ export const siteConfig = {
     {
       name: "SPY Analytics and Forecasting",
       dateRange: "Aug 2024 - Dec 2024",
+      category: "personal",
       description:
         "Project came about with my interest in exploring the stock market. Decided to structure it in two different areas to learn two specialities.",
       github: "https://github.com/dhcchh/SPY-Analytics-Forecasting-Project",
@@ -213,6 +219,7 @@ export const siteConfig = {
     {
       name: "VCT eSports Manager Hackathon",
       dateRange: "Aug 2024 - Oct 2024",
+      category: "competition",
       description:
         "Built an AI assistant that helped users build VALORANT eSports teams. It searched player statistics and tournament data to answer questions and recommend players based on a team's needs. Created for the AWS × Riot Games VCT 2025 Hackathon.",
       github: "https://github.com/dhcchh/vct-hackathon-esports-manager",

@@ -6,7 +6,21 @@ interface Props {
   heading?: "h1" | "h2";
 }
 const { heading = "h2" } = Astro.props;
+const cardHeading = heading === "h1" ? "h2" : "h3";
 const projects = siteConfig.projects.filter((project) => project.name.trim());
+const categories = {
+  personal: "Personal projects",
+  university: "University projects",
+  competition: "Competitions & hackathons",
+};
+const groups = Object.entries(categories)
+  .map(([category, label]) => ({
+    label,
+    projects: projects.filter((project) => project.category === category),
+  }))
+  .filter((group) => group.projects.length > 0);
+// Card numbers run on across groups rather than restarting in each one.
+const numbered = groups.flatMap((group) => group.projects);
 ---
 
 {projects.length > 0 && (
@@ -16,21 +30,65 @@ const projects = siteConfig.projects.filter((project) => project.name.trim());
     heading={heading}
     wide
   >
-    <div class="project-grid">
-      {projects.map((project, index) => (
-        <ProjectCard
-          project={project}
-          index={index}
-          heading={heading === "h1" ? "h2" : "h3"}
-        />
-      ))}
-    </div>
+    {groups.map((group) => (
+      <details class="project-group" open>
+        <summary>
+          <span class="group-label">{group.label}</span>
+          <span class="group-toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="project-grid">
+          {group.projects.map((project) => (
+            <ProjectCard
+              project={project}
+              index={numbered.indexOf(project)}
+              heading={cardHeading}
+            />
+          ))}
+        </div>
+      </details>
+    ))}
   </Section>
 )}
 <style>
+  .project-group + .project-group {
+    margin-top: 2.5rem;
+  }
+  .project-group summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    padding-block: 0.5rem;
+    cursor: pointer;
+  }
+  .project-group summary::-webkit-details-marker {
+    display: none;
+  }
+  .group-label {
+    font: 0.7rem/1.7 var(--font-mono);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--link-color);
+  }
+  .group-toggle {
+    display: grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    border: 1px solid rgb(var(--color-border));
+    border-radius: 50%;
+  }
+  .group-toggle::before {
+    content: "+";
+  }
+  .project-group[open] .group-toggle::before {
+    content: "−";
+  }
   .project-grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: 1.25rem;
+    padding-top: 1rem;
   }
 </style>
