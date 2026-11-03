@@ -127,7 +127,7 @@ export const siteConfig = {
   ],
   projects: [
     {
-      name: "Quant & Tech Job Board Aggregator",
+      name: "Automated Job Postings Scraper & Tracker",
       dateRange: "Sep 2026 - Present",
       category: "personal",
       description:
