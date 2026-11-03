@@ -127,6 +127,24 @@ export const siteConfig = {
   ],
   projects: [
     {
+      name: "Quant & Tech Job Board Aggregator",
+      dateRange: "Sep 2026 - Present",
+      category: "personal",
+      description:
+        "A scheduled scraper that tracks new job postings on quant, trading and tech firms' career boards, classifies them by role, seniority and region, and syncs them to Google Sheets with Telegram alerts. It pulls from several applicant-tracking platforms (Greenhouse, Lever, Ashby, Workday and others) through a shared provider registry, and guards the sheet against incomplete snapshots and false closures. Runs daily on GitHub Actions.",
+      github: "https://github.com/dhcchh/job-scraper",
+      articles: [], // Array of { title: "", link: "" }
+      skills: [
+        "Python",
+        "uv",
+        "pytest",
+        "GitHub Actions",
+        "Google Sheets API",
+        "Telegram Bot API",
+        "TOML configuration",
+      ],
+    },
+    {
       name: "Crypto Market Intelligence Pipeline",
       dateRange: "Jan 2026 - Apr 2026",
       category: "university",
@@ -135,22 +153,6 @@ export const siteConfig = {
       github: "https://github.com/dhcchh/crypto-market-data-pipeline",
       articles: [], // Array of { title: "", link: "" }
       skills: ["Airflow", "dbt", "AWS Glue", "AWS Athena", "AWS S3", "Grafana", "Python"],
-    },
-    {
-      name: "Card Payments Analytics",
-      dateRange: "Dec 2025",
-      category: "personal",
-      description:
-        "Completed as part of Wise's hiring process. Was a good opportunity for me to practice my data analytics skills. Managed to utilise new Python packages too. See link below for the GitHub repo.",
-      github: "https://github.com/dhcchh/card-payments-analytics",
-      articles: [], // Array of { title: "", link: "" }
-      skills: [
-        "SQL",
-        "Python",
-        "DuckDB",
-        "Data Analytics",
-        "Data Visualisation",
-      ],
     },
     {
       name: "Machine Learning for Credit Card Fraud Detection",
