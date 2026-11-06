@@ -59,7 +59,7 @@ export const siteConfig = {
     },
     {
       company: "Wise",
-      title: "Product Analyst Intern",
+      title: "Data Engineer Intern",
       dateRange: "Mar 2026 - Jul 2026",
       bullets: [
         "Worked across the full analytics lifecycle on Wise’s Send High Volume team—from building data pipelines and analysing product performance to creating visualisation tools and communicating insights to stakeholders.",
@@ -94,7 +94,7 @@ export const siteConfig = {
     },
     {
       company: "Razer",
-      title: "Data Analyst Intern",
+      title: "Data Engineer Intern",
       dateRange: "Jul 2025 - Dec 2025",
       bullets: [
         "First exposure to software-engineering practices: versioning dbt projects with Git.",
